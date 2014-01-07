@@ -1,0 +1,113 @@
+@charset "utf-8";
+/* CSS Document */
+#center{
+	padding-top:88px;
+	height:598px;
+}
+#center #logon_title{
+	margin:0 auto;
+	width:250px;
+	height:80px;
+	padding-right:738px;
+	padding-bottom:37px;
+}
+#center #logon_mid{
+	margin:0 auto;
+	width:806px;
+	height:331px;
+	padding-left:51px;
+	padding-right:131px;
+}
+#center #logon_mid #logo{
+	float:left;
+	width:284px;
+	height:162px;
+	padding-top:84px;
+	padding-bottom:84px;
+	padding-right:214px;
+}
+#center #logon_mid #logonbox{
+	float:left;
+	width:308px;
+	height:311px;
+	padding-top:20px;
+}
+#center #logon_mid #logonbox #logonbox_tilte{
+	float:left;
+	background:url(../../images/admin/logon_logobox_title.jpg) no-repeat;
+	width:308px;
+	height:14px;
+}
+#center #logon_mid #logonbox #logonbox_border{
+	float:left;
+	background:url(../../images/admin/logon_logobox_broder.jpg) repeat-y;
+	width:260px;
+	height:260px;
+	padding-left:24px;
+	padding-right:24px;
+}
+#center #logon_mid #logonbox #logonbox_border #logonimg{
+	float:left;
+	width:77px;
+	height:20px;
+	padding-top:18px;
+	padding-right:183px;
+	padding-bottom:13px;
+}
+#center #logon_mid #logonbox #logonbox_border .text{
+	float:left;
+	width:260px;
+	height:28px;
+	padding-bottom:11px;
+	font-size:13px;
+	color:#999999;
+}
+#center #logon_mid #logonbox #logonbox_border #chek{
+	float:left;
+	width:101px;
+	height:15px;
+	padding-right:57px;
+	padding-bottom:42px;
+}
+#center #logon_mid #logonbox #logonbox_border #button{
+	float: left;
+	width:102px;
+	height:28px;
+	padding-bottom:28px;
+}
+#center #logon_mid #logonbox #logonbox_border #h{
+	float:left;
+	overflow:hidden;
+	width:260px;
+	height:1px;
+	background: #bfc0c3;
+}
+#center #logon_mid #logonbox #logonbox_border #xy{
+	float:left;
+	height:39px;
+	width:260px;
+	padding-top:17px;
+	font-size:11px;
+	line-height:18px;
+	color:#808080;
+}
+#center #logon_mid #logonbox #logonbox_border #xy a{
+	text-decoration:none;
+	color:#0088cc;
+}
+#center #logon_mid #logonbox #logonbox_end{
+	float:left;
+	background:url(../../images/admin/logon_logobox_end.jpg) no-repeat;
+	width:308px;
+	height:37px;
+}
+#center #inc{
+	margin:0 auto;
+	width:984px;
+	height:22px;
+	padding-left:4px;
+	margin-top:32px;
+	padding-top:9px;
+	color:#76797c;
+	background:url(../../images/admin/h.jpg) repeat-x;
+}

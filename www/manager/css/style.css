@@ -1,0 +1,98 @@
+@charset "utf-8";
+/*reset*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0;}
+ol,ul{list-style:none;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+input,textarea,select{*font-size:100%;}
+input:focus,textarea:focus,select:focus{ outline:none;}
+select,input,img {vertical-align:middle;}
+/*clean*/
+.clean:before,.clean:after {content:"";display:table;}
+.clean:after {clear:both;}
+.clean {zoom:1;}
+.clear{clear:both;}
+.fl {float:left; display: inline;}
+.fr {float:right; display: inline;}
+
+body {font:12px/1.5 simsun,arial,sans-serif;}
+
+/*content*/
+.content { position: relative; background-color: #F4FAFB; border-radius: 10px; overflow: hidden; border: 1px #ddd solid;}
+
+/*main*/
+.main { border: 1px #ccc solid; background-color: #FFFFFF; border-radius: 6px; margin:10px; padding: 10px; overflow: hidden; min-height: 750px; height: auto !important; height: 750px;}
+
+.main-head { border-bottom: 1px #000 solid; margin-bottom: 15px; overflow: hidden;}
+.main-head h2 { font-size: 14px; font-weight: bold; margin-bottom: 10px;}
+.main-head .MH-tool { margin-bottom: 10px; overflow: hidden;}
+.main-head .MH-tool ul li {float: left; margin-right: 10px; display: inline;}
+.main-head .MH-tool input[type="button"] { cursor: pointer;}
+
+.yd-content { width: 3400px; }
+.yd-content .MH-table input { width: 320px;}
+
+.MH-table { width: 100%; text-align: center; margin-bottom: 10px;}
+.MH-table input { text-align: center; border: none; background: none; width: 80px; height: 24px; line-height: 24px;}
+.MH-table select {text-align: center; border: 1px #ccc solid; background: #fff; }
+.MH-table .MHT-operate input{cursor: pointer; width: 70px; height: 24px; border-radius: 5px;}
+.MH-table .MHT-operate .J_operateEdit,.MH-table .MHT-operate .J_operateDele { background: #fff; border: 1px #ccc solid;}
+.MH-table .MHT-operate .J_operateSave,.MH-table .MHT-operate .J_operateCancel { background: #CCFFFF; border: 1px #000 solid;}
+.MH-table,.MH-table td,.MH-table th { border: 1px #ccc solid;}
+.MH-table td,.MH-table th { padding: 5px 0;}
+.MH-table .tips { color: #FF0000; height: 21px; line-height: 21px;}
+.MH-table .operateEdit { background: #fff; border: 1px red solid;}
+
+/* main-summarizing */
+.main-summarizing { width: 100%; margin-bottom: 15px; text-align: center; background: #f3f3f3;}
+.main-summarizing,.main-summarizing th,.main-summarizing td { border: 1px #ccc solid; line-height: 30px;}
+
+/*paging*/
+.paging { float: right; height: 24px; line-height: 24px;}
+.paging input { width: 40px; text-align: center;}
+.paging li { float: left; margin-left: 10px; display: inline;}
+
+/* 合作渠道权限 */
+.order-refer h3 { font-weight: bold; height: 40px; line-height: 40px;}
+.order-refer ul { width: 100%; overflow: hidden; margin-bottom: 40px;}
+.order-refer ul li { float: left; width: 16.5%; height: 32px; line-height: 32px;}
+.OR-btn { text-align: center;}
+.OR-btn input {width: 100px; height: 28px; background: #00FFFF; cursor: pointer; border: 1px #000 solid; border-radius: 3px;}
+
+/* MH-selectTips */
+.MH-selectTips { width: 150px; margin: 0 auto; background: #fff;}
+.MH-selectTips p { position: relative; width: 100px; padding-right: 50px;}
+.MH-selectTips p input { width: 98px; border: 1px #ccc solid; background: #fff;}
+.MH-selectTips p a { position: absolute; top: 0; right: 0; height: 24px; line-height: 24px; width: 50px; border: 1px #ccc solid; border-left-width: 0; color: #000; text-decoration: none;}
+
+.MH-selectTips ul { border-left: 1px #ccc solid;  border-right: 1px #ccc solid; text-align: left; overflow: hidden;}
+.MH-selectTips ul input { width: 40px;}
+.MH-selectTips ul li { border-bottom: 1px #E8E8E8 solid;}
+.MH-selectTips .MHST-foot { width: 100%; border: 1px #ccc solid; border-top-width: 0; cursor: pointer;}
+.MH-selectTips .MHST-bd {display: none;}
+
+.oIpTextarea { padding: 5px; color: #000; resize: none; overflow: auto; }
+
+/* 20130314 - 模块添加 #gamefeatures #gamemain */
+#gamefeatures h2 { font: bold 14px/40px 'microsoft yahei'; border-bottom: 1px #000 solid; margin-bottom: 10px;}
+#gamemain table { width: 100%;}
+#gamemain td { padding: 5px 5px 10px 0;}
+#gamemain select { text-align: center;}
+#gamemain input { padding: 2px 5px;}
+#gamemain td.title { width: 80px; font-size: 12px;}
+#gamemain .sub-btn { width: 200px; height: 30px; line-height: 30px; cursor: pointer; font-weight: bold; font-size: 14px;}
+
+/*20130314 - 模块列表*/
+.GF-listTab { width: 100%; text-align: center;}
+.GF-listTab td,.GF-listTab { border: 1px #d2d2d2 solid;}
+.GF-listTab #title td { font-weight: bold;}
+.GF-listTab td { height: 30px; line-height: 30px;}
+.GF-listTab .trstyle1 { background-color: #f3f3f3;}
+
+/*角色添加*/
+.RoleOfAdd-listTab td { float: left; width: 120px;}
+.RoleOfAdd-listTab td label { padding: 0 0 0 5px;}
+.RoleOfAdd-btn { width: 100%; text-align: center;}
+.RoleOfAdd-btn input { width: 200px; height: 30px; line-height: 30px; cursor: pointer; font-weight: bold;}

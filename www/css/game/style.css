@@ -1,0 +1,50 @@
+body, html {margin:0; padding:0; font-size:12px; font-family:Tahoma, Geneva, sans-serif;}
+ul {margin:0; padding:0; list-style:none;}
+
+.clear {clear:both;}
+.fB {font-weight:bold;}
+.imgbtn { background:url(imgbtn.gif); width:86px; height:33px; line-height:33px; text-align:center; color:#C01013; border:0; font-size:12px;}
+.pointer { cursor:pointer;}
+
+#main {padding:10px;}
+
+#nav_gl {font-family:Tahoma;}
+#nav_gl h3 {font-weight:bold;}
+#nav_gl a:link{color:#360; text-decoration:underline;}
+
+#gamefeatures {border:1px #A3A894 solid; background:#F2F2EF; margin-bottom:10px;}
+#gamefeatures li {width:100px; height:24px; line-height:24px; text-align:center; font-weight:bold; float:left; margin:5px 10px;}
+#gamefeatures a {display:block;}
+#gamefeatures a:link {color:#000; text-decoration:none;}
+
+#gamelist {border:1px #A3A894 solid;}
+#gamelist li {width:100px; height:24px; line-height:24px; margin:5px; float:left;}
+#gamelist li a {display:block; border:1px #F5CAA0 solid; background:#FEF9D9; text-align:center; font-weight:bold; overflow:hidden;}
+#gamelist a:link {color:#E05921; text-decoration:none;}
+#gamelist a:visited {color:#E05921; text-decoration:none;}
+#gamelist a:hover {color:#C00; text-decoration:underline;}
+#gamelist a.gsel{border:#FF0000 1px solid; background:#FF6633; color:#FFF; font-weight:bold;}
+
+#serverlist {border:1px #A3A894 solid; background:#FFF; margin-top:10px;}
+#serverlist li {width:98px; height:24px; line-height:24px; margin:5px; float:left; overflow:hidden; border:1px #A3A894 solid;}
+#serverlist li a {display:block; text-align:center; background:#F4FBF4; font-weight:bold;}
+#serverlist a:link {color:#475645; text-decoration:none;}
+#serverlist a:visited {color:#475645; text-decoration:none;}
+#serverlist a:hover {color:#C00; text-decoration:underline;}
+#serverlist a.def_ck{border:#4A7B00 1px solid; background:#477A01; color:#FFF; font-weight:bold;}
+
+#gamemain {border:1px #A3A894 solid; padding:10px; margin-top:10px; background:#F4FBF4;}
+#gamemain .inputText {border-top:1px #AFB1B6 solid; border-left:1px #AFB1B6 solid; border-right:1px #E3E9EF solid; border-bottom:1px #E3E9EF solid; font-size:12px; height:20px; line-height:20px;}
+#gamemain .textarea {width:650px; height:60px; border:1px #A3A894 solid; font-size:12px;}
+#gamemain .pl { padding-left:10px;}
+#gamemain #showErrorMsg{ width:400px; height:22px; line-height:22px; border:1px #FFBA43 solid; background:#FDFFCE; padding:5px; color:#F30; display:none; margin-bottom:10px;}
+
+#gamemain #delgserver li { float:left; background:#FF6600; width:110px; padding:5px; color:#FFF; font-size:12px; margin:5px; white-space:nowrap; overflow:hidden;}
+#gamemain #delInfo { margin-top:10px; border:1px #FFBA43 solid; background:#FDFFCE; height:30px; line-height:30px; padding-left:10px;}
+#gamemain #submitinfo { padding:10px; text-align:center;}
+
+#gamemain #sortgserver li { float:left; background:#FF6600; width:130px; padding:5px; color:#FFF; font-size:12px; margin:5px;}
+
+#gamemain #sortable li { float:left; background:#FF6600; width:110px; padding:5px; color:#FFF; font-size:12px; margin:5px; cursor:move}
+
+#ceshipath {margin-bottom:5px; border:1px #3F94CD dashed; padding:5px; font-size:12px; color:#000; font-family:Tahoma, Geneva, sans-serif;}

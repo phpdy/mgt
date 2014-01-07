@@ -1,0 +1,73 @@
+@charset "utf-8";
+/* CSS Document */
+/*by Denglh 2010-11-19*/
+#boxBg {
+	filter:alpha(opacity=50);
+	opacity:0.5;
+	background:#000;
+}
+.box {
+	border:3px solid #E9F3FD;
+	background:#fff;
+}
+.boxLoading,.boxError {
+	position: absolute;
+	display: block;
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+	margin-left: -45px;
+	margin-top: -15px;
+	left: 50%;
+	top: 50%;
+	color: #f00;
+}
+.boxLoading{
+	width:28px;
+	margin-left: -14px;
+	background:url(../../../images/loading.gif) no-repeat;
+	text-indent: -999em;
+	text-align: center;
+}
+.boxTitle {
+	position: relative;
+	border: 1px solid #A6C9E1;
+	background: url(ico.png) 0 0 repeat-x;
+	height: 30px;
+}
+.boxTitle h3 {
+	position: absolute;
+	font-weight: normal;
+	left: 10px;
+	top:-5px;
+	height: 20px;
+	color: #666;
+	font-size: 14px;
+}
+.boxTitle span {
+	position: absolute;
+	width: 10px;
+	background: url(guanbi.jpg) -80px -40px no-repeat;
+	text-indent: -10em;
+	right: 10px;
+	top: 10px;
+	height: 16px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.boxTitle span.hover {
+	background: url(guanbi.jpg)) -90px -40px no-repeat;
+}
+.boxContent {
+	position: relative;
+	padding:0px;
+	border: 1px solid #A6C9E1;
+	border-top: none;
+	text-align: center;
+	overflow: auto;
+}
+.shadow {
+	box-shadow:3px 3px 5px #bfbfbf;
+	-moz-box-shadow: 3px 3px 5px #bfbfbf;
+	-webkit-box-shadow:3px 3px 5px #bfbfbf;
+}

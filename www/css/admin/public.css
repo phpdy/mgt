@@ -1,0 +1,118 @@
+BODY {
+    margin:0px;
+ 	padding:0px;  
+	background-color : #FFFFFF;
+	font-family :Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	
+}
+
+TABLE{
+	margin:0px;
+ 	padding:0px;
+	font-family :Arial, Helvetica, sans-serif;
+	font-size : 12px;
+}
+
+A:link {
+	COLOR: #000000
+}
+
+A:visited {
+	COLOR: #000000
+}
+
+A:hover {
+	COLOR: #ff0000
+}
+
+A:active {
+	COLOR: #ff0000
+}
+
+.listTD {
+	border-right:#0fb0ff 1px solid;
+	width:10%;
+	vertical-align:top;
+}
+.listTD TABLE {
+	margin:0px;
+ 	padding:0px;
+	border-collapse:collapse;
+	width:100%;
+	font-family :Arial, Helvetica, sans-serif;
+	font-size : 12px;
+}
+.listTD TABLE TD{
+	padding:0;
+}
+.inputList {
+	BORDER-RIGHT: #ffffff 2px inset; 
+	BORDER-TOP: #ffffff 2px inset; 
+	OVERFLOW: auto; 
+	BORDER-LEFT: #ffffff 2px inset; 
+	WIDTH: 150px; 
+	BORDER-BOTTOM: #ffffff 2px inset; 
+	HEIGHT: 100px
+}
+.top_tip {
+	height:15px;
+	padding-left:10px;
+	vertical-align:text-bottom;
+	background-color : #BBCCE9;
+	font-size: 10px;
+	font-family :Arial, Helvetica, sans-serif;	
+	Filter: Alpha(Opacity=25, FinishOpacity=100, Style=1, StartX=0, StartY=0, FinishX=0, FinishY=100);
+}
+.top_title {
+	margin:0px;
+	padding-left:50px;
+ 	background-color : #BBCCE9;
+	font-size: 20px;
+	line-height:40px;
+	font-family :Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	Filter: Alpha(Opacity=25, FinishOpacity=100, Style=1, StartX=0, StartY=0, FinishX=0, FinishY=100);
+}
+
+
+#staticstable TABLE{
+	border-collapse:collapse; 
+	margin:0px;
+ 	padding:0px;
+ 	width:100%;
+	font-family :Arial, Helvetica, sans-serif;
+	font-size : 12px;
+}
+
+#staticstable TH {
+	background: #0066FF;
+	color: #FFFFFF;
+	line-height: 20px;
+	border:solid 1px #CCC;
+}
+#staticstable TD {
+	padding: 0px 0px;
+	border-bottom: 1px solid #95bce2;
+	vertical-align: center;
+	text-align: center;
+	border:solid 1px #CCC;
+}
+
+#staticstable td * {
+	padding: 0px 0px;	
+}
+#staticstable tr.alt td {
+	background: #ecf6fc; /*这行将给所有的tr加上背景色*/
+}
+#staticstable tr.over td {
+	background: #99CC99; /*这个将是鼠标高亮行的背景色*/
+}
+
+#staticstable .nodata {
+	text-align: center;
+}
+
+.SearchWhere {
+	margin-left:120px;	
+}

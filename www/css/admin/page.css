@@ -1,0 +1,144 @@
+@charset "utf-8";
+/* CSS Document 
+html { filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); }  */
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height:20px;
+	margin:0px;
+}
+a:link {
+	color: #000000;
+}
+a:visited {
+	color: #000000;
+}
+a:hover {
+	color: #FF0000;
+}
+a:active {
+	color: #FF0000;
+}
+#bluelink a{
+font-size:12px;
+}
+#bluelink a:link{
+color:#333399;
+}
+#bluelink a:visited{
+color:#333399;
+}
+#bluelink a:hover{
+color:#000000;
+}
+#bluelink a:active{
+color:#000000;
+}
+.field{
+background-color:#FFFFFF;
+height:12px;
+border:#90a8ac 1px solid;}
+.wangjimima{
+background-image:url(../images/index_73.gif);
+height:20px;
+width:63px;
+border: #FFFFFF 0px none;
+}
+.denglu{background-image:url(../images/index_75.gif);
+height:20px;
+width:44px;
+border: #FFFFFF 0px none;
+}
+.zhuce{background-image:url(../images/index_77.gif);
+height:20px;
+width:44px;
+border: #FFFFFF 0px none;
+}
+.sousuo{background-image:url(../images/index_21.gif);
+height:22px;
+width:52px;
+border: #FFFFFF 0px none;
+}
+.redfont {
+	color: #FF0000;
+	font-weight: bold;
+	font-size:14px;
+}
+.huizi{
+font:Arial, Helvetica, sans-serif}
+.style1 {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.style3 {
+	color: #999999;
+	font-weight: bold;
+}
+
+
+.style2 {
+	color: #794902;
+	font-weight: bold;
+}
+.style4 {
+	color:#012641;
+	font-weight: bold;
+}
+.style5 {
+	color: #0e4168;
+	font-weight: bold;
+}
+.newstitle{
+font-size:14px;
+color:#336699;}
+
+.wenben{
+background-color:#ffffff;
+border:#3399CC 1px solid; 
+height:15px;
+border-collapse:collapse;
+}
+
+/*移动菜单*/
+.menu_bottom1 
+{ 
+width:45px;height:19px;background:url(../images/a1.gif);font-weight: normal;padding-top:2px;  
+} 
+.menu_bottom2 
+{ 
+width:45px;height:19px;background:url(../images/a2.gif);line-height: 120%;padding-top:2px; 
+} 
+
+.Th 
+{
+	background-color:#FFDB6F;
+	border:#CCCCCC 1px solid;
+}
+
+.Td
+{
+	border:#CCCCCC 0px solid;
+	background-color:#EFF0F1;
+	word-break:keep-all;
+}
+
+#staticstable TH {
+	background: #0066FF;
+	color: #FFFFFF;
+	line-height: 30px;
+	
+}
+#staticstable TD {		
+	vertical-align: top;
+	text-align: center;
+}
+#staticstable tr.alt td {
+	background: #ecf6fc; /*这行将给所有的tr加上背景色 padding: 0px 0px; padding: 0px 0px; border-bottom: 1px solid #95bce2;*/
+}
+#staticstable tr.over td {
+	background: #bcd4ec; /*这个将是鼠标高亮行的背景色*/
+}
+
+#staticstable .nodata {
+	text-align: center;
+}

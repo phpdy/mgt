@@ -1,0 +1,368 @@
+html, body{
+	margin:0 0;
+	background-color:#7e9dcd;
+	font-size:12px;
+	line-height: 1.2em;
+	height: 100%;
+	width: 100%;	
+}
+#main_content td,#main_search td{
+	font-size: 12px;
+	padding: 2px 5px;
+}
+#main_tab {
+	margin-top:20px;
+	margin-left:5px;
+}
+#main_tab td{
+	width:83px;
+	height:38px;
+}
+#main_tab td .unselect{
+	height:33px;
+	margin-top:5px;
+	color:#FFFFFF;
+	text-align:center;
+	line-height:12px;
+	background-image:url('../images/main_tab_unselect.png');
+	background-repeat:no-repeat;
+	font-size:12px;
+	display:block;
+	text-decoration:none;
+}
+
+#main_tab .unselect a{color:#fff;text-decoration:none;font-size: 12px;font-weight:bold;}
+#main_tab .select a{color:#000;text-decoration:none;font-size: 13px;font-weight:bold;}
+
+#main_tab td .select{
+	height:38px;
+	color:#000000;
+	font-weight:bold;
+	text-align:center;
+	background-image:url('../images/main_tab_select.png');
+	background-repeat:no-repeat;
+	font-size:12px;
+	display:block;
+	text-decoration:none;
+}
+
+#main_content{
+	background-color:#f3fbff;
+	width:99%;
+	margin-left:7px;
+	text-align:center;
+}
+
+#main_search {
+	margin-top:5px;
+	margin-bottom:5px;
+	padding:15px;
+	width:100%;
+	_width:expression((document.documentElement.clientWidth||document.body.clientWidth)<1105?"1105":"");
+	background-color:#f3f5fb;
+	border:1px #d6d6d6 solid;
+}
+
+#main_search .search_left{
+	width:1px;
+}
+#main_search .search{
+	height:30px;
+	line-height:30px;
+	padding-top:8px;
+	padding-bottom:9px;
+}
+#main_search .search_right{
+	width:1px;
+}
+#main_search .search_bottom{
+	padding-right: 100px;
+}
+#main_graph {
+	margin-top:8px;
+	height:50px;
+	margin-bottom:8px;
+}
+
+#main_list {
+	margin-top:8px;
+	margin-bottom:8px;
+	width:100%;
+	_width:expression((document.documentElement.clientWidth||document.body.clientWidth)<1105?"1105":"");
+}
+
+#main_list thead td{
+	height:30px;
+	font-weight:bold;
+	background-color:#fee1e1;
+}
+#main_list td{
+	height:25px;
+	background-color:#f3fbff;
+}
+#main_list font{
+	font-size:12px;
+}
+#main_list a{
+	text-decoration:none;
+	color:#0044DD;
+}
+#main_list a:hover{
+	text-decoration:underline;
+}
+
+.main_list {
+	margin-top:8px;
+	margin-bottom:8px;
+}
+.main_list caption{
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom: 8px;
+}
+
+.main_list thead td{
+	height:30px;
+	font-weight:bold;
+	background-color:#fee1e1;
+}
+.main_list td{
+	height:25px;
+	background-color:#f3fbff;
+}
+.main_list a{
+	text-decoration:none;
+	color:#0044DD;
+}
+.main_list a:hover{
+	text-decoration:underline;
+}
+
+#float_layer {
+width:350px;
+height:auto;
+background-color:#FFFFFF;
+position:fixed;
+top:20%;
+left:35%;
+overflow:hidden;
+_top:expression(eval(document.documentElement.scrollTop+100));
+border:1px solid #4c87c1;
+}
+#float_close{
+	position:relative;
+	width:auto;
+	height:auto;
+	float:right;
+	margin:0px;
+}
+#float_layer table{
+	line-height:28px;
+}
+#float_layer td{
+height:45px;
+}
+
+#float_layer thead td{
+height:45px;
+text-align:center;
+font-weight:bold;
+font-size:14px;
+padding-top:18px;
+}
+
+#float_layer .table_left{
+padding-top:12px;
+text-align:right;
+font-size:12px;
+}
+
+#float_layer .table_right{
+padding-top:8px;
+padding-left:12px;
+}
+
+#float_layer input{
+height:24px;
+border:1px #999999 solid;
+width:200px;
+}
+
+#float_layer select{
+height:24px;
+border:1px #888888 solid;
+width:200px;
+}
+
+
+#main_operation {
+	margin-bottom: 5px;
+	margin-left:20px;
+	height:35px;
+}
+#main_operation a{
+	float:left;
+	margin-right:10px;
+	text-decoration:none;
+	color:#FFF;
+	font-size:14px;
+	font-weight:bold;
+	border:solid 1px #7E9DCD;
+	padding:5px;
+	background-color:#7E9DCD;
+}
+#main_operation a:hover{
+	background-color:red;
+	color:#EEE;
+}
+
+.textbox{
+	float:left;
+	width:250px;
+	margin-bottom: 5px;
+}
+.textbox label{
+	height:24px;
+	text-align:right;
+	width:90px;
+	padding-right:3px;
+	float:left;
+	line-height:24px;
+}
+.textbox input{
+	height:24px;
+	border:1px #999999 solid;
+	width:150px;
+	padding-left:3px;
+	float:left;
+}
+.textbox select{
+	height:24px;
+	border:1px #888888 solid;
+	width:150px;
+	float:left;
+}
+.textbox textarea{
+	height:60px;
+	border:1px #888888 solid;
+	width:150px;
+	float:left;
+}
+.textbox .text{
+	height:24px;
+	text-align:left;
+	width:150px;
+	float:left;
+	line-height:24px;	
+}
+.button {
+	height:25px;
+	display: inline-block;
+	text-align:center;
+	cursor:pointer;
+	border:solid 1px #7E9DCD;
+	padding:3px 8px 3px 8px;
+	background-color:#7E9DCD;
+	margin-left:10px;
+	text-decoration:none;
+	color:#FFF;
+	font-weight:bold;
+	font-size: 14px;
+}
+.formbox {
+	width: 360px;
+	padding: 5px 0 0 0;
+}
+.formbox h2 {
+	text-align: center;
+	font-size: 16px;
+	margin-top: 10px;
+}
+/*.formbox .textbox {width:400px;}
+.formbox .textbox label {width:120px;}
+.formbox .textbox input {width:260px;}
+.formbox .textbox select {width:260px;}*/
+.formbox .button_con {width:100%;float:left;text-align:center;}
+.formbox .button_con .button{margin:0 auto;}
+
+.pagination {
+	font-family: Arial,Helvetica,sans-serif;
+	text-align:center;
+	margin:5px 0;
+}
+.pagination a {
+	text-decoration:none;
+	padding: 3px 5px;
+	font-size: 12px;
+	color: #0044DD;
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E0E0E0;
+    margin:0 5px;
+}
+.pagination a:hover{
+	border: 1px solid #A0A0A0;
+    color: red;
+}
+.pagination .current {
+	color: red;
+	font-weight: bold;
+}
+
+#mask {
+	width:100%;
+	height:100%;
+	background-color: #FFF;
+	display:none;
+	filter:alpha(opacity=20);/*IE*/
+	opacity:0.2;/*FF*/
+	z-index:1;
+	position:fixed!important;/*FF IE7*/
+	position:absolute;/*IE6*/
+	top:0;
+	left:0;
+	z-index:1;
+	_top:expression(documentElement.scrollTop + 0 + "px");
+}
+
+.pop {
+	width: 360px;
+	border: 4px solid #7E9DCD;
+	border-top: 26px solid #7E9DCD;
+	background-color: #FFF;
+	padding: 0px !important;
+	display:none;
+	z-index:99;
+	left:50%;/*FF IE7*/
+	top:50%;/*FF IE7*/
+	margin-left:-200px!important;/*FF IE7 half of its width */
+	margin-top:-200px!important;/*FF IE7 half of its height*/
+	margin-top:0px;
+	position:fixed!important;/*FF IE7*/
+	position:absolute;/*IE6*/
+	_top: expression(eval(document.compatMode &&
+	document.compatMode=='CSS1Compat') ?
+	documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+	document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+}
+.pop .close {
+	color: #FFFFFF;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+    top: -20px;
+    line-height:20px;
+}
+
+
+
+.clear{clear:both;}
+.fr{float:right;}
+.mark{padding:0 3px;}
+.operate{padding:0 3px;cursor:pointer;color:#0044DD;}
+.red{color:red;}
+.blue{color:#0044DD;}
+.gray{color:#888;}
+.break{word-break:break-all;line-height:1.5em;}

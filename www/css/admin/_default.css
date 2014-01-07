@@ -1,0 +1,339 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	font-family:Tahoma;
+	font-size:12px;
+	cursor:auto;
+}
+a,span{
+	cursor:pointer;
+}
+html,body{
+margin:0px;
+width:100%;
+height:100%;
+filter: expression(document.execCommand("BackgroundImageCache", false, true));
+}
+#center{
+	background: url(../images/_default/background.jpg) repeat-x;
+	}
+#center #hard{
+	background:url(../images/_default/hard.jpg) no-repeat;
+	overflow:hidden;
+	height:107px;
+	margin:0 auto;
+	width:988px;
+	}
+#center #hard .xm{
+	float:left;
+	margin-bottom:29px;
+	display:inline;
+	width:110px;
+	height:78px;
+	cursor:pointer;
+}
+#center #hard #about_us{
+	width:111px;
+	margin-left:30px;
+}
+#center #hard #about_us:hover{
+	background-image:url(../images/_default/au.jpg);
+}
+#center #hard #game_business{
+	margin-left:3px;
+}
+#center #hard #game_business:hover{
+	background-image: url(../images/_default/gb.jpg);
+}
+#center #hard #work_of_art{
+	margin-left:3px;
+	margin-right:3px;
+}
+#center #hard #work_of_art:hover{
+	background-image: url(../images/_default/woa.jpg);
+}
+#center #hard #index{
+	margin-right:3px;
+	margin-bottom:0px;
+	width:214px;
+	height:107px;
+}
+#center #hard #internet_business{
+	width:118px;
+	margin-right:3px;
+}
+#center #hard #internet_business:hover{
+	background-image: url(../images/_default/ib.jpg);
+}
+#center #hard #design_printing{
+	margin-right:2px;
+}
+#center #hard #design_printing:hover{
+	background-image: url(../images/_default/dp.jpg);
+}
+#center #hard #contact_us{
+	margin-right:57px;
+}
+#center #hard #contact_us:hover{
+	background-image: url(../images/_default/cu.jpg);
+}
+/*****备用
+#center #hard #left{
+	float:left;
+	width:857px;
+	height:107px;
+	}
+#center #hard #search_h{
+	background: url(../images/_default/search_h.jpg) repeat-x;
+	float:left;
+	width:97px;
+	padding-top:45px;
+	height:62px; 
+	font-size:12px;
+	font-family:"宋体";
+	}
+#center #hard #search_k{
+	float:left;
+	background-image:url(../images/_default/search_k.jpg);
+	width:34px; 
+	height:107px;
+}
+*************/
+#center #sth{
+	height:158px;
+	width:988px;
+	margin:0 auto;
+	margin-top:10px;
+}
+#center #sth .kuang{
+	float:left;
+	width:228px;
+	height:158px;
+}
+#center #sth #d2{
+	margin-left:24px;
+}
+#center #sth #d3{
+	margin-left:24px;
+	margin-right:24px;
+}
+#center #service{
+	margin:0 auto;
+	margin-top:30px;
+	height:31px;
+	width:988px;
+}
+#center #service #service_left{
+	float:left;
+	padding-top:0px;
+	background:url(../images/_default/h.jpg) repeat-x;
+	height:31px;
+	width:598px;
+}
+#center #service #service_left p{
+	margin:0 auto;
+	font-size:13px;
+	height:11px;
+	padding-top:10px;
+	padding-left:5px;
+}
+#center #service #service_left a{
+	text-decoration: none; 
+	color:#0088cc;
+}
+#center #service #service_right{
+	float:left;
+	background:url(../images/_default/h.jpg) repeat-x;
+	margin:0 auto;
+	margin-left:5px;
+	width:383px;
+	height:31px;
+}
+#center #service #service_right p{
+	margin:0 auto;
+	font-size:13px;
+	height:11px;
+	padding-left:15px;
+	padding-top:10px;
+}
+#center #service #service_right a{
+		text-decoration: none;
+		border-right:#999 solid 2px;
+		padding-right:5px;
+		color:#0088cc;
+}
+#center #business{
+	margin:0 auto;
+	width:988px;
+}
+#center #business #top{
+	float:left;
+	width:988px;
+	height:57px;
+}
+#center #business #top #top_left{
+	height:57px;
+	float:left;
+}
+#center #business #top #top_right{
+	overflow:hidden;
+	float:left;
+	height:57px;
+}
+#center #business #top #top_right p{
+	margin:0 auto;
+	float:left;
+	height:39px;
+	text-align:center;
+	padding-top:18px;
+	font-size:12px;
+	color:#000;
+}
+#center #business #top #top_right a{
+	height:39px;
+	float:left;
+	display:inline;
+	text-decoration:none;
+	color:#000;
+}
+#center #business #top #top_right a:hover{
+	color: #0088cc;
+}
+#center #business #middle{
+	margin:0 auto;
+	float:left;
+	width:988px;
+}
+#center #business #middle #BusinessBox_top{
+	float:left;
+	background:url(../images/_default/BusinessBox_top.jpg) no-repeat;
+	width:988px;
+	height:14px;
+}
+#center #business #middle #BusinessBox_border{
+	float:left;
+	background: url(../images/_default/BusinessBox_border.jpg) repeat-y;
+	width:988px;
+}
+#center #business #down{
+	background: url(../images/_default/help.jpg);
+	float:left;
+	width:988px;
+	height:37px;
+}
+#center #business #down p{
+	float:left;
+	margin:0 auto;
+	padding-top:10px;
+	padding-left:30px;
+	font-size:12px;
+	color:#666666;
+	width:958px;
+	height:27px;
+}
+#center #business #down a{
+	text-decoration:none;
+	border:0;
+	padding:0px;
+	color: #0088cc;
+}
+#center #business #down a:hover{
+	text-decoration:underline;
+	color: #0088cc;
+}
+#center #windows{
+	margin:0 auto;
+	padding-top:10px;
+	width:988px;
+	height:161px;
+}
+#center #windows #title{
+	background:url(../images/_default/box_title.jpg) no-repeat;
+	width:988px;
+	height:35px;
+	float:left;
+}
+#window_border{
+	float:left;
+	padding-top:0px;
+	background:url(../images/_default/box_h.jpg) repeat-y;
+	width:988px;
+	height:150px;
+
+}
+#center #windows #title p{
+	margin:0 auto;
+	width:926px;
+	height:23px;
+	margin-left:62px;
+	margin-top:12px;
+	font-weight:bold;
+	color:#727272;
+}
+.box{
+	float:left;
+	display:inline;
+	overflow:hidden;
+	width:150px;
+	height:90px;
+	margin-left:10px;
+	
+}
+.box p{
+	float:left;
+	margin:0 auto;
+	padding-top:7px;
+	padding-left:23px;
+	width:141px;
+	font-size:12px;
+	color:#666666;
+}
+.box a{
+	text-decoration:none;
+	color:#666666;
+}
+.box a:hover{
+	color: #0088cc;
+}
+#center #windows #window_end{
+	background-image:url(../images/_default/box_end.jpg);
+	width:988px;
+	height:1px;
+	max-height:1px;
+	overflow:hidden;
+	float:left;
+}
+#center #end{
+	margin:0 auto;
+	margin-top:30px;
+	height:28px;
+	width:988px;
+}
+#center #end #end_left{
+	float:left;
+	height:28px;
+	width:465px;
+	padding-left:146px;
+}
+#center #end #end_left p{
+	width:465px;
+	height:18px;
+	margin:0 auto;
+	padding-top:10px;
+	color:#999;
+}
+#center #end #end_right{
+	float:left;
+	width:377px;
+	height:28px;
+}
+#center #end a{
+	text-decoration: none;
+	border-right: #CCC solid 2px;
+	padding-right:5px;
+	color:#0088cc;
+}
+#center #end a:hover{
+	text-decoration:underline;
+	color:#0088cc;
+}
