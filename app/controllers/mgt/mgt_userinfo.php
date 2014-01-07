@@ -3,33 +3,28 @@
 class mgt_userinfo extends BaseController {
 
 	public function init(){
-		$this->module_model = $this->initModel('userinfo_model');
+		$this->userinfo_model = $this->initModel('userinfo_model');
 	}
 	//添加
 	public function addAction(){
-		$result = $this->module_model->selectModule(array('type'=>1)) ;
-		$this->view->assign('list',$result) ;
-		$this->view->display('module_add.php');
+		$this->view->display('userinfo_add.php');
 	}
-	public function add_subAction(){
+	public function submitAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
-		$name = $_GET['name'] ;
-		$url = $_GET['url'] ;
-		$type = $_GET['type'] ;
-		$parentid = $_GET['parentid'] ;
-		$log .= "|$name,$url,$type,$parentid" ;
-		$module = array(
-			"name"		=>	$name,
-			"url"		=>	$url,
-			"type"		=>	$type,
-			"parentid"	=>	$parentid,
-		) ;
-		$result = $this->module_model->insertModule($module) ;
-		if(empty($result)){
-			echo "fail" ;
+		$data = $this->getPost() ;
+		if(!isset($_POST['id']) || empty($_POST['id'])){
+			$this->userinfo_model->insertUserinfo($data) ;
+		} else {
+			$data['id'] = $_POST['id'] ;
+			$this->userinfo_model->updateUserinfo($data) ;
 		}
+		if(empty($result)){
+			echo "操作失败" ;
+			die() ;
+		}
+		print_r($data) ; die() ;
 		$this->listAction();
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
@@ -38,10 +33,11 @@ class mgt_userinfo extends BaseController {
 	public function listAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
-		$result = $this->module_model->selectModule() ;
+		$userinfo = array() ;
+		$result = $this->userinfo_model->queryUserinfo($userinfo) ;
 		
 		$this->view->assign('list',$result) ;
-		$this->view->display('module_list.php');
+		$this->view->display('userinfo_list.php');
 		
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
@@ -53,59 +49,19 @@ class mgt_userinfo extends BaseController {
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
 		$id = $_GET['id'] ;
-		$result = $this->module_model->selectModule(array('id'=>$id)) ;
-		$this->view->assign('module',$result[0]) ;
+		$userinfo = $this->userinfo_model->queryUserinfoById($id) ;
+		$this->view->assign('userinfo',$userinfo) ;
 		
-		$result = $this->module_model->selectModule(array('type'=>1)) ;
-		$this->view->assign('list',$result) ;
-		
-		$this->view->display('module_up.php');
+		$this->view->display('$userinfo_up.php');
 		
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
 	}
-	public function up_subAction(){
-		$start = microtime(true)*1000 ;
-		$log = __CLASS__."|".__FUNCTION__ ;
-		
-		$id = $_GET['id'] ;
-		$name = $_GET['name'] ;
-		$url = $_GET['url'] ;
-		$type = $_GET['type'] ;
-		$parentid = $_GET['parentid'] ;
-		$log .= "|$id,$name,$url,$type,$parentid" ;
-		$module = array(
-			"id"		=>	$id,
-			"name"		=>	$name,
-			"url"		=>	$url,
-			"type"		=>	$type,
-			"parentid"	=>	$parentid,
-		) ;
-		$result = $this->module_model->updateModule($module) ;
-		if(empty($result)){
-			echo "fail" ;
-		}
-		$this->listAction();
-		$log .= "|".(int)(microtime(true)*1000-$start) ;
-		Log::logBusiness($log) ;
-	}
-	//模块禁用开启
-	public function updateAction(){
-		$start = microtime(true)*1000 ;
-		$log = __CLASS__."|".__FUNCTION__ ;
-		$id = $_GET['id'] ;
-		$log .= "|$id" ;
-		$result = $this->module_model->selectModule(array('id'=>$id)) ;
-		$state = $result[0]['state'] ;
-		$module = array(
-			"id"		=>	$id,
-			"state"		=>	$state==1?0:1,
-		) ;
-		$result = $this->module_model->updateModule($module) ;
-		
-		$this->listAction();
-		$log .= "|".(int)(microtime(true)*1000-$start) ;
-		Log::logBusiness($log) ;
+	
+	private function getPost(){
+		$data = array() ;
+		$data = $_POST ;
+		return $data ;
 	}
 }
 

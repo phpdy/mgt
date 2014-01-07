@@ -82,7 +82,7 @@ class userinfo_model extends BaseModel {
 	 * 查询
 	 * @param array $data
 	 */
-	public function queryUserinfo($data) {
+	public function queryUserinfo($data=array()) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		$log .= "|$name,$username,$password";
