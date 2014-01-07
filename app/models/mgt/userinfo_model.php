@@ -18,6 +18,9 @@ class userinfo_model extends BaseModel {
 		$p2 = "" ;
 		$params = array() ;
 		foreach ($data as $key=>$value){
+			if(empty($value)){
+				continue ;
+			}
 			if(in_array($key, $this->items)){
 				$p1 .= "$key," ;
 				$p2 .= "?," ;
@@ -90,6 +93,9 @@ class userinfo_model extends BaseModel {
 		$p1 = "" ;
 		$params = array() ;
 		foreach ($data as $key=>$value){
+			if(empty($value) && $key!='member'){
+				continue ;
+			}
 			if(in_array($key, $this->items)){
 				$p1 .= "and $key=? " ;
 				$params[] = $value ;

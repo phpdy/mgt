@@ -11,7 +11,7 @@
 <div class="content">
     <div id="main" class="main">
         <div id="gamefeatures"><h2>会员信息修改</h2></div>
-        <form method="post" action="">
+        <form method="get" action="">
             <input type="hidden" value="mgt" name="dir">
             <input type="hidden" value="userinfo" name="control">
             <input type="hidden" value="submit" name="action">

@@ -14,17 +14,18 @@ class mgt_userinfo extends BaseController {
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
 		$data = $this->getPost() ;
-		if(!isset($_POST['id']) || empty($_POST['id'])){
+		if(!isset($_GET['id']) || empty($_GET['id'])){
 			$this->userinfo_model->insertUserinfo($data) ;
 		} else {
-			$data['id'] = $_POST['id'] ;
+			$data['id'] = $_GET['id'] ;
 			$this->userinfo_model->updateUserinfo($data) ;
 		}
+		
 		if(empty($result)){
-			echo "操作失败" ;
+			print_r($result) ;
+			echo "操作失败:$result" ;
 			die() ;
 		}
-		print_r($data) ; die() ;
 		$this->listAction();
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
@@ -34,6 +35,18 @@ class mgt_userinfo extends BaseController {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		$userinfo = array() ;
+		if(empty($_POST['username'])){
+			$userinfo['username'] = $_POST['username'] ;
+		}
+		if($_POST['member']!=-1){
+			$userinfo['member'] = $_POST['member'] ;
+		}
+		if(empty($_POST['mobile'])){
+			$userinfo['mobile'] = $_POST['mobile'] ;
+		}
+		if(empty($_POST['email'])){
+			$userinfo['email'] = $_POST['email'] ;
+		}
 		$result = $this->userinfo_model->queryUserinfo($userinfo) ;
 		
 		$this->view->assign('list',$result) ;
@@ -52,7 +65,7 @@ class mgt_userinfo extends BaseController {
 		$userinfo = $this->userinfo_model->queryUserinfoById($id) ;
 		$this->view->assign('userinfo',$userinfo) ;
 		
-		$this->view->display('$userinfo_up.php');
+		$this->view->display('userinfo_up.php');
 		
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
@@ -60,7 +73,7 @@ class mgt_userinfo extends BaseController {
 	
 	private function getPost(){
 		$data = array() ;
-		$data = $_POST ;
+		$data = $_GET ;
 		return $data ;
 	}
 }
