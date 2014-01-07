@@ -17,11 +17,14 @@
             <input type="hidden" value="list" name="action">
        		姓名：<input type="text" name="username" value="" size="10" maxlength="10"/>
        		会员类型：<select name="member">
-       		<option value="-1" >全部
-			<option value="0" >普通会员
-			<option value="1" >全科会员
-			<option value="2" >在线教育会员
-			<option value="3" >俱乐部会员
+       		<option value="0" >全部
+	       		<?php 
+				foreach($remberlist as $item){
+					$id = $item['id'] ;
+					$name = $item['name'] ;
+					echo "<option value='$id' >$name" ;
+				}
+	       		?>
 			</select>
 			手机号：<input type="text" name="mobile" value="" size="10" maxlength="10"/>
 			电子邮箱：<input type="text" name="email" value="" size="10" maxlength="10"/>

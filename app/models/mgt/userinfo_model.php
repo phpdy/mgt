@@ -1,5 +1,5 @@
 <?php
-
+//会员管理
 class userinfo_model extends BaseModel {
 	protected $dbIndex = 'admin';
 	
@@ -12,7 +12,6 @@ class userinfo_model extends BaseModel {
 	public function insertUserinfo($data) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
-		$log .= "|$name,$username,$password";
 
 		$p1 = "" ;
 		$p2 = "" ;
@@ -55,8 +54,7 @@ class userinfo_model extends BaseModel {
 	function updateUserinfo($data) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
-		$log .= "|$name,$username,$password";
-
+		
 		$p1 = "" ;
 		$params = array() ;
 		
@@ -88,12 +86,11 @@ class userinfo_model extends BaseModel {
 	public function queryUserinfo($data=array()) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
-		$log .= "|$name,$username,$password";
 
 		$p1 = "" ;
 		$params = array() ;
 		foreach ($data as $key=>$value){
-			if(empty($value) && $key!='member'){
+			if(empty($value)){
 				continue ;
 			}
 			if(in_array($key, $this->items)){

@@ -4,9 +4,12 @@ class mgt_userinfo extends BaseController {
 
 	public function init(){
 		$this->userinfo_model = $this->initModel('userinfo_model');
+		$this->member_model = $this->initModel('member_model');
 	}
 	//添加
 	public function addAction(){
+		$remberlist = $this->member_model->queryAll() ;
+		$this->view->assign('remberlist',$remberlist) ;
 		$this->view->display('userinfo_add.php');
 	}
 	public function submitAction(){
@@ -14,18 +17,19 @@ class mgt_userinfo extends BaseController {
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
 		$data = $this->getPost() ;
+		$result = 0 ;
 		if(!isset($_GET['id']) || empty($_GET['id'])){
-			$this->userinfo_model->insertUserinfo($data) ;
+			$result = $this->userinfo_model->insertUserinfo($data) ;
 		} else {
 			$data['id'] = $_GET['id'] ;
-			$this->userinfo_model->updateUserinfo($data) ;
+			$result = $this->userinfo_model->updateUserinfo($data) ;
 		}
-		
+		$_GET=null ;
 		if(empty($result)){
-			print_r($result) ;
 			echo "操作失败:$result" ;
 			die() ;
 		}
+		
 		$this->listAction();
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
@@ -34,18 +38,22 @@ class mgt_userinfo extends BaseController {
 	public function listAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$remberlist = $this->member_model->queryAll() ;
+		$this->view->assign('remberlist',$remberlist) ;
+		
 		$userinfo = array() ;
 		if(empty($_POST['username'])){
-			$userinfo['username'] = $_POST['username'] ;
+			$userinfo['username'] = @$_POST['username'] ;
 		}
-		if($_POST['member']!=-1){
-			$userinfo['member'] = $_POST['member'] ;
+		if(empty($_POST['member'])){
+			$userinfo['member'] = @$_POST['member'] ;
 		}
 		if(empty($_POST['mobile'])){
-			$userinfo['mobile'] = $_POST['mobile'] ;
+			$userinfo['mobile'] = @$_POST['mobile'] ;
 		}
 		if(empty($_POST['email'])){
-			$userinfo['email'] = $_POST['email'] ;
+			$userinfo['email'] = @$_POST['email'] ;
 		}
 		$result = $this->userinfo_model->queryUserinfo($userinfo) ;
 		
@@ -60,6 +68,9 @@ class mgt_userinfo extends BaseController {
 	public function upAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$remberlist = $this->member_model->queryAll() ;
+		$this->view->assign('remberlist',$remberlist) ;
 		
 		$id = $_GET['id'] ;
 		$userinfo = $this->userinfo_model->queryUserinfoById($id) ;

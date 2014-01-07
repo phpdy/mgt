@@ -51,7 +51,7 @@ class BaseModel extends Model {
 	 */
 	public function getAllByTablename($table){
 		$sql = "select * from $table order by id" ;
-		$list = $this->querySQL($sql,array($id)) ;
+		$list = $this->querySQL($sql,array()) ;
 		
 		return $list ;
 	}

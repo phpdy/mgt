@@ -23,7 +23,8 @@ class Model extends Object {
 				$temp = "SET NAMES ".$config['charset'];
 				$this->pdo->exec($temp);
 			} catch (PDOException $e) {
-				exit('连接失败:'.$e->getMessage());
+				echo ('连接失败:'.$e->getMessage());
+				//exit('连接失败:'.$e->getMessage());
 			}
 		}
 	}
