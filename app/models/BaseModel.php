@@ -2,6 +2,7 @@
 
 class BaseModel extends Model {
 	protected $dbIndex = 'admin';
+	protected $dbtable = "" ;
 	protected $start ;//起始时间
 	protected $da_pre = "my" ;
 	
@@ -35,14 +36,23 @@ class BaseModel extends Model {
 	 * @param string $table
 	 * @param int $id
 	 */
-	public function getOneById($table,$id){
-		$sql = "select * from $table where id = ?" ;
+	public function getOneById($id){
+		$sql = "select * from ".$this->dbtable." where id = ?" ;
 		$list = $this->querySQL($sql,array($id)) ;
 		
 		if (!is_array($list) || sizeof($list)!=1){
 			return array() ;
 		}
 		return $list[0] ;
+	}
+	public function getList(){
+		$sql = "select * from ".$this->dbtable."  order by id" ;
+		$list = $this->querySQL($sql,array()) ;
+		
+		if (!is_array($list) || sizeof($list)!=1){
+			return array() ;
+		}
+		return $list ;
 	}
 	
 	/**

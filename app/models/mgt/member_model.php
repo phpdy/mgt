@@ -2,13 +2,14 @@
 //会员类型
 class member_model extends BaseModel {
 	protected $dbIndex = 'admin';
+	protected $dbtable = "member" ;
 	
 	/**
 	 * 按ID查询
 	 * @param int $id
 	 */
 	public function queryById($id){
-		return $this->getOneById("member", $id) ;
+		return $this->getOneById( $id) ;
 	}
 	
 	/**
@@ -18,9 +19,9 @@ class member_model extends BaseModel {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
-		$result = $this->getAllByTablename("member") ;
+		$result = $this->getList() ;
 		
-		$log .= '|getAllByTablename|' . (int)(microtime(true)*1000-$start);
+		$log .= '|getList|' . (int)(microtime(true)*1000-$start);
 		Log::logBehavior($log);
 		return $result;	
 	}

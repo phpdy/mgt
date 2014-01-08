@@ -1,16 +1,16 @@
 <?php
-//会员管理
-class userinfo_model extends BaseModel {
+//缴费管理
+class pay_model extends BaseModel {
 	protected $dbIndex = 'admin';
-	protected $dbtable = "userinfo" ;
+	protected $dbtable = "lesson_pay" ;
 	
-	private $items = array('name','password','username','sex','birth','sfz','province','city','address','post','mobile','phone','email','createtime','memberid','member') ;
+	private $items = array('userid','username','money','paytype','paydate','other','recorder','recordtime') ;
 
 	/**
 	 * insert
 	 * @param array $data
 	 */
-	public function insertUserinfo($data) {
+	public function insert($data) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 
@@ -30,7 +30,7 @@ class userinfo_model extends BaseModel {
 		$p1 = substr($p1,0,-1) ;
 		$p2 = substr($p2,0,-1) ;
 		
-		$sql = "INSERT INTO userinfo ($p1) VALUES ($p2)";
+		$sql = "INSERT INTO lesson_pay ($p1) VALUES ($p2)";
 		$result = $this->excuteSQL($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
@@ -44,7 +44,7 @@ class userinfo_model extends BaseModel {
 	 * 更新信息
 	 * @param array $data
 	 */
-	function updateUserinfo($data) {
+	function update($data) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
@@ -62,7 +62,7 @@ class userinfo_model extends BaseModel {
 		
 		$params[] = $data['id'] ;
 		
-		$sql = "update userinfo set $p1 where id=?";
+		$sql = "update lesson_pay set $p1 where id=?";
 		$result = $this->excuteSQL($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
@@ -76,7 +76,7 @@ class userinfo_model extends BaseModel {
 	 * 查询
 	 * @param array $data
 	 */
-	public function queryUserinfo($data=array()) {
+	public function query($data=array()) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 
@@ -92,7 +92,7 @@ class userinfo_model extends BaseModel {
 			}
 		}
 		
-		$sql = "select * from userinfo where 1=1 $p1 order by username ";
+		$sql = "select * from lesson_pay where 1=1 $p1 order by id ";
 		$result = $this->getAll($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);

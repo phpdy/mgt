@@ -11,23 +11,24 @@
         <div id="gamefeatures"><h2>信息查询</h2></div>
         
         <div id="gamemain">
-        <form method="post" action="">
-            <input type="hidden" value="mgt" name="dir">
-            <input type="hidden" value="userinfo" name="control">
-            <input type="hidden" value="list" name="action">
-       		姓名：<input type="text" name="username" value="" size="10" maxlength="10"/>
-       		会员类型：<select name="member">
+        <form method="post" action="?dir=mgt&control=userinfo&action=list">
+       		姓名：<input type="text" name="username" value="<?php echo $userinfo['username'] ;?>" size="10" maxlength="10"/>
+       		会员类型：<select name="memberid">
        		<option value="0" >全部
 	       		<?php 
 				foreach($remberlist as $item){
 					$id = $item['id'] ;
 					$name = $item['name'] ;
-					echo "<option value='$id' >$name" ;
+					$p="" ;
+					if($id==$userinfo['memberid']){
+						$p="selected" ;
+					}
+					echo "<option value='$id' $p>$name" ;
 				}
 	       		?>
 			</select>
-			手机号：<input type="text" name="mobile" value="" size="10" maxlength="10"/>
-			电子邮箱：<input type="text" name="email" value="" size="10" maxlength="10"/>
+			手机号：<input type="text" name="mobile" value="<?php echo $userinfo['mobile'] ;?>" size="10" maxlength="10"/>
+			电子邮箱：<input type="text" name="email" value="<?php echo $userinfo['email'] ;?>" size="10" maxlength="10"/>
 			<input type="submit" value="查询">
         </form>
         </div>
@@ -45,21 +46,13 @@
                 <td>电子邮箱</td>
                 <td>省市</td>
                 <td>注册日期</td>
+                <td>修改</td>
             </tr>
 		<?php
 		$i = 0;
 		foreach ($list as $item){
 			$class = $i%2==0 ? 'trstyle1' : 'trstyle2';
 			$member = $item['member'] ;
-			if($member==1){
-				$member = "全科会员" ;
-			} else if($member==2){
-				$member = "在线教育会员" ;
-			} else if($member==3){
-				$member = "俱乐部会员" ;
-			} else {
-				$member = "普通会员" ;
-			}
 			$sex = $item['sex']==1?"男":"女" ;
 			$birth 	= $item['birth'] ;
 			$mobile = $item['mobile'] ;
@@ -68,8 +61,9 @@
 			$dz		= $item['province']." ".$item['city'] ;
 			$createtime = $item['createtime'] ;
 			
-			echo "<tr class='$class'><td>$item[id]</td><td><a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>$item[username]</a></td>"
-			."<td>$member</td><td>$sex</td><td>$birth</td><td>$mobile</td><td>$phone</td><td>$email</td><td>$dz</td><td>$createtime</td></tr>" ;
+			echo "<tr class='$class'><td>$item[id]</td><td><a href='?dir=mgt&control=userinfo&action=show&id=$item[id]'>$item[username]</a></td>".
+			"<td>$member</td><td>$sex</td><td>$birth</td><td>$mobile</td><td>$phone</td><td>$email</td><td>$dz</td><td>$createtime</td>".
+			"<td><a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改</a></td></tr>" ;
 		$i++;
 		}
 		?>

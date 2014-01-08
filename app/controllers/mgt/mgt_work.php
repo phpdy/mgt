@@ -1,36 +1,29 @@
 <?php
 
-class mgt_userinfo extends BaseController {
+class mgt_work extends BaseController {
 
 	public function init(){
-		$this->userinfo_model = $this->initModel('userinfo_model');
+		$this->work_model = $this->initModel('work_model');
 		$this->member_model = $this->initModel('member_model');
 	}
 	//添加
 	public function addAction(){
 		$remberlist = $this->member_model->queryAll() ;
 		$this->view->assign('remberlist',$remberlist) ;
-		$this->view->display('userinfo_add.php');
+		$this->view->display('work_add.php');
 	}
 	public function submitAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
 		$data = $this->getPost() ;
-		$remberlist = $this->member_model->queryAll() ;
-		foreach ($remberlist as $item){
-			if($item['id']==$data['memberid']){
-				$data['member'] = $item['name'] ;
-			}
-		}
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
-			$result = $this->userinfo_model->insertUserinfo($data) ;
+			$result = $this->work_model->insert($data) ;
 		} else {
 			$data['id'] = $_POST['id'] ;
-			$result = $this->userinfo_model->updateUserinfo($data) ;
+			$result = $this->work_model->update($data) ;
 		}
-		$_POST=null ;
 		if(empty($result)){
 			echo "操作失败:$result" ;
 			die() ;
@@ -48,24 +41,14 @@ class mgt_userinfo extends BaseController {
 		$remberlist = $this->member_model->queryAll() ;
 		$this->view->assign('remberlist',$remberlist) ;
 		
-		$userinfo = array() ;
-		if(!empty($_POST['username'])){
-			$userinfo['username'] = $_POST['username'] ;
-		}
+		$data = array() ;
 		if(!empty($_POST['memberid'])){
-			$userinfo['memberid'] = $_POST['memberid'] ;
+			$data['memberid'] = $_POST['memberid'] ;
 		}
-		if(!empty($_POST['mobile'])){
-			$userinfo['mobile'] = $_POST['mobile'] ;
-		}
-		if(!empty($_POST['email'])){
-			$userinfo['email'] = $_POST['email'] ;
-		}
-		$result = $this->userinfo_model->queryUserinfo($userinfo) ;
+		$result = $this->work_model->query($data) ;
 		
-		$this->view->assign('userinfo',$userinfo) ;
 		$this->view->assign('list',$result) ;
-		$this->view->display('userinfo_list.php');
+		$this->view->display('work_list.php');
 		
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
@@ -80,10 +63,10 @@ class mgt_userinfo extends BaseController {
 		$this->view->assign('remberlist',$remberlist) ;
 		
 		$id = $_GET['id'] ;
-		$userinfo = $this->userinfo_model->getOneById($id) ;
-		$this->view->assign('userinfo',$userinfo) ;
+		$object = $this->work_model->getOneById($id) ;
+		$this->view->assign('work',$object) ;
 		
-		$this->view->display('userinfo_up.php');
+		$this->view->display('work_up.php');
 		
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
@@ -93,16 +76,19 @@ class mgt_userinfo extends BaseController {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
-		$id = $_GET['id'] ;
-		$userinfo = $this->userinfo_model->getOneById($id) ;
-		$this->view->assign('userinfo',$userinfo) ;
+		$remberlist = $this->member_model->queryAll() ;
+		$this->view->assign('remberlist',$remberlist) ;
 		
-		$this->view->display('userinfo_show.php');
+		$id = $_GET['id'] ;
+		$object = $this->work_model->getOneById($id) ;
+		$this->view->assign('work',$object) ;
+		
+		$this->view->display('work_show.php');
 		
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
 	}
-	
+
 	private function getPost(){
 		$data = array() ;
 		$data = $_POST ;

@@ -4,7 +4,7 @@
 		<td class="title"><b>姓名:</b></td><td><input type="text" name="username" value="<?php echo @$userinfo['username']; ?>" size=20></td>
 	</tr>
 	<tr><td class="title"><b>会员类型:</b></td><td>
-		<select name="member">
+		<select name="memberid">
 			<?php 
 			foreach($remberlist as $item){
 				$id = $item['id'] ;
