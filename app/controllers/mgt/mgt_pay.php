@@ -47,6 +47,7 @@ class mgt_pay extends BaseController {
 			$data['username'] = $_POST['username'] ;
 		}
 		$result = $this->pay_model->query($data) ;
+		$this->view->assign('data',$data) ;
 		
 		$this->view->assign('list',$result) ;
 		$this->view->display('pay_list.php');

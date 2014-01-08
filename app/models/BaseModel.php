@@ -37,19 +37,29 @@ class BaseModel extends Model {
 	 * @param int $id
 	 */
 	public function getOneById($id){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
 		$sql = "select * from ".$this->dbtable." where id = ?" ;
 		$list = $this->querySQL($sql,array($id)) ;
 		
 		if (!is_array($list) || sizeof($list)!=1){
 			return array() ;
 		}
+		$log .= "|$sql|" . (int)(microtime(true)*1000-$start);
+		Log::logBehavior($log);
 		return $list[0] ;
 	}
 	public function getList(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
 		$sql = "select * from ".$this->dbtable."  order by id" ;
 		$list = $this->querySQL($sql,array()) ;
 		
-		if (!is_array($list) || sizeof($list)!=1){
+		$log .= "|$sql|".sizeof($list).'|' . (int)(microtime(true)*1000-$start);
+		Log::logBehavior($log);
+		if (!is_array($list) || sizeof($list)==0){
 			return array() ;
 		}
 		return $list ;
@@ -60,9 +70,14 @@ class BaseModel extends Model {
 	 * @param string $table
 	 */
 	public function getAllByTablename($table){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
 		$sql = "select * from $table order by id" ;
 		$list = $this->querySQL($sql,array()) ;
 		
+		$log .= "|$sql|" . (int)(microtime(true)*1000-$start);
+		Log::logBehavior($log);
 		return $list ;
 	}
 

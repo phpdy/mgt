@@ -16,7 +16,7 @@
 			<table>
 				<tbody>
 				<tr>
-					<td class="title"><b>姓名:</b></td><td><input type="text" name="username" size=20 onblur="if(value!=''){check(this);}"><input type="text" name="userid" value="" size=20></td>
+					<td class="title"><b>姓名:</b></td><td><input type="text" name="username" size=20><input type="hidden" name="userid" value="" size=20></td>
 				</tr>
 				<tr><td class="title"><b>缴费方式:</b></td><td>
 					<select name="paytype">
@@ -61,9 +61,21 @@ $(function() {
 	$('input[name="username"]').blur(function(){
 		var username = $('input[name="username"]').val();
 		$.get("?dir=mgt&control=userinfo&action=userinfo&username="+username ,function(data){
-			alert("Data: " + data );
+			//alert(data) ;
+			var userinfo = eval("["+data+"]") ;
+			//alert(userinfo.length) ;
+			if(userinfo.length > 0 && userinfo[0]['id']>0){
+				var userid = userinfo[0]['id'] ;
+				//alert(userid) ;
+				$('input[name="userid"]').val(userid) ;
+			} else {
+				alert(username+"不是会员，请重新输入。") ;
+				$('input[name="userid"]').val("") ;
+				$('input[name="username"]').val("") ;
+				$('input[name="username"]').focus();
+			}
 		});
-		alert(username) ;
+		
 	});
 });
 
