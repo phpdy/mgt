@@ -12,7 +12,7 @@
         
         <div id="gamemain">
         <form method="post" action="?dir=mgt&control=userinfo&action=list">
-       		姓名：<input type="text" name="username" value="<?php echo $userinfo['username'] ;?>" size="10" maxlength="10"/>
+       		姓名：<input type="text" name="username" value="<?php echo @$userinfo['username'] ;?>" size="10" maxlength="10"/>
        		会员类型：<select name="memberid">
        		<option value="0" >全部
 	       		<?php 
@@ -20,15 +20,15 @@
 					$id = $item['id'] ;
 					$name = $item['name'] ;
 					$p="" ;
-					if($id==$userinfo['memberid']){
+					if($id==@$userinfo['memberid']){
 						$p="selected" ;
 					}
 					echo "<option value='$id' $p>$name" ;
 				}
 	       		?>
 			</select>
-			手机号：<input type="text" name="mobile" value="<?php echo $userinfo['mobile'] ;?>" size="10" maxlength="10"/>
-			电子邮箱：<input type="text" name="email" value="<?php echo $userinfo['email'] ;?>" size="10" maxlength="10"/>
+			手机号：<input type="text" name="mobile" value="<?php echo @$userinfo['mobile'] ;?>" size="10" maxlength="10"/>
+			电子邮箱：<input type="text" name="email" value="<?php echo @$userinfo['email'] ;?>" size="10" maxlength="10"/>
 			<input type="submit" value="查询">
         </form>
         </div>

@@ -19,7 +19,7 @@
 					$id = $item['id'] ;
 					$name = $item['name'] ;
 					$p="" ;
-					if($id==$userinfo['memberid']){
+					if($id==@$work['memberid']){
 						$p="selected" ;
 					}
 					echo "<option value='$id' $p>$name" ;

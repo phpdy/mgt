@@ -12,7 +12,7 @@
         
         <div id="gamemain">
         <form method="post" action="?dir=mgt&control=pay&action=list">
-       		姓名：<input type="text" name="username" value="<?php echo $data['username'] ;?>" size="10" maxlength="10"/>
+       		姓名：<input type="text" name="username" value="<?php echo @$data['username'] ;?>" size="10" maxlength="10"/>
 			<input type="submit" value="查询">
         </form>
         </div>

@@ -36,7 +36,7 @@
 	<tr><td class="title"><b>手机号:</b></td><td><input type="text" name="mobile" value="<?php echo @$userinfo['mobile']; ?>" size=20></td></tr>
 	<tr><td class="title"><b>电话:</b></td><td><input type="text" name="phone" value="<?php echo @$userinfo['phone']; ?>" size=20></td></tr>
 	<tr><td class="title"><b>电子邮箱:</b></td><td><input type="text" name="email" value="<?php echo @$userinfo['email']; ?>" size=20></td></tr>
-	<tr><td class="title"><b>登记时间:</b></td><td><input type="text" name="createtime" value="<?php echo @$userinfo['createtime']; ?>" size=20></td></tr>
+	<tr><td class="title"><b>登记时间:</b></td><td><input type="text" name="createtime" value="<?php echo @$userinfo['createtime']?@$userinfo['createtime']:date('Y-m-d'); ?>" size=20></td></tr>
 
 	<tr><td colspan="2"><input type="submit" value="提  交" name="sub" class="sub-btn"></td></tr>
 	</tbody>
