@@ -102,5 +102,25 @@ class userinfo_model extends BaseModel {
 		return $result;	
 	}
 
+	/**
+	 * 查询
+	 * @param array $data
+	 */
+	public function queryByUsername($username) {
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+
+		$params = array($username) ;
+		
+		$sql = "select * from userinfo where username=? ";
+		$result = $this->getOne($sql,$params) ;
+		
+		$log .= '|' . $sql.";".implode(",", $params);
+		$log .= '|' . $result;
+		$log .= '|' . (int)(microtime(true)*1000-$start);
+		Log::logBehavior($log);
+		return $result;	
+	}
+	
 }
 

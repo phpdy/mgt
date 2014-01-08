@@ -102,6 +102,19 @@ class mgt_userinfo extends BaseController {
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
 	}
+
+	public function userinfoAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$username = $_GET['username'] ;
+		$userinfo = $this->userinfo_model->queryByUsername($username) ;
+		
+		echo json_encode($userinfo) ;
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
 	
 	private function getPost(){
 		$data = array() ;

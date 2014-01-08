@@ -5,6 +5,9 @@ class mgt_pay extends BaseController {
 	public function init(){
 		$this->pay_model = $this->initModel('pay_model');
 		$this->userinfo_model = $this->initModel('userinfo_model');
+		
+		@session_start ();
+		$this->view->assign('_username',$_SESSION [FinalClass::$_session_user]['username']) ;
 	}
 	//添加
 	public function addAction(){
