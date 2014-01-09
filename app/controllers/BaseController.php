@@ -27,6 +27,20 @@ class BaseController extends Controller {
 		$userid = $_SESSION [FinalClass::$_session_user]['id'] ;
 		return $userid ;
 	}
+	
+	protected function iconvArray($array){
+		foreach ($array as $key=>$value){
+			if(is_array($value)){
+				$array[$key] = $this->iconvArray($value) ;
+			} else if(is_string($value)){
+//				$array[$key] = iconv('UTF-8', 'GBK//IGNORE', $value) ;
+//				$array[$key] = iconv("GB2312","UTF-8", $value) ;
+				$array[$key] = iconv("UTF-8","GB2312", $value) ;
+				
+			}
+		}
+		return $array ;
+	}
 }
 
 ?>

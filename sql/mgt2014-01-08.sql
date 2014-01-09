@@ -1,9 +1,8 @@
-/*
+﻿/*
 SQLyog 企业版 - MySQL GUI v8.14 
 MySQL - 5.5.19 : Database - mgt
 *********************************************************************
-*/
-
+*/
 /*!40101 SET NAMES utf8 */;
 
 /*!40101 SET SQL_MODE=''*/;
@@ -138,7 +137,7 @@ CREATE TABLE `mgt_module` (
   `parentid` int(11) NOT NULL DEFAULT '0' COMMENT '上级模块ID',
   `state` int(11) NOT NULL DEFAULT '1' COMMENT '状态：启用1，作废-1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 /*Data for the table `mgt_module` */
 
@@ -159,7 +158,7 @@ CREATE TABLE `mgt_rolse` (
   `modules` varchar(200) NOT NULL COMMENT '包含的模块ID，用,分割',
   `state` int(11) NOT NULL DEFAULT '1' COMMENT '状态：启用1，作废-1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `mgt_rolse` */
 
@@ -182,13 +181,13 @@ CREATE TABLE `mgt_user` (
   `registdate` varchar(20) NOT NULL,
   `modifydate` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `mgt_user` */
 
 LOCK TABLES `mgt_user` WRITE;
 
-insert  into `mgt_user`(`id`,`name`,`username`,`password`,`email`,`registdate`,`modifydate`) values (1,'admin','超级管理员','123',NULL,'2014-01-01',NULL),(6,'dy','邸永','123',NULL,'2014-01-07 10:34:41',NULL);
+insert  into `mgt_user`(`id`,`name`,`username`,`password`,`email`,`registdate`,`modifydate`) values (1,'admin','超级管理员','123',NULL,'2014-01-01',NULL);
 
 UNLOCK TABLES;
 
@@ -202,13 +201,12 @@ CREATE TABLE `mgt_userinfo` (
   `rolses` varchar(100) NOT NULL COMMENT '用户角色列表',
   `state` int(11) NOT NULL DEFAULT '1' COMMENT '状态：启用1，作废-1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `mgt_userinfo` */
 
 LOCK TABLES `mgt_userinfo` WRITE;
 
-insert  into `mgt_userinfo`(`id`,`userid`,`rolses`,`state`) values (1,6,'1',1);
 
 UNLOCK TABLES;
 
@@ -237,13 +235,11 @@ CREATE TABLE `userinfo` (
   `memberid` int(11) DEFAULT '0' COMMENT '会员类型',
   `member` varchar(20) DEFAULT NULL COMMENT '会员名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*Data for the table `userinfo` */
 
 LOCK TABLES `userinfo` WRITE;
-
-insert  into `userinfo`(`id`,`name`,`password`,`username`,`sex`,`birth`,`sfz`,`province`,`city`,`address`,`post`,`mobile`,`phone`,`email`,`createtime`,`picture`,`photo_url`,`memberid`,`member`) values (1,NULL,NULL,'dyong',1,'','','','','','','','','','',NULL,NULL,2,'全科课程会员'),(2,NULL,NULL,'admin',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,'在线教育会员');
 
 UNLOCK TABLES;
 

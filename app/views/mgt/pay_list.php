@@ -26,7 +26,7 @@
                 <td>付款方式</td>
                 <td>付款日期</td>
                 <td>操作员</td>
-                <td>注册日期</td>
+                <td>操作日期</td>
                 <td>修改</td>
             </tr>
 		<?php
@@ -34,7 +34,7 @@
 		foreach ($list as $item){
 			$class = $i%2==0 ? 'trstyle1' : 'trstyle2';
 			
-			echo "<tr class='$class'><td>$item[id]</td><td><a href='?dir=mgt&control=pay&action=show&id=$item[id]'>$item[username]</a></td>".
+			echo "<tr class='$class'><td>$item[id]</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>".
 			"<td>$item[money]</td><td>$item[paytype]</td><td>$item[paydate]</td><td>$item[recorder]</td><td>$item[recordtime]</td>".
 			"<td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a></td></tr>" ;
 		$i++;

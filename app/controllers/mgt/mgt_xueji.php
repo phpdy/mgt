@@ -5,11 +5,15 @@ class mgt_xueji extends BaseController {
 	public function init(){
 		$this->xueji_model = $this->initModel('xueji_model');
 		$this->userinfo_model = $this->initModel('userinfo_model');
+		$this->member_model = $this->initModel('member_model');
+		
+		@session_start ();
+		$this->view->assign('_username',$_SESSION [FinalClass::$_session_user]['username']) ;
 	}
 	//添加
 	public function addAction(){
-		$userinfolist = $this->userinfo_model->queryUserinfo() ;
-		$this->view->assign('userinfolist',$userinfolist) ;
+		$remberlist = $this->member_model->queryAll() ;
+		$this->view->assign('remberlist',$remberlist) ;
 		$this->view->display('xueji_add.php');
 	}
 	public function submitAction(){
@@ -39,6 +43,9 @@ class mgt_xueji extends BaseController {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
+		$remberlist = $this->member_model->queryAll() ;
+		$this->view->assign('remberlist',$remberlist) ;
+		
 		$data = array() ;
 		if(!empty($_POST['cnid'])){
 			$data['cnid'] = $_POST['cnid'] ;
@@ -51,6 +58,7 @@ class mgt_xueji extends BaseController {
 		}
 		$result = $this->xueji_model->query($data) ;
 		
+		$this->view->assign('data',$data) ;
 		$this->view->assign('list',$result) ;
 		$this->view->display('xueji_list.php');
 		
@@ -63,8 +71,8 @@ class mgt_xueji extends BaseController {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
-		$userinfolist = $this->userinfo_model->queryUserinfo() ;
-		$this->view->assign('userinfolist',$userinfolist) ;
+		$remberlist = $this->member_model->queryAll() ;
+		$this->view->assign('remberlist',$remberlist) ;
 		
 		$id = $_GET['id'] ;
 		$object = $this->xueji_model->getOneById($id) ;
@@ -90,6 +98,20 @@ class mgt_xueji extends BaseController {
 		Log::logBusiness($log) ;
 	}
 
+	//根据学籍号查询学籍信息
+	public function getAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$cnid = $_GET['cnid'] ;
+		$xueji = $this->xueji_model->query(array('cnid'=>$cnid)) ;
+		//print_r($xueji) ;
+		echo json_encode($this->iconvArray($xueji[0])) ;
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
+	
 	private function getPost(){
 		$data = array() ;
 		$data = $_POST ;

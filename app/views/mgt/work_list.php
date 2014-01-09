@@ -52,7 +52,7 @@
 			}
 			echo "<tr class='$class'><td>$item[id]</td><td>$item[name]</td>".
 			"<td>$item[note]</td><td>$name</td>".
-			"<td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a></td></tr>" ;
+			"<td><a href='?dir=mgt&control=work&action=up&id=$item[id]'>修改</a></td></tr>" ;
 		$i++;
 		}
 		?>

@@ -47,6 +47,7 @@ class mgt_work extends BaseController {
 		}
 		$result = $this->work_model->query($data) ;
 		
+		$this->view->assign('work',$data) ;
 		$this->view->assign('list',$result) ;
 		$this->view->display('work_list.php');
 		

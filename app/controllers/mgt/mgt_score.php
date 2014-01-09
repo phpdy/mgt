@@ -6,6 +6,9 @@ class mgt_score extends BaseController {
 		$this->score_model = $this->initModel('score_model');
 		$this->userinfo_model = $this->initModel('userinfo_model');
 		$this->work_model = $this->initModel('work_model');
+		
+		@session_start ();
+		$this->view->assign('_username',$_SESSION [FinalClass::$_session_user]['username']) ;
 	}
 	//添加
 	public function addAction(){
