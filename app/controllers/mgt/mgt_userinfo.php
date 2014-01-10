@@ -116,6 +116,45 @@ class mgt_userinfo extends BaseController {
 		Log::logBusiness($log) ;
 	}
 	
+	public function popAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$remberlist = $this->member_model->queryAll() ;
+		$this->view->assign('remberlist',$remberlist) ;
+		
+		$this->view->display('userinfo_pop.php');
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
+
+	public function popupAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$userinfo = array() ;
+		if(!empty($_GET['username'])){
+			$userinfo['username'] = $_GET['username'] ;
+		}
+		if(!empty($_GET['memberid'])){
+			$userinfo['memberid'] = $_GET['memberid'] ;
+		}
+		if(!empty($_GET['mobile'])){
+			$userinfo['mobile'] = $_GET['mobile'] ;
+		}
+		if(!empty($_GET['email'])){
+			$userinfo['email'] = $_GET['email'] ;
+		}
+		
+		$result = $this->userinfo_model->queryUserinfo($userinfo) ;
+		
+		echo json_encode($result) ;
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
+	
 	private function getPost(){
 		$data = array() ;
 		$data = $_POST ;

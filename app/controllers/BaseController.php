@@ -29,14 +29,16 @@ class BaseController extends Controller {
 	}
 	
 	protected function iconvArray($array){
-		foreach ($array as $key=>$value){
-			if(is_array($value)){
-				$array[$key] = $this->iconvArray($value) ;
-			} else if(is_string($value)){
-//				$array[$key] = iconv('UTF-8', 'GBK//IGNORE', $value) ;
-//				$array[$key] = iconv("GB2312","UTF-8", $value) ;
-				$array[$key] = iconv("UTF-8","GB2312", $value) ;
-				
+		if (is_array($array))
+		foreach ($array as $k=>$v){
+			if(is_string($v)){
+				$array[$k] = iconv('gb2312','utf-8',$v) ;
+			}
+			elseif(is_array($v)){
+				$array[$k] = $this->encodeUtf8($v) ;
+			}
+			elseif (is_null($v)){
+				$array[$k] = "" ;
 			}
 		}
 		return $array ;

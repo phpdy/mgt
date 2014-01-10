@@ -16,7 +16,7 @@
 			<table>
 				<tbody>
 				<tr>
-					<td class="title"><b>姓名:</b></td><td><input type="text" name="username" size=20><input type="hidden" name="userid" value="" size=20></td>
+					<td class="title"><b>姓名:</b></td><td><input type="text" name="username" size=20 onclick="pop(this)" readonly><input type="hidden" name="userid" value="" size=20></td>
 				</tr>
 				<tr><td class="title"><b>缴费方式:</b></td><td>
 					<select name="paytype">
@@ -58,25 +58,17 @@ $(function() {
 		}
 	});
 
-	$('input[name="username"]').blur(function(){
-		var username = $('input[name="username"]').val();
-		$.get("?dir=mgt&control=userinfo&action=userinfo&username="+username ,function(data){
-			//alert(data) ;
-			var userinfo = eval("["+data+"]") ;
-			//alert(userinfo.length) ;
-			if(userinfo.length > 0 && userinfo[0]['id']>0){
-				var userid = userinfo[0]['id'] ;
-				//alert(userid) ;
-				$('input[name="userid"]').val(userid) ;
-			} else {
-				alert(username+"不是会员，请重新输入。") ;
-				$('input[name="userid"]').val("") ;
-				$('input[name="username"]').val("") ;
-				$('input[name="username"]').focus();
-			}
-		});
-		
-	});
 });
 
+
+function pop(obj){
+	var url = "index.php?dir=mgt&control=userinfo&action=pop" ;
+	var returnValue = window.showModalDialog(url,obj,"dialogHeight=400px;dialogWidth=600px;dialogLeft=500;dialogTop=100;center=yes;help=no;resizable=no;scroll=no;status=no;") ;
+//	alert(returnValue) ;
+	user = new Array;
+	user = returnValue.split(",");
+	
+	$('input[name="userid"]').val(user[0]);
+	$('input[name="username"]').val(user[1]);
+}
 </script>
