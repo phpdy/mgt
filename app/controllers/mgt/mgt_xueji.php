@@ -104,9 +104,16 @@ class mgt_xueji extends BaseController {
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
 		$cnid = $_GET['cnid'] ;
-		$xueji = $this->xueji_model->query(array('cnid'=>$cnid)) ;
-		//print_r($xueji) ;
-		echo json_encode($this->iconvArray($xueji[0])) ;
+		if(!empty($cnid)){
+			$xuejilist = $this->xueji_model->query(array('cnid'=>$cnid)) ;
+		}
+		
+		$xueji = array() ;
+		if(!empty($xuejilist) && sizeof($xuejilist)==1){
+			$xueji = $xuejilist[0] ;
+			$xueji = $this->iconvArray($xueji) ;
+		}
+		echo json_encode($xueji) ;
 		
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;

@@ -17,10 +17,10 @@
 				<tbody>
 				<tr><td class="title"><b>学籍号:</b></td><td><input type="text" name="cnid" value="" size=20></td></tr>
 				<tr>
-					<td class="title"><b>姓名:</b></td><td><input type="text" name="username" size=20 readonly><input type="text" name="userid" value="" size=20></td>
+					<td class="title"><b>姓名:</b></td><td><input type="text" name="username" size=20 readonly><input type="hidden" name="userid" value="" size=20></td>
 				</tr>
 				<tr><td class="title"><b>作业:</b></td><td>
-					<select name="memberid">
+					<select name="workid">
 					<?php 
 					foreach($worklist as $item){
 						$id = $item['id'] ;
@@ -30,7 +30,7 @@
 					?>
 					</select></td>
 				</tr>
-				<tr><td class="title"><b>成绩:</b></td><td><input type="text" name="start_date" value="" size=20 onclick="new Calendar().show(this);"></td></tr>
+				<tr><td class="title"><b>成绩:</b></td><td><input type="text" name="score" value="" size=20></td></tr>
 				<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=100 rows=5></textarea></td></tr>
 				
 				<tr><td class="title"><b>记录人:</b></td><td><input type="hidden" name="modifer" value="<?php echo $_username; ?>"><?php echo $_username ; ?></td></tr>
@@ -51,8 +51,8 @@ $(function() {
 	$('input[name="sub"]').click(function() {
 		var userid = $('input[name="userid"]').val();
 		if(userid == ''){
-			alert('用户名不能为空!');
-			$('input[name="username"]').focus();
+			alert('学籍号不能为空!');
+			$('input[name="cnid"]').focus();
 			return false;
 		}
 		
@@ -62,16 +62,17 @@ $(function() {
 		}
 	});
 
-	$('input[name="cnid"]').blur(function(){
+	$('input[name="cnid"]').change(function(){
 		var cnid = $('input[name="cnid"]').val();
 		$.get("?dir=mgt&control=xueji&action=get&cnid="+cnid ,function(data){
-			alert(data) ;
+//			alert(data) ;
 			var xueji = eval("["+data+"]") ;
-			alert(xueji.length) ;
-			alert(xueji['userid']) ;
-			if(xueji.length > 0 && xueji['userid']>0){
-				var userid = xueji['userid'] ;
-				var username = xueji['username'] ;
+//			alert(xueji.length) ;
+//			alert(xueji[0]['userid']) ;
+//			alert(xueji[0]['username']) ;
+			if(xueji.length > 0 && xueji[0]['userid']>0){
+				var userid = xueji[0]['userid'] ;
+				var username = xueji[0]['username'] ;
 				//alert(userid) ;
 				$('input[name="userid"]').val(userid) ;
 				$('input[name="username"]').val(username) ;

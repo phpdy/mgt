@@ -147,7 +147,10 @@ class mgt_userinfo extends BaseController {
 			$userinfo['email'] = $_GET['email'] ;
 		}
 		
-		$result = $this->userinfo_model->queryUserinfo($userinfo) ;
+		$result = array() ;
+		if(!empty($userinfo)){
+			$result = $this->userinfo_model->queryUserinfo($userinfo) ;
+		}
 		
 		echo json_encode($result) ;
 		

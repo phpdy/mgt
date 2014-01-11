@@ -32,7 +32,10 @@ class BaseController extends Controller {
 		if (is_array($array))
 		foreach ($array as $k=>$v){
 			if(is_string($v)){
-				$array[$k] = iconv('gb2312','utf-8',$v) ;
+//				$v = urlencode($v) ;
+//				$array[$k] = iconv('gb2312','utf-8',$v) ;
+//				$array[$k] = iconv('gbk','utf-8',$v) ;
+//				$array[$k] = iconv('utf-8','gbk',$v) ;
 			}
 			elseif(is_array($v)){
 				$array[$k] = $this->encodeUtf8($v) ;

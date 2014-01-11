@@ -92,7 +92,7 @@ class Model extends Object {
 				}
 			}
 			$stmt->execute();
-			$list = $stmt->fetchAll(PDO::FETCH_BOTH);
+			$list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			
 			$log .= "|".sizeof($list) ;
 			$log .= "|".(int)(microtime(true)*1000-$start) ;

@@ -96,7 +96,7 @@ class xueji_model extends BaseModel {
 		$result = $this->getAll($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
-		$log .= '|' . $result;
+		$log .= '|' . sizeof($result) ;
 		$log .= '|' . (int)(microtime(true)*1000-$start);
 		Log::logBehavior($log);
 		return $result;	
