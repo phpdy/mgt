@@ -4,7 +4,7 @@ class pay_model extends BaseModel {
 	protected $dbIndex = 'admin';
 	protected $dbtable = "lesson_pay" ;
 	
-	private $items = array('userid','username','money','paytype','paydate','other','recorder','recordtime') ;
+	protected $items = array('userid','username','money','paytype','paydate','other','recorder','recordtime') ;
 
 	/**
 	 * insert

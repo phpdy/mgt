@@ -13,6 +13,7 @@
         <div id="gamemain">
         <form method="post" action="?dir=mgt&control=pay&action=list">
        		姓名：<input type="text" name="username" value="<?php echo @$data['username'] ;?>" size="10" maxlength="10"/>
+			<input type="hidden" name="page" value="<?php echo @$data['page'] ;?>"/>
 			<input type="submit" value="查询">
         </form>
         </div>
@@ -31,16 +32,21 @@
             </tr>
 		<?php
 		$i = 0;
+		$pno = empty($data['page'])?0:$data['page'] ;//页号
 		foreach ($list as $item){
 			$class = $i%2==0 ? 'trstyle1' : 'trstyle2';
 			
-			echo "<tr class='$class'><td>$item[id]</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>".
+			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
+			echo "<tr class='$class'><td>$no</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>".
 			"<td>$item[money]</td><td>$item[paytype]</td><td>$item[paydate]</td><td>$item[recorder]</td><td>$item[recordtime]</td>".
 			"<td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a></td></tr>" ;
 		$i++;
 		}
 		?>
 		</table>
+		
+		
+		<?php include 'paging.php';?>
 	</div>
 </div>
 </body>

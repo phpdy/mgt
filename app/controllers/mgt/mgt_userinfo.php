@@ -48,22 +48,29 @@ class mgt_userinfo extends BaseController {
 		$remberlist = $this->member_model->queryAll() ;
 		$this->view->assign('remberlist',$remberlist) ;
 		
-		$userinfo = array() ;
+		$data = array() ;
 		if(!empty($_POST['username'])){
-			$userinfo['username'] = $_POST['username'] ;
+			$data['username'] = $_POST['username'] ;
 		}
 		if(!empty($_POST['memberid'])){
-			$userinfo['memberid'] = $_POST['memberid'] ;
+			$data['memberid'] = $_POST['memberid'] ;
 		}
 		if(!empty($_POST['mobile'])){
-			$userinfo['mobile'] = $_POST['mobile'] ;
+			$data['mobile'] = $_POST['mobile'] ;
 		}
 		if(!empty($_POST['email'])){
-			$userinfo['email'] = $_POST['email'] ;
+			$data['email'] = $_POST['email'] ;
 		}
-		$result = $this->userinfo_model->queryUserinfo($userinfo) ;
+		if(!empty($_POST['page'])){
+			$data['page'] = $_POST['page'] ;
+		} else {
+			$data['page'] = 0 ;
+		}
+		$pagenum = $this->userinfo_model->queryCount($data) ;
+		$result = $this->userinfo_model->query($data) ;
 		
-		$this->view->assign('userinfo',$userinfo) ;
+		$this->view->assign('pagenum',$pagenum) ;
+		$this->view->assign('userinfo',$data) ;
 		$this->view->assign('list',$result) ;
 		$this->view->display('userinfo_list.php');
 		

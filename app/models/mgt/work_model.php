@@ -4,7 +4,7 @@ class work_model extends BaseModel {
 	protected $dbIndex = 'admin';
 	protected $dbtable = "lesson_work" ;
 	
-	private $items = array('name','note','other','memberid') ;
+	protected $items = array('name','note','other','memberid') ;
 
 	/**
 	 * insert

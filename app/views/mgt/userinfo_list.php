@@ -29,6 +29,7 @@
 			</select>
 			手机号：<input type="text" name="mobile" value="<?php echo @$userinfo['mobile'] ;?>" size="10" maxlength="10"/>
 			电子邮箱：<input type="text" name="email" value="<?php echo @$userinfo['email'] ;?>" size="10" maxlength="10"/>
+			<input type="hidden" name="page" value="<?php echo @$userinfo['page'] ;?>"/>
 			<input type="submit" value="查询">
         </form>
         </div>
@@ -50,10 +51,16 @@
             </tr>
 		<?php
 		$i = 0;
+		$pno = empty($userinfo['page'])?0:$userinfo['page'] ;//页号
 		foreach ($list as $item){
 			$class = $i%2==0 ? 'trstyle1' : 'trstyle2';
 			$member = $item['member'] ;
-			$sex = $item['sex']==1?"男":"女" ;
+			$sex = "-" ;
+			if($item['sex']==1){
+				$sex = "男" ;
+			} else if($item['sex']==2){
+				$sex = "女" ;
+			}
 			$birth 	= $item['birth'] ;
 			$mobile = $item['mobile'] ;
 			$phone 	= $item['phone'] ;
@@ -61,13 +68,16 @@
 			$dz		= $item['province']." ".$item['city'] ;
 			$createtime = $item['createtime'] ;
 			
-			echo "<tr class='$class'><td>$item[id]</td><td><a href='?dir=mgt&control=userinfo&action=show&id=$item[id]'>$item[username]</a></td>".
+			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
+			echo "<tr class='$class'><td>$no</td><td><a href='?dir=mgt&control=userinfo&action=show&id=$item[id]'>$item[username]</a></td>".
 			"<td>$member</td><td>$sex</td><td>$birth</td><td>$mobile</td><td>$phone</td><td>$email</td><td>$dz</td><td>$createtime</td>".
 			"<td><a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改</a></td></tr>" ;
 		$i++;
 		}
 		?>
 		</table>
+		
+		<?php include 'paging.php';?>
 	</div>
 </div>
 </body>

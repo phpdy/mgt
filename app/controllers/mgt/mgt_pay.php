@@ -46,9 +46,16 @@ class mgt_pay extends BaseController {
 		if(!empty($_POST['username'])){
 			$data['username'] = $_POST['username'] ;
 		}
+		if(!empty($_POST['page'])){
+			$data['page'] = $_POST['page'] ;
+		} else {
+			$data['page'] = 0 ;
+		}
+		$pagenum = $this->pay_model->queryCount($data) ;
 		$result = $this->pay_model->query($data) ;
-		$this->view->assign('data',$data) ;
 		
+		$this->view->assign('pagenum',$pagenum) ;
+		$this->view->assign('data',$data) ;
 		$this->view->assign('list',$result) ;
 		$this->view->display('pay_list.php');
 		

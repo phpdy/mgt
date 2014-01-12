@@ -28,6 +28,7 @@
 				}
 	       		?>
 			</select>
+			<input type="hidden" name="page" value="<?php echo @$data['page'] ;?>"/>
 			<input type="submit" value="查询">
         </form>
         </div>
@@ -47,6 +48,7 @@
             </tr>
 		<?php
 		$i = 0;
+		$pno = empty($data['page'])?0:$data['page'] ;//页号
 		foreach ($list as $item){
 			$class = $i%2==0 ? 'trstyle1' : 'trstyle2';
 			
@@ -56,13 +58,18 @@
 					$work = $it['name'] ;
 				}
 			}
-			echo "<tr class='$class'><td>$item[id]</td><td>$item[cnid]</td><td>$item[username]</td>".
+			
+			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
+			echo "<tr class='$class'><td>$no</td><td>$item[cnid]</td><td>$item[username]</td>".
 			"<td>$work</td><td>$item[score]</td><td>$item[other]</td><td>$item[modifer]</td><td>$item[modiftime]</td>".
 			"<td><a href='?dir=mgt&control=score&action=up&id=$item[id]'>修改</a></td></tr>" ;
 		$i++;
 		}
 		?>
 		</table>
+		
+		
+		<?php include 'paging.php';?>
 	</div>
 </div>
 </body>

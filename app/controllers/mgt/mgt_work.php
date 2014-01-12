@@ -45,8 +45,15 @@ class mgt_work extends BaseController {
 		if(!empty($_POST['memberid'])){
 			$data['memberid'] = $_POST['memberid'] ;
 		}
+		if(!empty($_POST['page'])){
+			$data['page'] = $_POST['page'] ;
+		} else {
+			$data['page'] = 0 ;
+		}
+		$pagenum = $this->work_model->queryCount($data) ;
 		$result = $this->work_model->query($data) ;
 		
+		$this->view->assign('pagenum',$pagenum) ;
 		$this->view->assign('work',$data) ;
 		$this->view->assign('list',$result) ;
 		$this->view->display('work_list.php');

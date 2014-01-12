@@ -56,8 +56,15 @@ class mgt_xueji extends BaseController {
 		if(!empty($_POST['state'])){
 			$data['state'] = $_POST['state'] ;
 		}
+		if(!empty($_POST['page'])){
+			$data['page'] = $_POST['page'] ;
+		} else {
+			$data['page'] = 0 ;
+		}
+		$pagenum = $this->xueji_model->queryCount($data) ;
 		$result = $this->xueji_model->query($data) ;
 		
+		$this->view->assign('pagenum',$pagenum) ;
 		$this->view->assign('data',$data) ;
 		$this->view->assign('list',$result) ;
 		$this->view->display('xueji_list.php');

@@ -3,6 +3,7 @@
 class BaseModel extends Model {
 	protected $dbIndex = 'admin';
 	protected $dbtable = "" ;
+	protected $items = array();
 	protected $start ;//起始时间
 	protected $da_pre = "my" ;
 	
@@ -90,5 +91,66 @@ class BaseModel extends Model {
 		$list = $this->querySQL($sql,$params) ;
 		
 		return $list ;
+	}
+
+	/**
+	 * 按条件查询
+	 *
+	 * @param unknown_type $data
+	 * @return unknown
+	 */
+	public function query($data=array()) {
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+
+		$p1 = "" ;
+		$params = array() ;
+		foreach ($data as $key=>$value){
+			if(empty($value)){
+				continue ;
+			}
+			if(in_array($key, $this->items)){
+				$p1 .= "and $key=? " ;
+				$params[] = $value ;
+			}
+		}
+		$size = FinalClass::$_list_pagesize ;
+		$start = (empty($data['page'])?0:$data['page'])*$size ;
+		
+		$sql = "select * from ".$this->dbtable." where 1=1 $p1 order by id limit $start,$size";
+		$result = $this->getAll($sql,$params) ;
+		
+		$log .= '|' . $sql.";".implode(",", $params);
+		$log .= '|' . $result;
+		$log .= '|' . (int)(microtime(true)*1000-$start);
+		Log::logBehavior($log);
+		return $result;	
+	}
+	//统计总数
+	public function queryCount($data=array()) {
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+
+		$p1 = "" ;
+		$params = array() ;
+		foreach ($data as $key=>$value){
+			if(empty($value)){
+				continue ;
+			}
+			if(in_array($key, $this->items)){
+				$p1 .= "and $key=? " ;
+				$params[] = $value ;
+			}
+		}
+		
+		$sql = "select count(*) count from ".$this->dbtable." where 1=1 $p1 ";
+		$result = $this->getOne($sql,$params) ;
+		$pages = (int)(($result['count'] - 1)/FinalClass::$_list_pagesize) + 1 ;
+		
+		$log .= '|' . $sql.";".implode(",", $params);
+		$log .= '|' . $pages;
+		$log .= '|' . (int)(microtime(true)*1000-$start);
+		Log::logBehavior($log);
+		return $pages;	
 	}
 }

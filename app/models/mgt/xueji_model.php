@@ -4,7 +4,7 @@ class xueji_model extends BaseModel {
 	protected $dbIndex = 'admin';
 	protected $dbtable = "lesson_xueji" ;
 	
-	private $items = array('cnid','userid','username','memberid','start_date','end_date','state','other','modifer','modiftime') ;
+	protected $items = array('cnid','userid','username','memberid','start_date','end_date','state','other','modifer','modiftime') ;
 
 	/**
 	 * insert

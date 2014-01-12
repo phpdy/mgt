@@ -4,7 +4,7 @@ class score_model extends BaseModel {
 	protected $dbIndex = 'admin';
 	protected $dbtable = "lesson_score" ;
 	
-	private $items = array('cnid','userid','username','workid','score','other','modifer','modiftime') ;
+	protected $items = array('cnid','userid','username','workid','score','other','modifer','modiftime') ;
 
 	/**
 	 * insert

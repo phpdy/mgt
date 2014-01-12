@@ -59,8 +59,15 @@ class mgt_score extends BaseController {
 		if(!empty($_POST['state'])){
 			$data['state'] = $_POST['state'] ;
 		}
+		if(!empty($_POST['page'])){
+			$data['page'] = $_POST['page'] ;
+		} else {
+			$data['page'] = 0 ;
+		}
+		$pagenum = $this->score_model->queryCount($data) ;
 		$result = $this->score_model->query($data) ;
 		
+		$this->view->assign('pagenum',$pagenum) ;
 		$this->view->assign('data',$data) ;
 		$this->view->assign('list',$result) ;
 		$this->view->display('score_list.php');
