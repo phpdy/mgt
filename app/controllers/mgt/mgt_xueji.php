@@ -21,6 +21,9 @@ class mgt_xueji extends BaseController {
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
 		$data = $this->getPost() ;
+		if(!empty($data['cnid'])){
+			$data['cnid'] = strtoupper($data['cnid']) ;
+		}
 		
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
@@ -48,7 +51,7 @@ class mgt_xueji extends BaseController {
 		
 		$data = array() ;
 		if(!empty($_POST['cnid'])){
-			$data['cnid'] = $_POST['cnid'] ;
+			$data['cnid'] = strtoupper($_POST['cnid']) ;
 		}
 		if(!empty($_POST['username'])){
 			$data['username'] = $_POST['username'] ;
@@ -110,7 +113,7 @@ class mgt_xueji extends BaseController {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
-		$cnid = $_GET['cnid'] ;
+		$cnid = strtoupper($_GET['cnid']) ;
 		if(!empty($cnid)){
 			$xuejilist = $this->xueji_model->query(array('cnid'=>$cnid)) ;
 		}
