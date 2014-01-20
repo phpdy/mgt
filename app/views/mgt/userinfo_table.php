@@ -22,7 +22,7 @@
 		<td class="title"><b>性别:</b></td><td><input type="radio" <?php if(@$userinfo['sex']==1){echo "checked";} ?> id="1" value="1" name="sex"><label for="1">男</label>
 		<input type="radio" <?php if(@$userinfo['sex']==2){echo "checked";} ?> id="2" value="2" name="sex"><label for="2">女</label></td>
 	</tr>
-	<tr><td class="title"><b>出生年月:</b></td><td><input type="text" name="birth" value="<?php echo @$userinfo['birth']; ?>" size=20 onclick="new Calendar().show(this);"></td></tr>
+	<tr><td class="title"><b>出生年月:</b></td><td><input type="text" name="birth" value="<?php echo @$userinfo['birth']; ?>" size=20 onclick="new Calendar().show(this);" readonly></td></tr>
 	<tr><td class="title"><b>身份证号:</b></td><td><input type="text" name="sfz" value="<?php echo @$userinfo['sfz']; ?>" size=20></td></tr>
 	<tr>
 		<td class="title"><b>所在地:</b></td><td>
@@ -36,7 +36,7 @@
 	<tr><td class="title"><b>手机号:</b></td><td><input type="text" name="mobile" value="<?php echo @$userinfo['mobile']; ?>" size=20></td></tr>
 	<tr><td class="title"><b>电话:</b></td><td><input type="text" name="phone" value="<?php echo @$userinfo['phone']; ?>" size=20></td></tr>
 	<tr><td class="title"><b>电子邮箱:</b></td><td><input type="text" name="email" value="<?php echo @$userinfo['email']; ?>" size=20></td></tr>
-	<tr><td class="title"><b>登记时间:</b></td><td><input type="text" name="createtime" value="<?php echo @$userinfo['createtime']?@$userinfo['createtime']:date('Y-m-d'); ?>" size=20></td></tr>
+	<tr><td class="title"><b>登记时间:</b></td><td><input type="text" name="createtime" value="<?php echo @$userinfo['createtime']?@$userinfo['createtime']:date('Y-m-d'); ?>" size=20 onclick="new Calendar().show(this);" readonly></td></tr>
 
 	<tr><td colspan="2"><input type="submit" value="提  交" name="sub" class="sub-btn"></td></tr>
 	</tbody>

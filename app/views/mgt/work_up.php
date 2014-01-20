@@ -16,11 +16,6 @@
             <input type="hidden" name="id" value="<?php echo $work['id'];?>">
 			<table>
 				<tbody>
-				<tr>
-					<td class="title"><b>名称:</b></td><td><input type="text" name="name" size=20 value="<?php echo $work['name'];?>"></td>
-				</tr>
-				<tr><td class="title"><b>作业说明:</b></td><td><textarea name="note" cols=100 rows=10><?php echo $work['note'];?></textarea></td></tr>
-				<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=100 rows=5><?php echo $work['other'];?></textarea></td></tr>
 				<tr><td class="title"><b>类别:</b></td><td>
 					<select name="memberid">
 					<?php 
@@ -36,6 +31,11 @@
 					?>
 					</select></td>
 				</tr>
+				<tr>
+					<td class="title"><b>名称:</b></td><td><input type="text" name="name" size=20 value="<?php echo $work['name'];?>"></td>
+				</tr>
+				<tr><td class="title"><b>作业说明:</b></td><td><textarea name="note" cols=100 rows=10><?php echo $work['note'];?></textarea></td></tr>
+				<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=100 rows=5><?php echo $work['other'];?></textarea></td></tr>
 				
 				<tr><td colspan="2"><input type="submit" value="提  交" name="sub" class="sub-btn"></td></tr>
 				</tbody>

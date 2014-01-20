@@ -5,7 +5,9 @@ class Log {
 	
 	public static function info($info){
 //		Log::write($info,"info") ;
-		Log::log4php()->info($info);
+		@session_start ();
+		$username = @$_SESSION [FinalClass::$_session_user]['name'] ;
+		Log::log4php()->info("|$username|".$info);
 	}
 	public static function debug($info){
 //		Log::write($info,"debug") ;
@@ -21,10 +23,14 @@ class Log {
 	}
 	
 	public static function logBehavior($info){
-		Log::log4php()->info($info);
+		@session_start ();
+		$username = @$_SESSION [FinalClass::$_session_user]['name'] ;
+		Log::log4php()->info("|$username|".$info);
 	}
 	public static function logBusiness($info){
-		Log::log4php()->info($info);
+		@session_start ();
+		$username = @$_SESSION [FinalClass::$_session_user]['name'] ;
+		Log::log4php()->info("|$username|".$info);
 	}
 	
 	/**

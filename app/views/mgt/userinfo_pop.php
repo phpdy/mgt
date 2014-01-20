@@ -46,7 +46,7 @@ $(document).ready(function(){
 //				alert(list[i]) ;
 				var userinfo = eval(list[i]) ;
 				ret = userinfo['id']+","+userinfo['username'] ;
-				result += "<tr class='"+style+"'><td>"+(i+1)+"</td><td>"+userinfo['username']+"</td><td>"+(userinfo['sex']==1?"男":"女")+"</td><td>"+userinfo['mobile']+"</td><td><input type='button' value='查询' onclick=\"retrunValue('"+ret+"')\"></td></tr>" ;
+				result += "<tr class='"+style+"'><td>"+(i+1)+"</td><td>"+userinfo['username']+"</td><td>"+(userinfo['sex']==1?"男":"女")+"</td><td>"+userinfo['mobile']+"</td><td><input type='button' value='选择' onclick=\"retrunValue('"+ret+"')\"></td></tr>" ;
 			}
 			result += "</tbody></table>";
 
