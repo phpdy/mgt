@@ -84,14 +84,14 @@ class Model extends Object {
 		$log = __CLASS__."|".__FUNCTION__."|$sql|" ;
 		try {
 			$stmt = $this->pdo->prepare($sql);
-			if(is_array($params) && sizeof($params)>0 ){
-				$params = array_values($params) ;
-				foreach ($params as $key=>$value){
-					$stmt->bindParam($key+1,$value);
-					$log.="$value," ;
-				}
-			}
-			$stmt->execute();
+//			if(is_array($params) && sizeof($params)>0 ){
+//				$params = array_values($params) ;
+//				foreach ($params as $key=>$value){
+//					$stmt->bindParam($key+1,$value);
+//					$log.="$value," ;
+//				}
+//			}
+			$stmt->execute(array_values($params));
 			$list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			
 			$log .= "|".sizeof($list) ;
