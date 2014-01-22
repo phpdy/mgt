@@ -135,7 +135,7 @@ class mgt_xueji extends BaseController {
 		$cnid = strtoupper($_GET['cnid']) ;
 		$data = array('cnid'=>$cnid) ;
 		if(!empty($_GET['memberid'])){
-//			$data['memberid'] = $_GET['memberid'] ;//暂时屏蔽
+			$data['memberid'] = $_GET['memberid'] ;//暂时屏蔽
 		}
 		
 		if(!empty($cnid)){
