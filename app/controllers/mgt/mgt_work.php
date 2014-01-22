@@ -9,7 +9,7 @@ class mgt_work extends BaseController {
 	//添加
 	public function addAction(){
 		$remberlist = $this->member_model->queryAll() ;
-		$this->view->assign('remberlist',$remberlist) ;
+		$this->view->assign('memberid',$_GET['memberid']) ;
 		$this->view->display('work_add.php');
 	}
 	public function submitAction(){
@@ -42,19 +42,11 @@ class mgt_work extends BaseController {
 		$this->view->assign('remberlist',$remberlist) ;
 		
 		$data = array() ;
-		if(!empty($_POST['memberid'])){
-			$data['memberid'] = $_POST['memberid'] ;
-		}
-		if(!empty($_POST['page'])){
-			$data['page'] = $_POST['page'] ;
-		} else {
-			$data['page'] = 0 ;
-		}
-		$pagenum = $this->work_model->queryCount($data) ;
+		$data['memberid'] = $_REQUEST['memberid'] ;
+		
 		$result = $this->work_model->query($data) ;
 		
-		$this->view->assign('pagenum',$pagenum) ;
-		$this->view->assign('work',$data) ;
+		$this->view->assign('memberid',$_REQUEST['memberid']) ;
 		$this->view->assign('list',$result) ;
 		$this->view->display('work_list.php');
 		
@@ -66,9 +58,6 @@ class mgt_work extends BaseController {
 	public function upAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
-		
-		$remberlist = $this->member_model->queryAll() ;
-		$this->view->assign('remberlist',$remberlist) ;
 		
 		$id = $_GET['id'] ;
 		$object = $this->work_model->getOneById($id) ;

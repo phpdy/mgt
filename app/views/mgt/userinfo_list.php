@@ -54,7 +54,12 @@
 		$pno = empty($userinfo['page'])?0:$userinfo['page'] ;//页号
 		foreach ($list as $item){
 			$class = $i%2==0 ? 'trstyle1' : 'trstyle2';
+			$memberid = $item['memberid'] ;
 			$member = $item['member'] ;
+			if($memberid!=1){
+				$member = "<a href='?dir=mgt&control=xueji&action=list2&userid=$item[id]'>$member</a>" ;
+			}
+			
 			$sex = "-" ;
 			if($item['sex']==1){
 				$sex = "男" ;

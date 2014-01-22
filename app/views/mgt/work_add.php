@@ -13,19 +13,9 @@
         <div id="gamefeatures"><h2>作业内容录入</h2></div>
         <form method="post" action="?dir=mgt&control=work&action=submit">
             <div id="gamemain">
+            <input type="hidden" name="memberid" value="<?php echo $memberid; ?>">
 			<table>
 				<tbody>
-				<tr><td class="title"><b>类别:</b></td><td>
-					<select name="memberid">
-					<?php 
-					foreach($remberlist as $item){
-						$id = $item['id'] ;
-						$name = $item['name'] ;
-						echo "<option value='$id'>$name" ;
-					}
-					?>
-					</select></td>
-				</tr>
 				<tr>
 					<td class="title"><b>名称:</b></td><td><input type="text" name="name" size=20></td>
 				</tr>

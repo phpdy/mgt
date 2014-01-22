@@ -12,6 +12,7 @@
         
         <div id="gamemain">
         <form method="post" action="?dir=mgt&control=score&action=list">
+            <input type="hidden" name="memberid" value="<?php echo $memberid; ?>">
        		姓名：<input type="text" name="username" value="<?php echo @$data['username'] ;?>" size="10" maxlength="10"/>
 			学籍号：<input type="text" name="cnid" value="<?php echo @$data['cnid'] ;?>" size="10" maxlength="10"/>
 			会员类型：<select name="workid">
@@ -62,7 +63,7 @@
 			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
 			echo "<tr class='$class'><td>$no</td><td>$item[cnid]</td><td>$item[username]</td>".
 			"<td>$work</td><td>$item[score]</td><td>$item[other]</td><td>$item[modifer]</td><td>$item[modiftime]</td>".
-			"<td><a href='?dir=mgt&control=score&action=up&id=$item[id]'>修改</a></td></tr>" ;
+			"<td><a href='?dir=mgt&control=score&action=up&id=$item[id]&memberid=$memberid'>修改</a></td></tr>" ;
 		$i++;
 		}
 		?>

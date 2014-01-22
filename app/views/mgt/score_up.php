@@ -14,6 +14,7 @@
         <form method="post" action="?dir=mgt&control=score&action=submit">
             <div id="gamemain">
             <input type="hidden" name="id" value="<?php echo $score['id'] ; ?>" size=20>
+            <input type="hidden" name="memberid" value="<?php echo $memberid; ?>">
 			<table>
 				<tbody>
 				<tr><td class="title"><b>学籍号:</b></td><td><?php echo $score['cnid'] ; ?></td></tr>

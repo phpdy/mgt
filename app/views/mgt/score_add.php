@@ -13,6 +13,7 @@
         <div id="gamefeatures"><h2>成绩录入</h2></div>
         <form method="post" action="?dir=mgt&control=score&action=submit">
             <div id="gamemain">
+            <input type="hidden" name="memberid" value="<?php echo $memberid; ?>">
 			<table>
 				<tbody>
 				<tr><td class="title"><b>学籍号:</b></td><td><input type="text" name="cnid" value="" size=20></td></tr>
@@ -64,7 +65,7 @@ $(function() {
 
 	$('input[name="cnid"]').change(function(){
 		var cnid = $('input[name="cnid"]').val();
-		$.get("?dir=mgt&control=xueji&action=get&cnid="+cnid ,function(data){
+		$.get("?dir=mgt&control=xueji&action=get&memberid=<?php echo $memberid; ?>&cnid="+cnid ,function(data){
 //			alert(data) ;
 			var xueji = eval("["+data+"]") ;
 //			alert(xueji.length) ;

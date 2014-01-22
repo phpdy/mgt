@@ -14,23 +14,9 @@
         <form method="post" action="?dir=mgt&control=work&action=submit">
             <div id="gamemain">
             <input type="hidden" name="id" value="<?php echo $work['id'];?>">
+            <input type="hidden" name="memberid" value="<?php echo $work['memberid']; ?>">
 			<table>
 				<tbody>
-				<tr><td class="title"><b>类别:</b></td><td>
-					<select name="memberid">
-					<?php 
-					foreach($remberlist as $item){
-						$id = $item['id'] ;
-						$name = $item['name'] ;
-						$p="" ;
-						if(@$work['memberid']==$id){
-							$p="selected";
-						}
-						echo "<option value='$id' $p>$name" ;
-					}
-					?>
-					</select></td>
-				</tr>
 				<tr>
 					<td class="title"><b>名称:</b></td><td><input type="text" name="name" size=20 value="<?php echo $work['name'];?>"></td>
 				</tr>

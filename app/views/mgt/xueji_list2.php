@@ -8,28 +8,34 @@
 <body>
 <div class="content">
     <div id="main" class="main">
-        <div id="gamefeatures"><h2>信息查询</h2></div>
+        <div id="gamefeatures"><h2>学籍列表</h2></div>
         
         <table class="GF-listTab">
             <tbody>
             <tr id="title">
                 <td>ID</td>
-                <td>名称</td>
-                <td>内容</td>
-                <td>修改</td>
+                <td>姓名</td>
+                <td>学籍号</td>
+                <td>会员类型</td>
+                <td>开学时间</td>
+                <td>毕业时间</td>
+                <td>学籍状态</td>
             </tr>
 		<?php
 		$i = 0;
 		foreach ($list as $item){
 			$class = $i%2==0 ? 'trstyle1' : 'trstyle2';
 			foreach($remberlist as $it){
-				$id = $it['id'] ;
-				if($id==$item['memberid']){
-					$name = $it['name'] ;
+				if($it['id']==$item['memberid']){
+					$rembername=$it['name'] ;
 				}
 			}
-			echo "<tr class='$class'><td>$item[id]</td><td>$item[name]</td><td>$item[note]</td>".
-			"<td><a href='?dir=mgt&control=work&action=up&id=$item[id]'>修改</a></td></tr>" ;
+			$state = $item['state'] ;
+			
+			$no = $i+1;//序号
+			echo "<tr class='$class'><td>$no</td><td>$item[username]</td>".
+			"<td>$item[cnid]</td><td>$rembername</td><td>$item[start_date]</td><td>$item[end_date]</td><td>$state</td>".
+			"</tr>" ;
 		$i++;
 		}
 		?>

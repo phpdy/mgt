@@ -96,8 +96,8 @@ class BaseModel extends Model {
 	/**
 	 * 按条件查询
 	 *
-	 * @param unknown_type $data
-	 * @return unknown
+	 * @param array $data
+	 * @return array
 	 */
 	public function query($data=array()) {
 		$start = microtime(true)*1000 ;
@@ -117,11 +117,11 @@ class BaseModel extends Model {
 		$size = FinalClass::$_list_pagesize ;
 		$start = (empty($data['page'])?0:$data['page'])*$size ;
 		
-		$sql = "select * from ".$this->dbtable." where 1=1 $p1 order by id limit $start,$size";
-		$result = $this->getAll($sql,$params) ;
+		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 order by id limit $start,$size";
+		$result = $this->querySQL($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
-		$log .= '|' . $result;
+		$log .= '|' . sizeof($result);
 		$log .= '|' . (int)(microtime(true)*1000-$start);
 		Log::logBehavior($log);
 		return $result;	
@@ -148,9 +148,13 @@ class BaseModel extends Model {
 		$pages = (int)(($result['count'] - 1)/FinalClass::$_list_pagesize) + 1 ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
-		$log .= '|' . $pages;
+		$log .= '|' . $result['count'].">".$pages;
 		$log .= '|' . (int)(microtime(true)*1000-$start);
 		Log::logBehavior($log);
 		return $pages;	
+	}
+	
+	protected function getWhere(){
+		return "1=1 " ;
 	}
 }

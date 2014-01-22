@@ -12,7 +12,10 @@ class mgt_score extends BaseController {
 	}
 	//添加
 	public function addAction(){
-		$worklist = $this->work_model->query() ;
+		$memberid = $_GET['memberid'] ;
+		$worklist = $this->work_model->query(array('memberid'=>$memberid)) ;
+		
+		$this->view->assign('memberid',$memberid) ;
 		$this->view->assign('worklist',$worklist) ;
 		$this->view->display('score_add.php');
 	}
@@ -47,6 +50,7 @@ class mgt_score extends BaseController {
 		$this->view->assign('worklist',$worklist) ;
 		
 		$data = array() ;
+		$data['memberid'] = $_REQUEST['memberid'] ;
 		if(!empty($_POST['cnid'])){
 			$data['cnid'] = $_POST['cnid'] ;
 		}
@@ -67,6 +71,7 @@ class mgt_score extends BaseController {
 		$pagenum = $this->score_model->queryCount($data) ;
 		$result = $this->score_model->query($data) ;
 		
+		$this->view->assign('memberid',$_REQUEST['memberid']) ;
 		$this->view->assign('pagenum',$pagenum) ;
 		$this->view->assign('data',$data) ;
 		$this->view->assign('list',$result) ;
@@ -83,6 +88,9 @@ class mgt_score extends BaseController {
 		
 		$worklist = $this->work_model->query() ;
 		$this->view->assign('worklist',$worklist) ;
+		
+		$memberid = $_GET['memberid'] ;
+		$this->view->assign('memberid',$memberid) ;
 		
 		$id = $_GET['id'] ;
 		$object = $this->score_model->getOneById($id) ;

@@ -1,8 +1,8 @@
 <?php
 //学籍管理
 class xueji_model extends BaseModel {
-	protected $dbIndex = 'admin';
-	protected $dbtable = "lesson_xueji" ;
+	protected $dbIndex = 'admin' ;
+	protected $dbtable = 'lesson_xueji' ;
 	
 	protected $items = array('cnid','userid','username','memberid','start_date','end_date','state','other','modifer','modiftime') ;
 
@@ -76,31 +76,36 @@ class xueji_model extends BaseModel {
 	 * 查询
 	 * @param array $data
 	 */
-	public function query($data=array()) {
-		$start = microtime(true)*1000 ;
-		$log = __CLASS__."|".__FUNCTION__ ;
+//	public function query($data=array()) {
+//		$start = microtime(true)*1000 ;
+//		$log = __CLASS__."|".__FUNCTION__ ;
+//
+//		$p1 = "" ;
+//		$params = array() ;
+//		foreach ($data as $key=>$value){
+//			if(empty($value)){
+//				continue ;
+//			}
+//			if(in_array($key, $this->items)){
+//				$p1 .= "and $key=? " ;
+//				$params[] = $value ;
+//			}
+//		}
+//		
+//		$sql = "select * from lesson_xueji where 1=1 $p1 order by id ";
+//		$result = $this->getAll($sql,$params) ;
+//		
+//		$log .= '|' . $sql.";".implode(",", $params);
+//		$log .= '|' . sizeof($result) ;
+//		$log .= '|' . (int)(microtime(true)*1000-$start);
+//		Log::logBehavior($log);
+//		echo $log ;
+//		return $result;	
+//	}
 
-		$p1 = "" ;
-		$params = array() ;
-		foreach ($data as $key=>$value){
-			if(empty($value)){
-				continue ;
-			}
-			if(in_array($key, $this->items)){
-				$p1 .= "and $key=? " ;
-				$params[] = $value ;
-			}
-		}
-		
-		$sql = "select * from lesson_xueji where 1=1 $p1 order by id ";
-		$result = $this->getAll($sql,$params) ;
-		
-		$log .= '|' . $sql.";".implode(",", $params);
-		$log .= '|' . sizeof($result) ;
-		$log .= '|' . (int)(microtime(true)*1000-$start);
-		Log::logBehavior($log);
-		return $result;	
+
+	protected function getWhere(){
+		return "1=1 " ;
 	}
-
 }
 

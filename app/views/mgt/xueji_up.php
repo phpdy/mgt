@@ -13,28 +13,14 @@
         <div id="gamefeatures"><h2>学籍修改</h2></div>
         <form method="post" action="?dir=mgt&control=xueji&action=submit">
             <div id="gamemain">
-            <input type="hidden" name="id" value="<?php echo $xueji['id'];?>">
+            <input type="hidden" name="id" value="<?php echo $xueji['id']; ?>">
+            <input type="hidden" name="memberid" value="<?php echo $xueji['memberid']; ?>">
 			<table>
 				<tbody>
 				<tr>
 					<td class="title"><b>姓名:</b></td><td><?php echo $xueji['username'];?></td>
 				</tr>
 				<tr><td class="title"><b>学籍号:</b></td><td><input type="text" name="cnid" value="<?php echo $xueji['cnid'];?>" size=20></td></tr>
-				<tr><td class="title"><b>类别:</b></td><td>
-					<select name="memberid">
-					<?php 
-					foreach($remberlist as $item){
-						$id = $item['id'] ;
-						$name = $item['name'] ;
-						$p="" ;
-						if(@$xueji['memberid']==$id){
-							$p="selected";
-						}
-						echo "<option value='$id' $p>$name" ;
-					}
-					?>
-					</select></td>
-				</tr>
 				<tr><td class="title"><b>开学日期:</b></td><td><input type="text" name="start_date" value="<?php echo $xueji['start_date'];?>" size=20 onclick="new Calendar().show(this);"></td></tr>
 				<tr><td class="title"><b>毕业日期:</b></td><td><input type="text" name="end_date" value="<?php echo $xueji['end_date'];?>" size=20 onclick="new Calendar().show(this);"></td></tr>
 				<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=100 rows=5><?php echo $xueji['other'];?></textarea></td></tr>

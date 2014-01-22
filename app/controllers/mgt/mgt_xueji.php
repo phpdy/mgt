@@ -13,7 +13,7 @@ class mgt_xueji extends BaseController {
 	//添加
 	public function addAction(){
 		$remberlist = $this->member_model->queryAll() ;
-		$this->view->assign('remberlist',$remberlist) ;
+		$this->view->assign('memberid',$_GET['memberid']) ;
 		$this->view->display('xueji_add.php');
 	}
 	public function submitAction(){
@@ -50,6 +50,7 @@ class mgt_xueji extends BaseController {
 		$this->view->assign('remberlist',$remberlist) ;
 		
 		$data = array() ;
+		$data['memberid'] = $_REQUEST['memberid'] ;
 		if(!empty($_POST['cnid'])){
 			$data['cnid'] = strtoupper($_POST['cnid']) ;
 		}
@@ -67,10 +68,28 @@ class mgt_xueji extends BaseController {
 		$pagenum = $this->xueji_model->queryCount($data) ;
 		$result = $this->xueji_model->query($data) ;
 		
+		$this->view->assign('memberid',$_REQUEST['memberid']) ;
 		$this->view->assign('pagenum',$pagenum) ;
 		$this->view->assign('data',$data) ;
 		$this->view->assign('list',$result) ;
 		$this->view->display('xueji_list.php');
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
+
+	public function list2Action(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$remberlist = $this->member_model->queryAll() ;
+		$this->view->assign('remberlist',$remberlist) ;
+		
+		$data = array('userid'=>$_GET['userid']) ;
+		$result = $this->xueji_model->query($data) ;
+		
+		$this->view->assign('list',$result) ;
+		$this->view->display('xueji_list2.php');
 		
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
@@ -114,8 +133,13 @@ class mgt_xueji extends BaseController {
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
 		$cnid = strtoupper($_GET['cnid']) ;
+		$data = array('cnid'=>$cnid) ;
+		if(!empty($_GET['memberid'])){
+//			$data['memberid'] = $_GET['memberid'] ;//暂时屏蔽
+		}
+		
 		if(!empty($cnid)){
-			$xuejilist = $this->xueji_model->query(array('cnid'=>$cnid)) ;
+			$xuejilist = $this->xueji_model->query($data) ;
 		}
 		
 		$xueji = array() ;
