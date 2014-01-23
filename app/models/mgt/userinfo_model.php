@@ -4,13 +4,14 @@ class userinfo_model extends BaseModel {
 	protected $dbIndex = 'admin';
 	protected $dbtable = "userinfo" ;
 	
-	protected $items = array('name','password','username','sex','birth','sfz','province','city','address','post','mobile','phone','email','createtime','memberid','member') ;
+	protected $items = array('id','name','password','username','sex','birth',
+	'paper','paperno','company','job','province','city','address','post','mobile','phone','email','createtime','memberid','member') ;
 
 	/**
 	 * insert
 	 * @param array $data
 	 */
-	public function insertUserinfo($data) {
+	public function insert($data) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 
@@ -44,7 +45,7 @@ class userinfo_model extends BaseModel {
 	 * 更新信息
 	 * @param array $data
 	 */
-	function updateUserinfo($data) {
+	function update($data) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		

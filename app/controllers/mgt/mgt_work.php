@@ -8,7 +8,7 @@ class mgt_work extends BaseController {
 	}
 	//添加
 	public function addAction(){
-		$remberlist = $this->member_model->queryAll() ;
+//		$remberlist = $this->member_model->queryAll() ;
 		$this->view->assign('memberid',$_GET['memberid']) ;
 		$this->view->display('work_add.php');
 	}

@@ -1,7 +1,7 @@
 <table>
 	<tbody>
 	<tr>
-		<td class="title"><b>姓名:</b></td><td><input type="text" name="username" value="<?php echo @$userinfo['username']; ?>" size=20></td>
+		<td class="title"><b>姓名:</b></td><td><input type="text" name="username" value="<?php echo @$userinfo['username']; ?>" size=20> <font color='red'>*</font></td>
 	</tr>
 	<tr><td class="title"><b>会员类型:</b></td><td>
 		<select name="memberid">
@@ -10,20 +10,36 @@
 				$id = $item['id'] ;
 				$name = $item['name'] ;
 				$p="" ;
-				if(@$userinfo['member']==$id){
+				if(@$userinfo['memberid']==$id){
 					$p="selected";
 				}
 				echo "<option value='$id' $p>$name" ;
 			}
 			?>
-		</select></td>
+		</select>
+		<font color='red'>*</font></td>
 	</tr>
 	<tr>
 		<td class="title"><b>性别:</b></td><td><input type="radio" <?php if(@$userinfo['sex']==1){echo "checked";} ?> id="1" value="1" name="sex"><label for="1">男</label>
-		<input type="radio" <?php if(@$userinfo['sex']==2){echo "checked";} ?> id="2" value="2" name="sex"><label for="2">女</label></td>
+		<input type="radio" <?php if(@$userinfo['sex']==2){echo "checked";} ?> id="2" value="2" name="sex"><label for="2">女</label>
+		<font color='red'>*</font></td>
 	</tr>
 	<tr><td class="title"><b>出生年月:</b></td><td><input type="text" name="birth" value="<?php echo @$userinfo['birth']; ?>" size=20 onclick="new Calendar().show(this);" readonly></td></tr>
-	<tr><td class="title"><b>身份证号:</b></td><td><input type="text" name="sfz" value="<?php echo @$userinfo['sfz']; ?>" size=20></td></tr>
+	<tr><td class="title"><b>证件类型:</b></td><td>
+		<select name="paper">
+			<option value='1' <?php if(@$userinfo['paper']==1){echo "selected";} ?>>身份证
+			<option value='2' <?php if(@$userinfo['paper']==2){echo "selected";} ?>>军官证
+			<option value='3' <?php if(@$userinfo['paper']==3){echo "selected";} ?>>护照
+			<option value='4' <?php if(@$userinfo['paper']==4){echo "selected";} ?>>其他
+		</select></td>
+	</tr>
+	<tr><td class="title"><b>证件号:</b></td><td><input type="text" name="paperno" value="<?php echo @$userinfo['paperno']; ?>" size=20></td></tr>
+	<tr>
+		<td class="title"><b>工作单位:</b></td>
+		<td><input type="text" name="company" value="<?php echo @$userinfo['company']; ?>" size=20>
+		职务：<input type="text" name="job" value="<?php echo @$userinfo['job']; ?>" size=20>
+		</td>
+	</tr>
 	<tr>
 		<td class="title"><b>所在地:</b></td><td>
 		<input type="text" name="province" value="<?php echo @$userinfo['province']; ?>" size=10>省

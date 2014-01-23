@@ -5,6 +5,7 @@ class mgt_pay extends BaseController {
 	public function init(){
 		$this->pay_model = $this->initModel('pay_model');
 		$this->userinfo_model = $this->initModel('userinfo_model');
+		$this->member_model = $this->initModel('member_model');
 		
 		@session_start ();
 		$this->view->assign('_username',$_SESSION [FinalClass::$_session_user]['username']) ;
@@ -13,6 +14,9 @@ class mgt_pay extends BaseController {
 	public function addAction(){
 		$userinfolist = $this->userinfo_model->queryUserinfo() ;
 		$this->view->assign('userinfolist',$userinfolist) ;
+		
+		$memberlist = $this->member_model->query() ;
+		$this->view->assign('memberlist',$memberlist) ;
 		$this->view->display('pay_add.php');
 	}
 	public function submitAction(){
@@ -32,6 +36,20 @@ class mgt_pay extends BaseController {
 			echo "操作失败:$result" ;
 			die() ;
 		}
+		$memberlist = $this->member_model->query() ;
+		$memberid = $data['memberid'] ;
+		$member = "" ;
+		foreach ($memberlist as $item){
+			if($item['id']==$memberid){
+				$member = $item['name'] ;
+			}
+		}
+		$userinfo = array(
+			'id'		=>	$data['userid'] ,
+			'memberid'	=>	$memberid ,
+			'member'	=>	$member ,
+		) ;
+		$this->userinfo_model->update($userinfo) ;
 		
 		$this->listAction();
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
@@ -70,6 +88,9 @@ class mgt_pay extends BaseController {
 		
 		$userinfolist = $this->userinfo_model->queryUserinfo() ;
 		$this->view->assign('userinfolist',$userinfolist) ;
+		
+		$memberlist = $this->member_model->query() ;
+		$this->view->assign('memberlist',$memberlist) ;
 		
 		$id = $_GET['id'] ;
 		$object = $this->pay_model->getOneById($id) ;

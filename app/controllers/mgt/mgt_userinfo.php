@@ -5,6 +5,7 @@ class mgt_userinfo extends BaseController {
 	public function init(){
 		$this->userinfo_model = $this->initModel('userinfo_model');
 		$this->member_model = $this->initModel('member_model');
+		$this->xueji_model = $this->initModel('xueji_model');
 	}
 	//添加
 	public function addAction(){
@@ -25,10 +26,10 @@ class mgt_userinfo extends BaseController {
 		}
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
-			$result = $this->userinfo_model->insertUserinfo($data) ;
+			$result = $this->userinfo_model->insert($data) ;
 		} else {
 			$data['id'] = $_POST['id'] ;
-			$result = $this->userinfo_model->updateUserinfo($data) ;
+			$result = $this->userinfo_model->update($data) ;
 		}
 		$_POST=null ;
 		if(empty($result)){
@@ -58,8 +59,15 @@ class mgt_userinfo extends BaseController {
 		if(!empty($_POST['mobile'])){
 			$data['mobile'] = $_POST['mobile'] ;
 		}
-		if(!empty($_POST['email'])){
-			$data['email'] = $_POST['email'] ;
+		if(!empty($_POST['cnid'])){
+			$data['cnid'] = $_POST['cnid'] ;
+			$xueji = $this->xueji_model->query(array('cnid'=>$data['cnid'])) ;
+//			print_r($data) ;
+//			print_r($xueji) ;
+			
+			if(!empty($xueji) && sizeof($xueji)==1){
+				$data['id'] = $xueji[0]['userid'] ;
+			}
 		}
 		if(!empty($_POST['page'])){
 			$data['page'] = $_POST['page'] ;

@@ -16,17 +16,22 @@
 			<table>
 				<tbody>
 				<tr>
-					<td class="title"><b>姓名:</b></td><td><input type="text" name="username" size=20 onclick="pop(this)" readonly><input type="hidden" name="userid" value="" size=20></td>
+					<td class="title"><b>姓名:</b></td><td><input type="text" name="username" size=20 onclick="pop(this)" readonly>
+					<input type="hidden" name="userid" value="" size=20></td>
 				</tr>
-				<tr><td class="title"><b>缴费方式:</b></td><td>
-					<select name="paytype">
-					<option value="汇款">汇款
-					<option value="支付宝">支付宝
-					<option value="其他">其他
+				<tr><td class="title"><b>用途:</b></td><td><input type="text" name="paytype" value="" size=20></td></tr>
+				<tr><td class="title"><b>缴费金额:</b></td><td><input type="text" name="money" value="" size=20></td></tr>
+				
+				<tr><td class="title"><b>会员类型:</b></td><td>
+					<select name="memberid" id="memberid">
+						<?php 
+						foreach($memberlist as $item){
+							echo "<option value='$item[id]'>$item[name]" ;
+						}
+						?>
 					</select></td>
 				</tr>
-				<tr><td class="title"><b>缴费金额:</b></td><td><input type="text" name="money" value="" size=20></td></tr>
-				<tr><td class="title"><b>缴费日期:</b></td><td><input type="text" name="paydate" value="" size=20 onclick="new Calendar().show(this);"></td></tr>
+				<tr><td class="title"><b>缴费日期:</b></td><td><input type="text" name="paydate" size=20 onclick="new Calendar().show(this);" readonly></td></tr>
 				<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=40 rows=10></textarea></td></tr>
 				
 				<tr><td class="title"><b>记录人:</b></td><td><input type="hidden" name="recorder" value="<?php echo $_username; ?>"><?php echo $_username ; ?></td></tr>
@@ -70,5 +75,8 @@ function pop(obj){
 	
 	$('input[name="userid"]').val(user[0]);
 	$('input[name="username"]').val(user[1]);
+	var memberid = user[2];
+	//alert(memberid) ;
+	$("#memberid option[value='"+memberid+"']").attr("selected", true);
 }
 </script>

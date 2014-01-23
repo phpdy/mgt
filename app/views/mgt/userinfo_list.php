@@ -12,7 +12,8 @@
         
         <div id="gamemain">
         <form method="post" action="?dir=mgt&control=userinfo&action=list">
-       		姓名：<input type="text" name="username" value="<?php echo @$userinfo['username'] ;?>" size="10" maxlength="10"/>
+       		学号：<input type="text" name="cnid" value="<?php echo @$userinfo['cnid'] ;?>" size="10" maxlength="10"/>
+			姓名：<input type="text" name="username" value="<?php echo @$userinfo['username'] ;?>" size="10" maxlength="10"/>
        		会员类型：<select name="memberid">
        		<option value="0" >全部
 	       		<?php 
@@ -28,7 +29,6 @@
 	       		?>
 			</select>
 			手机号：<input type="text" name="mobile" value="<?php echo @$userinfo['mobile'] ;?>" size="10" maxlength="10"/>
-			电子邮箱：<input type="text" name="email" value="<?php echo @$userinfo['email'] ;?>" size="10" maxlength="10"/>
 			<input type="hidden" name="page" value="<?php echo @$userinfo['page'] ;?>"/>
 			<input type="submit" value="查询">
         </form>
@@ -42,10 +42,11 @@
                 <td>会员类型</td>
                 <td>性别</td>
                 <td>出生日期</td>
+                <td>证件号</td>
                 <td>手机号</td>
                 <td>备用电话</td>
-                <td>电子邮箱</td>
-                <td>省市</td>
+                <td>工作单位</td>
+                <td>职务</td>
                 <td>注册日期</td>
                 <td>修改</td>
             </tr>
@@ -67,16 +68,17 @@
 				$sex = "女" ;
 			}
 			$birth 	= $item['birth'] ;
+			$paperno= $item['paperno'] ;
 			$mobile = $item['mobile'] ;
 			$phone 	= $item['phone'] ;
-			$email	= $item['email'] ;
-			$dz		= $item['province']." ".$item['city'] ;
+			$company= $item['company'] ;
+			$job	= $item['job'] ;
 			$createtime = $item['createtime'] ;
 			
 			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
 			echo "<tr class='$class'><td>$no</td><td><a href='?dir=mgt&control=userinfo&action=show&id=$item[id]'>$item[username]</a></td>".
-			"<td>$member</td><td>$sex</td><td>$birth</td><td>$mobile</td><td>$phone</td><td>$email</td><td>$dz</td><td>$createtime</td>".
-			"<td><a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改</a></td></tr>" ;
+			"<td>$member</td><td>$sex</td><td>$birth</td><td>$paperno</td><td>$mobile</td><td>$phone</td><td>$company</td><td>$job</td>".
+			"<td>$createtime</td><td><a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改</a></td></tr>" ;
 		$i++;
 		}
 		?>

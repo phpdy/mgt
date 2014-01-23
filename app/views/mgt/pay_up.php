@@ -16,18 +16,13 @@
             <input type="hidden" name="id" value="<?php echo $pay['id'];?>">
 			<table>
 				<tbody>
-				<tr>
-					<td class="title"><b>姓名:</b></td><td><?php echo $pay['username'];?></td>
-				</tr>
-				<tr><td class="title"><b>缴费方式:</b></td><td>
-					<select name="paytype">
-					<option value="汇款" <?php if($pay['paytype']='汇款'){echo "selected";}?>>汇款
-					<option value="支付宝" <?php if($pay['paytype']='支付宝'){echo "selected";}?>>支付宝
-					<option value="其他" <?php if($pay['paytype']='其他'){echo "selected";}?>>其他
-					</select></td>
-				</tr>
+				<tr><td class="title"><b>姓名:</b></td><td><?php echo $pay['username'];?></td></tr>
+				<tr><td class="title"><b>用途:</b></td><td><input type="text" name="paytype"  value="<?php echo $pay['paytype'];?>" size=20></td></tr>
 				<tr><td class="title"><b>缴费金额:</b></td><td><input type="text" name="money"  value="<?php echo $pay['money'];?>" size=20></td></tr>
-				<tr><td class="title"><b>缴费日期:</b></td><td><input type="text" name="paydate"  value="<?php echo $pay['paydate'];?>" size=20 onclick="new Calendar().show(this);"></td></tr>
+				
+<!--				<tr><td class="title"><b>会员类型:</b></td><td><?php echo $pay['member'];?></td>-->
+				</tr>
+				<tr><td class="title"><b>缴费日期:</b></td><td><input type="text" name="paydate"  value="<?php echo $pay['paydate'];?>" size=20 onclick="new Calendar().show(this);" readonly></td></tr>
 				<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=40 rows=10><?php echo $pay['other'];?></textarea></td></tr>
 				
 				<tr><td class="title"><b>记录人:</b></td><td><input type="hidden" name="recorder" value="<?php echo $_username; ?>"><?php echo $_username ; ?></td></tr>

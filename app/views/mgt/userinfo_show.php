@@ -17,7 +17,9 @@
 		<tr><td class="title"><b>会员类型:</b></td><td><?php echo @$userinfo['member']; ?></td></tr>
 		<tr><td class="title"><b>性别:</b></td><td><?php if(@$userinfo['sex']==1){echo "男";} else {echo '女';} ?></td></tr>
 		<tr><td class="title"><b>出生年月:</b></td><td><?php echo @$userinfo['birth']; ?></td></tr>
-		<tr><td class="title"><b>身份证号:</b></td><td><?php echo @$userinfo['sfz']; ?></td></tr>
+		<tr><td class="title"><b>证件类型:</b></td><td><?php echo @$userinfo['paper']; ?></td></tr>
+		<tr><td class="title"><b>证件号:</b></td><td><?php echo @$userinfo['paperno']; ?></td></tr>
+		<tr><td class="title"><b>工作单位:</b></td><td><?php echo @$userinfo['company']; ?> <b>职务：</b><?php echo @$userinfo['job']; ?></td></tr>
 		<tr><td class="title"><b>所在地:</b></td><td><?php echo @$userinfo['province']; ?>省 <?php echo @$userinfo['city']; ?>市</td>	</tr>
 		<tr><td class="title"><b>通讯地址:</b></td><td><?php echo @$userinfo['address']; ?>	<b>邮编:</b><?php echo @$userinfo['post']; ?></td></tr>
 		<tr><td class="title"><b>手机号:</b></td><td><?php echo @$userinfo['mobile']; ?></td></tr>

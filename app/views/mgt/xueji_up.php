@@ -21,8 +21,8 @@
 					<td class="title"><b>姓名:</b></td><td><?php echo $xueji['username'];?></td>
 				</tr>
 				<tr><td class="title"><b>学籍号:</b></td><td><input type="text" name="cnid" value="<?php echo $xueji['cnid'];?>" size=20></td></tr>
-				<tr><td class="title"><b>开学日期:</b></td><td><input type="text" name="start_date" value="<?php echo $xueji['start_date'];?>" size=20 onclick="new Calendar().show(this);"></td></tr>
-				<tr><td class="title"><b>毕业日期:</b></td><td><input type="text" name="end_date" value="<?php echo $xueji['end_date'];?>" size=20 onclick="new Calendar().show(this);"></td></tr>
+				<tr><td class="title"><b>起始日期:</b></td><td><input type="text" name="start_date" value="<?php echo $xueji['start_date'];?>" size=20 onclick="new Calendar().show(this);"></td></tr>
+				<tr><td class="title"><b>终止日期:</b></td><td><input type="text" name="end_date" value="<?php echo $xueji['end_date'];?>" size=20 onclick="new Calendar().show(this);"></td></tr>
 				<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=100 rows=5><?php echo $xueji['other'];?></textarea></td></tr>
 				
 				<tr><td class="title"><b>记录人:</b></td><td><input type="hidden" name="modifer" value="<?php echo $_username; ?>"><?php echo $_username ; ?></td></tr>
