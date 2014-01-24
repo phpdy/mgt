@@ -15,7 +15,7 @@
             <input type="hidden" name="memberid" value="<?php echo $memberid; ?>">
        		姓名：<input type="text" name="username" value="<?php echo @$data['username'] ;?>" size="10" maxlength="10"/>
 			学籍号：<input type="text" name="cnid" value="<?php echo @$data['cnid'] ;?>" size="10" maxlength="10"/>
-			会员类型：<select name="workid">
+			作业：<select name="workid">
        		<option value="0" >全部
 	       		<?php 
 				foreach($worklist as $item){
