@@ -77,6 +77,57 @@ class mgt_xueji extends BaseController {
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
 	}
+	//export 导出
+	public function exportAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$data = array() ;
+		$data['memberid'] = $_REQUEST['memberid'] ;
+		if(!empty($_POST['cnid'])){
+			$data['cnid'] = strtoupper($_POST['cnid']) ;
+		}
+		if(!empty($_POST['username'])){
+			$data['username'] = $_POST['username'] ;
+		}
+		if(!empty($_POST['state'])){
+			$data['state'] = $_POST['state'] ;
+		}
+		if(!empty($_POST['page'])){
+			$data['page'] = $_POST['page'] ;
+		} else {
+			$data['page'] = 0 ;
+		}
+		$result = $this->xueji_model->queryAll($data) ;
+		
+		$memberlist = $this->member_model->queryAll() ;
+		$list = array() ;
+		$list[] = array(
+			'ID','学籍号','会员ID','姓名','会员类型','起始日期','终止日期','备注'
+		) ;
+		foreach ($result as $item){
+			$memberid = $item['memberid'] ;
+			foreach ($memberlist as $member){
+				if($member['id']==$memberid){
+					$membername = $member['name'] ;
+					break ;
+				}
+			}
+			
+			$it = array(
+				$item['id'],$item['cnid'],$item['userid'],$item['username'],$membername,
+				$item['start_date'],$item['end_date'],$item['other']
+				) ;
+			$list[] = $it ;
+		}
+		
+		$this->view->assign('filename',"会员查询列表") ;
+		$this->view->assign('list',$list) ;
+		$this->view->display('export_table.php');
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
 
 	public function list2Action(){
 		$start = microtime(true)*1000 ;

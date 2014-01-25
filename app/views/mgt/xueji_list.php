@@ -12,11 +12,12 @@
         
         <div id="gamemain">
         <form method="post" action="?dir=mgt&control=xueji&action=list">
-            <input type="hidden" name="memberid" value="<?php echo $memberid; ?>">
-       		姓名：<input type="text" name="username" value="<?php echo @$data['username'] ;?>" size="10" maxlength="10"/>
-			学籍号：<input type="text" name="cnid" value="<?php echo @$data['cnid'] ;?>" size="10" maxlength="10"/>
+            <input type="hidden" name="memberid" id="memberid" value="<?php echo $memberid; ?>">
+       		姓名：<input type="text" name="username" id="username" value="<?php echo @$data['username'] ;?>" size="10" maxlength="10"/>
+			学籍号：<input type="text" name="cnid" id="cnid" value="<?php echo @$data['cnid'] ;?>" size="10" maxlength="10"/>
 			<input type="hidden" name="page" value="<?php echo @$data['page'] ;?>"/>
 			<input type="submit" value="查询">
+			<input type="button" name="export" id="export" value="导出">
         </form>
         </div>
         
@@ -61,3 +62,19 @@
 </div>
 </body>
 </html>
+<script language="javascript" type="text/javascript" src="manager/js/jquery-1.7.2.min.js" ></script>
+<script language="javascript" type="text/javascript" >
+$(document).ready(function(){
+	$("#export").click(function(){
+		var temp = document.createElement("form");        
+	    temp.action = "?dir=mgt&control=xueji&action=export&memberid="+$('#memberid').val()+"&username="+$('#username').val()+"&cnid="+$('#cnid').val() ;
+	    temp.method = "POST";
+	    temp.style.display = "none";
+
+	    document.body.appendChild(temp);
+	    temp.submit();
+	    
+	});
+});
+
+</script>

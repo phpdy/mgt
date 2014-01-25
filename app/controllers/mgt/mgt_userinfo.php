@@ -119,7 +119,7 @@ class mgt_userinfo extends BaseController {
 		
 		$list = array() ;
 		$list[] = array(
-			'id','姓名','性别','出生日期','证件类型','证件号','单位','职务','省','市','通信地址','邮编','手机号','电话','邮箱','会员类型'
+			'ID','姓名','会员类型','性别','出生日期','证件类型','证件号','单位','职务','省','市','通信地址','邮编','手机号','电话','邮箱'
 		) ;
 		foreach ($result as $item){
 			$sex = $item['sex']==2?'女':'男' ;
@@ -133,9 +133,9 @@ class mgt_userinfo extends BaseController {
 			}
 			
 			$it = array(
-				$item['id'],$item['username'],$sex,$item['birth'],$paper,$item['paperno'],
+				$item['id'],$item['username'],$item['member'],$sex,$item['birth'],$paper,$item['paperno'],
 				$item['company'],$item['job'],$item['province'],$item['city'],
-				$item['address'],$item['post'],$item['mobile'],$item['phone'],$item['email'],$item['member'],
+				$item['address'],$item['post'],$item['mobile'],$item['phone'],$item['email'],
 				) ;
 			$list[] = $it ;
 		}
