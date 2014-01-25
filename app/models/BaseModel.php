@@ -99,6 +99,38 @@ class BaseModel extends Model {
 	 * @param array $data
 	 * @return array
 	 */
+	public function queryAll($data=array()) {
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+
+		$p1 = "" ;
+		$params = array() ;
+		foreach ($data as $key=>$value){
+			if(empty($value)){
+				continue ;
+			}
+			if(in_array($key, $this->items)){
+				$p1 .= "and $key=? " ;
+				$params[] = $value ;
+			}
+		}
+		
+		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 order by id ";
+		$result = $this->querySQL($sql,$params) ;
+		
+		$log .= '|' . $sql.";".implode(",", $params);
+		$log .= '|' . sizeof($result);
+		$log .= '|' . (int)(microtime(true)*1000-$start);
+		Log::logBehavior($log);
+		return $result;	
+	}
+	
+	/**
+	 * 按条件查询
+	 *
+	 * @param array $data
+	 * @return array
+	 */
 	public function query($data=array()) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;

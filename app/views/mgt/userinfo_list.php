@@ -12,9 +12,9 @@
         
         <div id="gamemain">
         <form method="post" action="?dir=mgt&control=userinfo&action=list">
-       		学号：<input type="text" name="cnid" value="<?php echo @$userinfo['cnid'] ;?>" size="10" maxlength="10"/>
-			姓名：<input type="text" name="username" value="<?php echo @$userinfo['username'] ;?>" size="10" maxlength="10"/>
-       		会员类型：<select name="memberid">
+       		学号：<input type="text" name="cnid" id="cnid" value="<?php echo @$userinfo['cnid'] ;?>" size="10" maxlength="10"/>
+			姓名：<input type="text" name="username" id="username" value="<?php echo @$userinfo['username'] ;?>" size="10" maxlength="10"/>
+       		会员类型：<select name="memberid" id="memberid">
        		<option value="0" >全部
 	       		<?php 
 				foreach($remberlist as $item){
@@ -28,9 +28,10 @@
 				}
 	       		?>
 			</select>
-			手机号：<input type="text" name="mobile" value="<?php echo @$userinfo['mobile'] ;?>" size="10" maxlength="10"/>
+			手机号：<input type="text" name="mobile" id="mobile" value="<?php echo @$userinfo['mobile'] ;?>" size="10" maxlength="10"/>
 			<input type="hidden" name="page" value="<?php echo @$userinfo['page'] ;?>"/>
 			<input type="submit" value="查询">
+			<input type="button" name="export" id="export" value="导出">
         </form>
         </div>
         
@@ -89,3 +90,19 @@
 </div>
 </body>
 </html>
+<script language="javascript" type="text/javascript" src="manager/js/jquery-1.7.2.min.js" ></script>
+<script language="javascript" type="text/javascript" >
+$(document).ready(function(){
+	$("#export").click(function(){
+		var temp = document.createElement("form");        
+	    temp.action = "?dir=mgt&control=userinfo&action=export&cnid="+$('#cnid').val()+"&username="+$('#username').val()+"&memberid="+$('#memberid').val()+"&mobile="+$('#mobile').val();
+	    temp.method = "POST";
+	    temp.style.display = "none";
+
+	    document.body.appendChild(temp);
+	    temp.submit();
+	    
+	});
+});
+
+</script>

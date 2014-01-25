@@ -85,6 +85,68 @@ class mgt_userinfo extends BaseController {
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
 	}
+	//export 导出
+	public function exportAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$data = array() ;
+		if(!empty($_GET['username'])){
+			$data['username'] = $_GET['username'] ;
+		}
+		if(!empty($_GET['memberid'])){
+			$data['memberid'] = $_GET['memberid'] ;
+		}
+		if(!empty($_GET['mobile'])){
+			$data['mobile'] = $_GET['mobile'] ;
+		}
+		if(!empty($_GET['cnid'])){
+			$data['cnid'] = $_GET['cnid'] ;
+			$xueji = $this->xueji_model->query(array('cnid'=>$data['cnid'])) ;
+//			print_r($data) ;
+//			print_r($xueji) ;
+			
+			if(!empty($xueji) && sizeof($xueji)==1){
+				$data['id'] = $xueji[0]['userid'] ;
+			}
+		}
+		if(!empty($_GET['page'])){
+			$data['page'] = $_GET['page'] ;
+		} else {
+			$data['page'] = 0 ;
+		}
+		$result = $this->userinfo_model->queryAll($data) ;
+		
+		$list = array() ;
+		$list[] = array(
+			'id','姓名','性别','出生日期','证件类型','证件号','单位','职务','省','市','通信地址','邮编','手机号','电话','邮箱','会员类型'
+		) ;
+		foreach ($result as $item){
+			$sex = $item['sex']==2?'女':'男' ;
+			$type = $item['paper'] ;
+			switch ($type){
+				case 1:$paper="身份证"; break ;
+				case 2:$paper="军官证"; break ;
+				case 3:$paper="护照"; break ;
+				case 4:$paper="其他"; break ;
+				case 1:$paper="其他"; break ;
+			}
+			
+			$it = array(
+				$item['id'],$item['username'],$sex,$item['birth'],$paper,$item['paperno'],
+				$item['company'],$item['job'],$item['province'],$item['city'],
+				$item['address'],$item['post'],$item['mobile'],$item['phone'],$item['email'],$item['member'],
+				) ;
+			$list[] = $it ;
+		}
+		
+		$this->view->assign('filename',"会员查询列表") ;
+		$this->view->assign('list',$list) ;
+		$this->view->display('export_table.php');
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
 
 	//修改
 	public function upAction(){
