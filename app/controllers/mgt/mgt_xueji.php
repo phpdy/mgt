@@ -103,7 +103,7 @@ class mgt_xueji extends BaseController {
 		$memberlist = $this->member_model->queryAll() ;
 		$list = array() ;
 		$list[] = array(
-			'ID','学籍号','会员ID','姓名','会员类型','起始日期','终止日期','备注'
+			'学籍ID','学籍号','会员ID','姓名','会员类型','起始日期','终止日期','备注'
 		) ;
 		foreach ($result as $item){
 			$memberid = $item['memberid'] ;
