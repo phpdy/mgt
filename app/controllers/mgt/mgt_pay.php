@@ -25,6 +25,9 @@ class mgt_pay extends BaseController {
 		
 		$data = $this->getPost() ;
 		
+		$data['orderid'] 	= "NY"+time() ;	//订单号
+		$data['ptype'] 		= 1 ;	//缴费类别
+		$data['state'] 		= 1 ;	//订单状态，入库未支付0，支付成功1，支付失败-1，退费-2'
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
 			$result = $this->pay_model->insert($data) ;

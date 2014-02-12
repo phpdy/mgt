@@ -17,6 +17,7 @@
 			<table>
 				<tbody>
 				<tr><td class="title"><b>姓名:</b></td><td><?php echo $pay['username'];?></td></tr>
+				<tr><td class="title"><b>订单号:</b></td><td><?php echo $pay['orderid'];?></td></tr>
 				<tr><td class="title"><b>用途:</b></td><td><input type="text" name="paytype"  value="<?php echo $pay['paytype'];?>" size=20></td></tr>
 				<tr><td class="title"><b>缴费金额:</b></td><td><input type="text" name="money"  value="<?php echo $pay['money'];?>" size=20></td></tr>
 				

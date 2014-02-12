@@ -22,6 +22,7 @@
             <tbody>
             <tr id="title">
                 <td>ID</td>
+                <td>订单号</td>
                 <td>姓名</td>
                 <td>缴费金额</td>
                 <td>用途</td>
@@ -37,7 +38,7 @@
 			$class = $i%2==0 ? 'trstyle1' : 'trstyle2';
 			
 			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
-			echo "<tr class='$class'><td>$no</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>".
+			echo "<tr class='$class'><td>$no</td><td>$item[orderid]</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>".
 			"<td>$item[money]</td><td>$item[paytype]</td><td>$item[paydate]</td><td>$item[recorder]</td><td>$item[recordtime]</td>".
 			"<td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a></td></tr>" ;
 		$i++;
