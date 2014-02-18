@@ -46,6 +46,7 @@
                 <td>证件号</td>
                 <td>手机号</td>
                 <td>备用电话</td>
+                <td>电子邮箱</td>
                 <td>工作单位</td>
                 <td>职务</td>
                 <td>注册日期</td>
@@ -72,13 +73,14 @@
 			$paperno= $item['paperno'] ;
 			$mobile = $item['mobile'] ;
 			$phone 	= $item['phone'] ;
+			$email	= $item['email'] ;
 			$company= $item['company'] ;
 			$job	= $item['job'] ;
 			$createtime = $item['createtime'] ;
 			
 			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
 			echo "<tr class='$class'><td>$no</td><td><a href='?dir=mgt&control=userinfo&action=show&id=$item[id]'>$item[username]</a></td>".
-			"<td>$member</td><td>$sex</td><td>$birth</td><td>$paperno</td><td>$mobile</td><td>$phone</td><td>$company</td><td>$job</td>".
+			"<td>$member</td><td>$sex</td><td>$birth</td><td>$paperno</td><td>$mobile</td><td>$phone</td><td>$email</td><td>$company</td><td>$job</td>".
 			"<td>$createtime</td><td><a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改</a></td></tr>" ;
 		$i++;
 		}
