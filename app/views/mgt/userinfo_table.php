@@ -38,8 +38,8 @@
 	<tr><td class="title"><b>证件号:</b></td><td><input type="text" name="paperno" value="<?php echo @$userinfo['paperno']; ?>" size=20></td></tr>
 	<tr>
 		<td class="title"><b>工作单位:</b></td>
-		<td><input type="text" name="company" value="<?php echo @$userinfo['company']; ?>" size=20>
-		职务：<input type="text" name="job" value="<?php echo @$userinfo['job']; ?>" size=20>
+		<td><input type="text" name="company" value="<?php echo @$userinfo['company']; ?>" size=30>
+		职务：<input type="text" name="job" value="<?php echo @$userinfo['job']; ?>" size=10>
 		</td>
 	</tr>
 	<tr>
@@ -55,7 +55,8 @@
 	<tr><td class="title"><b>联系电话:</b></td><td><input type="text" name="phone" value="<?php echo @$userinfo['phone']; ?>" size=20></td></tr>
 	<tr><td class="title"><b>电子邮箱:</b></td><td><input type="text" name="email" value="<?php echo @$userinfo['email']; ?>" size=20><font color='red'>*</font></td></tr>
 	<tr><td class="title"><b>登记时间:</b></td><td><input type="text" name="createtime" value="<?php echo @$userinfo['createtime']?@$userinfo['createtime']:date('Y-m-d'); ?>" size=20 onclick="new Calendar().show(this);" readonly></td></tr>
-
+	<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=100 rows=5><?php echo @$userinfo['other']; ?></textarea></td></tr>
+	
 	<tr><td colspan="2"><input type="submit" value="提  交" name="sub" class="sub-btn"></td></tr>
 	</tbody>
 </table>

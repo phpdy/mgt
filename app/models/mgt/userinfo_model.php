@@ -5,7 +5,7 @@ class userinfo_model extends BaseModel {
 	protected $dbtable = "userinfo" ;
 	
 	protected $items = array('id','name','password','username','sex','birth',
-	'paper','paperno','company','job','province','city','address','post','mobile','phone','email','createtime','memberid','member') ;
+	'paper','paperno','company','job','province','city','address','post','mobile','phone','email','createtime','memberid','member','other') ;
 
 	/**
 	 * insert
