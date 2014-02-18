@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="StyleSheet" href="manager/css/style.css" type="text/css"/>
-<script language="javascript" type="text/javascript" src="js/Calendar3.js" ></script>
+<script language="javascript" type="text/javascript" src="js/Calendar1.js" ></script>
 </head>
 <body>
 

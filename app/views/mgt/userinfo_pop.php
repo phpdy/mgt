@@ -13,8 +13,8 @@
         <div id="gamemain">
         <form method="post" action="">
        		姓名：<input type="text" name="username" id="username" value="<?php echo @$userinfo['username'] ;?>" size="10" maxlength="10"/>
-			手机号：<input type="text" name="mobile" id="mobile" value="<?php echo @$userinfo['mobile'] ;?>" size="10" maxlength="10"/>
-			电子邮箱：<input type="text" name="email" id="email" value="<?php echo @$userinfo['email'] ;?>" size="10" maxlength="10"/>
+			手机号：<input type="text" name="mobile" id="mobile" value="<?php echo @$userinfo['mobile'] ;?>" size="12" maxlength="11"/>
+			电子邮箱：<input type="text" name="email" id="email" value="<?php echo @$userinfo['email'] ;?>" size="20" maxlength="20"/>
 			<input type="button" id="button" name="button" value="查询">
         </form>
         </div>
@@ -36,7 +36,7 @@ $(document).ready(function(){
 			
 			result = '<table class="GF-listTab">';
 			result += '<tbody>';
-			result += '<tr id="title"><td>ID</td><td>姓名</td><td>性别</td><td>手机号</td><td>操作</td></tr>';
+			result += '<tr id="title"><td>姓名</td><td>手机号</td><td>邮箱地址</td><td>通讯地址</td><td>操作</td></tr>';
 
 			for(var i=0; i < list.length; i++){
 				var style = "trstyle1" ;
@@ -46,7 +46,7 @@ $(document).ready(function(){
 //				alert(list[i]) ;
 				var userinfo = eval(list[i]) ;
 				ret = userinfo['id']+","+userinfo['username']+","+userinfo['memberid'] ;
-				result += "<tr class='"+style+"'><td>"+(i+1)+"</td><td>"+userinfo['username']+"</td><td>"+(userinfo['sex']==1?"男":"女")+"</td><td>"+userinfo['mobile']+"</td><td><input type='button' value='选择' onclick=\"retrunValue('"+ret+"')\"></td></tr>" ;
+				result += "<tr class='"+style+"'><td>"+userinfo['username']+"</td><td>"+userinfo['mobile']+"</td><td>"+userinfo['email']+"</td><td>"+userinfo['address']+"</td><td><input type='button' value='选择' onclick=\"retrunValue('"+ret+"')\"></td></tr>" ;
 			}
 			result += "</tbody></table>";
 

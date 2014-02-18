@@ -87,9 +87,16 @@ class userinfo_model extends BaseModel {
 			if(empty($value)){
 				continue ;
 			}
+			if($key=='username'){
+				$p1 .= "and username like '%$value%' " ;
+				continue ;
+			}
+			if($key=='mobile'){
+				$p1 .= "and mobile like $value " ;
+				continue ;
+			}
 			if(in_array($key, $this->items)){
-				$p1 .= "and $key=? " ;
-				$params[] = $value ;
+				$p1 .= "and $key = '$value' " ;
 			}
 		}
 		
@@ -97,7 +104,7 @@ class userinfo_model extends BaseModel {
 		$result = $this->getAll($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
-		$log .= '|' . $result;
+		$log .= '|' . sizeof($result);
 		$log .= '|' . (int)(microtime(true)*1000-$start);
 		Log::logBehavior($log);
 		return $result;	
