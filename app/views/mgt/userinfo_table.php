@@ -3,7 +3,23 @@
 	<tr>
 		<td class="title"><b>姓名:</b></td><td><input type="text" name="username" value="<?php echo @$userinfo['username']; ?>" size=20> <font color='red'>*</font></td>
 	</tr>
-	<tr><td class="title"><b>会员类型:</b></td><td><input type="hidden" name="memberid" value="1" >普通会员</td>
+	<tr><td class="title"><b>会员类型:</b></td><td>
+       		<?php 
+			if(!empty($userinfo['memberid'])){
+				foreach($remberlist as $item){
+					$id = $item['id'] ;
+					$name = $item['name'] ;
+					$p="" ;
+					if($id==@$userinfo['memberid']){
+						echo "<input type='hidden' name='memberid' value=$id >$name" ;
+						break ;
+					}
+				}
+			} else {
+				echo "<input type='hidden' name='memberid' value=1 >普通会员" ;
+			}
+       		?>
+	</td>
 	</tr>
 	<tr>
 		<td class="title"><b>性别:</b></td><td><input type="radio" <?php if(@$userinfo['sex']!=2){echo "checked";} ?> id="1" value="1" name="sex"><label for="1">男</label>
