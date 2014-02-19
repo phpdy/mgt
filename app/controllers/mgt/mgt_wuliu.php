@@ -2,28 +2,28 @@
 
 class mgt_wuliu extends BaseController {
 
+	private $type = array(
+		1	=>'第一单元包裹' ,
+		2	=>'第二单元包裹' ,
+		3	=>'第三单元包裹' ,
+		4	=>'第四单元包裹' ,
+		5	=>'第五单元包裹' ,
+		6	=>'第六单元包裹' ,
+		7	=>'欢迎信' ,
+		8	=>'反光伞' ,
+		9	=>'学员证、采访证' ,
+		10	=>'第一单元作业' ,
+		11	=>'第二单元作业' ,
+		12	=>'第三单元作业' ,
+		13	=>'第四单元作业' ,
+		14	=>'第五单元作业' ,
+		15	=>'第六单元作业' ,
+		16	=>'第七单元作业' ,
+		17	=>'其它' ,
+	) ;
 	public function init(){
 		$this->wuliu_model = $this->initModel('wuliu_model');
-		$type = array(
-			1	=>'第一单元包裹' ,
-			2	=>'第二单元包裹' ,
-			3	=>'第三单元包裹' ,
-			4	=>'第四单元包裹' ,
-			5	=>'第五单元包裹' ,
-			6	=>'第六单元包裹' ,
-			7	=>'欢迎信' ,
-			8	=>'反光伞' ,
-			9	=>'学员证、采访证' ,
-			10	=>'第一单元作业' ,
-			11	=>'第二单元作业' ,
-			12	=>'第三单元作业' ,
-			13	=>'第四单元作业' ,
-			14	=>'第五单元作业' ,
-			15	=>'第六单元作业' ,
-			16	=>'第七单元作业' ,
-			17	=>'其它' ,
-		) ;
-		$this->view->assign('typelist',$type) ;
+		$this->view->assign('typelist',$this->type) ;
 	}
 	//添加
 	public function addAction(){
@@ -34,6 +34,7 @@ class mgt_wuliu extends BaseController {
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
 		$data = $this->getPost() ;
+		$data['cargo'] = $this->type[$data['cargoid']] ;
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
 			$result = $this->wuliu_model->insert($data) ;

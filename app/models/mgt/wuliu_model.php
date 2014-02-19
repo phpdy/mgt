@@ -4,7 +4,7 @@ class wuliu_model extends BaseModel {
 	protected $dbIndex = 'admin';
 	protected $dbtable = "lesson_wuliu" ;
 	
-	protected $items = array('name','userid','cargoid','cargo','orderid','datetime','companies','other') ;
+	protected $items = array('name','userid','username','cargoid','cargo','orderid','datetime','companies','other') ;
 
 	/**
 	 * insert
