@@ -13,25 +13,30 @@
         <div id="gamefeatures"><h2>物流信息录入</h2></div>
         <form method="post" action="?dir=mgt&control=wuliu&action=submit">
             <div id="gamemain">
-            <input type="hidden" name="memberid" value="<?php echo $memberid; ?>">
+            <input type="hidden" name="id" value="<?php echo $wuliu['id']; ?>">
 			<table>
 				<tbody>
-				<tr><td class="title"><b>收货人:</b></td><td><input type="text" name="username" size=20 onclick="pop(this)" readonly><input type="hidden" name="userid" value="" size=20></td></tr>
+				<tr><td class="title"><b>收货人:</b></td><td><input type="text" name="username" size=20 onclick="pop(this)" value="<?php echo $wuliu['username']; ?>" readonly>
+				<input type="hidden" name="userid" value="<?php echo $wuliu['userid']; ?>" size=20></td></tr>
 				<tr><td class="title"><b>寄送货物:</b></td><td>
 					<select name="cargoid">
 					<?php 
 					foreach($typelist as $key=>$value){
-						echo "<option value='$key' >$value" ;
+						$p="" ;
+						if($key==$wuliu['cargoid']){
+							$p = "selected" ;
+						}
+						echo "<option value='$key' $p>$value" ;
 					}
 					?>
 					</select></td></tr>
-				<tr><td class="title"><b>说明:</b></td><td><input type="text" name="name" size=30></td></tr>
-				<tr><td class="title"><b>订单号:</b></td><td><input type="text" name="orderid" size=30></td></tr>
-				<tr><td class="title"><b>物流日期:</b></td><td><input type="text" name="datetime" value="" size=30 onclick="new Calendar().show(this);"></td></tr>
-				<tr><td class="title"><b>物流公司:</b></td><td><input type="text" name="companies" size=50></td></tr>
-				<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=100 rows=5></textarea></td></tr>
+				<tr><td class="title"><b>说明:</b></td><td><input type="text" name="name" size=30 value="<?php echo $wuliu['name']; ?>"></td></tr>
+				<tr><td class="title"><b>订单号:</b></td><td><input type="text" name="orderid" size=30 value="<?php echo $wuliu['orderid']; ?>"></td></tr>
+				<tr><td class="title"><b>物流日期:</b></td><td><input type="text" name="datetime" value="<?php echo $wuliu['datetime']; ?>" size=30 onclick="new Calendar().show(this);"></td></tr>
+				<tr><td class="title"><b>物流公司:</b></td><td><input type="text" name="companies" size=50 value="<?php echo $wuliu['companies']; ?>"></td></tr>
+				<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=100 rows=5><?php echo $wuliu['other']; ?></textarea></td></tr>
 				
-				<tr><td colspan="2"><input type="submit" value="提  交" name="sub" class="sub-btn"></td></tr>
+				<tr><td colspan="2"><input type="submit" value="修 改" name="sub" class="sub-btn"></td></tr>
 				</tbody>
 			</table>
             </div>
