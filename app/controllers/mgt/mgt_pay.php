@@ -26,7 +26,7 @@ class mgt_pay extends BaseController {
 		$data = $this->getPost() ;
 		
 		$data['orderid'] 	= "NY"+time() ;	//订单号
-		$data['ptype'] 		= 1 ;	//缴费类别
+		//$data['ptype'] 		= 1 ;	//缴费类别
 		$data['state'] 		= 1 ;	//订单状态，入库未支付0，支付成功1，支付失败-1，退费-2'
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
@@ -66,6 +66,12 @@ class mgt_pay extends BaseController {
 		$data = array() ;
 		if(!empty($_POST['username'])){
 			$data['username'] = $_POST['username'] ;
+		}
+		if(!empty($_POST['ptype'])){
+			$data['ptype'] = $_POST['ptype'] ;
+		}
+		if($_POST['state']!=''){
+			$data['state'] = $_POST['state'] ;
 		}
 		if(!empty($_POST['page'])){
 			$data['page'] = $_POST['page'] ;

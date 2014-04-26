@@ -19,7 +19,26 @@
 					<td class="title"><b>姓名:</b></td><td><input type="text" name="username" size=20 onclick="pop(this)" readonly>
 					<input type="hidden" name="userid" value="" size=20></td>
 				</tr>
-				<tr><td class="title"><b>用途:</b></td><td><input type="text" name="paytype" value="" size=20></td></tr>
+				<tr>
+					<td class="title"><b>支付方式:</b></td>
+					<td>
+					<select name="paytype" id="paytype">
+					<option value='汇款'>汇款
+					<option value='到付'>到付
+					<option value='在线支付'>在线支付 
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="title"><b>缴费类别:</b></td>
+					<td>
+					<select name="ptype" id="ptype">
+					<option value='1'>全科学员费用
+					<option value='2'>在线学员费用
+					<option value='4'>俱乐部学员费用
+					</select>
+					</td>
+				</tr>
 				<tr><td class="title"><b>缴费金额:</b></td><td><input type="text" name="money" value="" size=20></td></tr>
 				
 				<tr><td class="title"><b>会员类型:</b></td><td>
