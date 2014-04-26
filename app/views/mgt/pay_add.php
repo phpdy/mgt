@@ -39,6 +39,13 @@
 					</select>
 					</td>
 				</tr>
+				<tr>
+					<td class="title"><b>二级类别:</b></td>
+					<td>
+					<select name="pid" id="pid">
+					</select>
+					</td>
+				</tr>
 				<tr><td class="title"><b>缴费金额:</b></td><td><input type="text" name="money" value="" size=20></td></tr>
 				
 				<tr><td class="title"><b>会员类型:</b></td><td>

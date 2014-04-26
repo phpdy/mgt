@@ -19,6 +19,18 @@
 					<option value='2' <?php if($data['ptype']==2){echo "selected";} ?>>在线学员费用
 					<option value='4' <?php if($data['ptype']==4){echo "selected";} ?>>俱乐部学员费用
 					</select>
+       		二级类别:<select name="pid" id="pid">
+					<option value='' selected>全部
+					<?php 
+					foreach($clublist as $club){
+						$op = "" ;
+						if($club['id']==$data['pid']){
+							$op = "selected" ;
+						}
+						echo "<option value='$club[id]' $op>$club[title]" ;
+					}
+					?>
+					</select>
        		支付状态:<select name="state" id="state">
 					<option value='' selected>全部
 					<option value='0' <?php if($data['state']=='0'){echo "selected";} ?>>未付款
@@ -47,6 +59,7 @@
 		<?php
 		$i = 0;
 		$pno = empty($data['page'])?0:$data['page'] ;//页号
+		//print_r($clublist);
 		foreach ($list as $item){
 			$class = $i%2==0 ? 'trstyle1' : 'trstyle2';
 			
@@ -74,7 +87,7 @@
 				default: $ptype = "其他费用" ;
 			}
 			echo "<tr class='$class'><td>$no</td><td>$item[orderid]</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>".
-			"<td>$item[money]</td><td>$item[paytype]</td><td>$ptype</td><td>$item[pid]</td><td>$item[paydate]</td><td>$state</td>".
+			"<td>$item[money]</td><td>$item[paytype]</td><td>$ptype</td><td>$item[pname]</td><td>$item[paydate]</td><td>$state</td>".
 			"<td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a></td></tr>" ;
 		$i++;
 		}

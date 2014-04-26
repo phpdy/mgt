@@ -6,6 +6,7 @@ class mgt_pay extends BaseController {
 		$this->pay_model = $this->initModel('pay_model');
 		$this->userinfo_model = $this->initModel('userinfo_model');
 		$this->member_model = $this->initModel('member_model');
+		$this->club_model = $this->initModel('index_model','club');
 		
 		@session_start ();
 		$this->view->assign('_username',$_SESSION [FinalClass::$_session_user]['username']) ;
@@ -17,6 +18,9 @@ class mgt_pay extends BaseController {
 		
 		$memberlist = $this->member_model->query() ;
 		$this->view->assign('memberlist',$memberlist) ;
+
+		$clublist = $this->club_model->queryAll();
+		$this->view->assign('clublist',$clublist) ;
 		$this->view->display('pay_add.php');
 	}
 	public function submitAction(){
@@ -70,6 +74,9 @@ class mgt_pay extends BaseController {
 		if(!empty($_POST['ptype'])){
 			$data['ptype'] = $_POST['ptype'] ;
 		}
+		if(!empty($_POST['pid'])){
+			$data['pid'] = $_POST['pid'] ;
+		}
 		if($_POST['state']!=''){
 			$data['state'] = $_POST['state'] ;
 		}
@@ -81,6 +88,20 @@ class mgt_pay extends BaseController {
 		$pagenum = $this->pay_model->queryCount($data) ;
 		$result = $this->pay_model->query($data) ;
 		
+		$clublist = $this->club_model->queryAll();
+
+		foreach($result as $key=>$value){
+			$pid = $value['pid'] ;
+			foreach($clublist as $club){
+				if($club['id']==$pid){
+					$result[$key]["pname"]=$club['title'] ;
+					$_clublist[$club['id']] = $club ;
+					break ;
+				}
+			}
+		}
+		$this->view->assign('clublist',$_clublist) ;
+
 		$this->view->assign('pagenum',$pagenum) ;
 		$this->view->assign('data',$data) ;
 		$this->view->assign('list',$result) ;
@@ -100,9 +121,20 @@ class mgt_pay extends BaseController {
 		
 		$memberlist = $this->member_model->query() ;
 		$this->view->assign('memberlist',$memberlist) ;
+
+		$clublist = $this->club_model->queryAll();
+		$this->view->assign('clublist',$clublist) ;
 		
 		$id = $_GET['id'] ;
 		$object = $this->pay_model->getOneById($id) ;
+		
+		foreach($clublist as $club){
+			if($club['id']==$object['pid']){
+				$object["pname"]=$club['title'] ;
+				break ;
+			}
+		}
+
 		$this->view->assign('pay',$object) ;
 		
 		$this->view->display('pay_up.php');
