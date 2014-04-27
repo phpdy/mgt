@@ -48,7 +48,9 @@
                 <td>ID</td>
                 <td>订单号</td>
                 <td>姓名</td>
-                <td>缴费金额</td>
+                <td>用户名</td>
+                <td>性别</td>
+                <td>金额</td>
                 <td>支付方式</td>
                 <td>缴费类别</td>
                 <td>缴费二级类别</td>
@@ -78,17 +80,21 @@
 				$state ='退款成功' ;
 			}
 			switch ($item['ptype']){
-				case 1: $ptype = "全科学员费用" ;
+				case 1: $ptype = "全科学员" ;
 					break ;
-				case 2: $ptype = "在线学员费用" ;
+				case 2: $ptype = "在线学员" ;
 					break ;
-				case 4: $ptype = "俱乐部学员费用" ;
+				case 4: $ptype = "俱乐部" ;
 					break ;
 				default: $ptype = "其他费用" ;
 			}
-			echo "<tr class='$class'><td>$no</td><td>$item[orderid]</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>".
-			"<td>$item[money]</td><td>$item[paytype]</td><td>$ptype</td><td>$item[pname]</td><td>$item[paydate]</td><td>$state</td>".
-			"<td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a></td></tr>" ;
+			$pay = "<a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a>" ;
+			if($item['state']==1 && $item['paytype']=='在线支付'){
+				$pay = "&nbsp;" ;
+			}
+			echo "<tr class='$class'><td>$no</td><td>$item[orderid]</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>"
+			."<td>$item[name]</td><td>$item[sex]</td><td>$item[money]</td><td>$item[paytype]</td>"
+			."<td>$ptype</td><td>$item[pname]</td><td>$item[paydate]</td><td>$state</td><td>$pay</td></tr>" ;
 		$i++;
 		}
 		?>

@@ -29,11 +29,11 @@ class mgt_pay extends BaseController {
 		
 		$data = $this->getPost() ;
 		
-		$data['orderid'] 	= "NY"+time() ;	//订单号
 		//$data['ptype'] 		= 1 ;	//缴费类别
-		$data['state'] 		= 1 ;	//订单状态，入库未支付0，支付成功1，支付失败-1，退费-2'
+//		$data['state'] 		= 1 ;	//订单状态，入库未支付0，支付成功1，支付失败-1，退费-2'
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
+			$data['orderid'] 	= "NY"+time() ;	//订单号
 			$result = $this->pay_model->insert($data) ;
 		} else {
 			$data['id'] = $_POST['id'] ;
@@ -88,13 +88,37 @@ class mgt_pay extends BaseController {
 		$pagenum = $this->pay_model->queryCount($data) ;
 		$result = $this->pay_model->query($data) ;
 		
+		//补充结果缺少数据，用户信息和俱乐部活动名
+		$userinfolist = $this->userinfo_model->queryUserinfo() ;
 		$clublist = $this->club_model->queryAll();
-
 		foreach($result as $key=>$value){
+			//补充俱乐部活动名称 pname
 			$pid = $value['pid'] ;
 			foreach($clublist as $club){
 				if($club['id']==$pid){
 					$result[$key]["pname"]=$club['title'] ;
+					$_clublist[$club['id']] = $club ;
+					break ;
+				}
+			}
+			//补充用户名、性别、身份证号
+			$userid = $value['userid'] ;
+			foreach($userinfolist as $user){
+				if($user['id']==$userid){
+					$result[$key]["name"]=$user['name'] ;
+					$result[$key]["sex"]=$user['sex']==2?'女':'男';
+					$result[$key]["paperno"]=$user['paperno'] ;
+					break ;
+				}
+			}
+		}
+		
+		//过滤所有已报名的活动
+		$result2 = $this->pay_model->queryAll() ;
+		foreach($result2 as $key=>$value){
+			$pid = $value['pid'] ;
+			foreach($clublist as $club){
+				if($club['id']==$pid){
 					$_clublist[$club['id']] = $club ;
 					break ;
 				}

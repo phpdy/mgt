@@ -43,6 +43,12 @@
 					<td class="title"><b>二级类别:</b></td>
 					<td>
 					<select name="pid" id="pid">
+					<option value='-1'>其他费用
+					<?php 
+					foreach($clublist as $club){
+						echo "<option value='$club[id]'>$club[title]" ;
+					}
+					?>
 					</select>
 					</td>
 				</tr>

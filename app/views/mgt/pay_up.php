@@ -33,7 +33,17 @@
 				</tr>
 				<tr><td class="title"><b>二级类别:</b></td><td><?php echo $pay['pname'];?></td></tr>
 				<tr><td class="title"><b>缴费金额:</b></td><td><input type="text" name="money"  value="<?php echo $pay['money'];?>" size=20></td></tr>
-				
+				<tr>
+					<td class="title"><b>支付状态:</b></td>
+					<td>
+					<select name="state" id="state">
+					<option value='0' <?php if($pay['state']=='0'){echo 'selected'; } ?>>未支付
+					<option value='1' <?php if($pay['state']=='1'){echo 'selected'; } ?>>成功
+					<option value='-1' <?php if($pay['state']=='-1'){echo 'selected'; } ?>>失败
+					<option value='-2' <?php if($pay['state']=='-2'){echo 'selected'; } ?>>其他
+					</select>
+					</td>
+				</tr>
 <!--				<tr><td class="title"><b>会员类型:</b></td><td><?php echo $pay['member'];?></td>-->
 				</tr>
 				<tr><td class="title"><b>缴费日期:</b></td><td><input type="text" name="paydate"  value="<?php echo $pay['paydate'];?>" size=20 onclick="new Calendar().show(this);" readonly></td></tr>
