@@ -95,6 +95,10 @@ class userinfo_model extends BaseModel {
 				$p1 .= "and mobile like $value " ;
 				continue ;
 			}
+			if($key=='memberid'){
+				$p1 .= "and member like '%$value%' " ;
+				continue ;
+			}
 			if(in_array($key, $this->items)){
 				$p1 .= "and $key = '$value' " ;
 			}

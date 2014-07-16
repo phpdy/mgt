@@ -18,12 +18,8 @@ class mgt_userinfo extends BaseController {
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
 		$data = $this->getPost() ;
-		$remberlist = $this->member_model->queryAll() ;
-		foreach ($remberlist as $item){
-			if($item['id']==$data['memberid']){
-				$data['member'] = $item['name'] ;
-			}
-		}
+		$data['member'] = implode(",",$data['memberid']) ;
+		$data['memberid'] = 9 ;
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
 			$result = $this->userinfo_model->insert($data) ;
@@ -158,6 +154,7 @@ class mgt_userinfo extends BaseController {
 		
 		$id = $_GET['id'] ;
 		$userinfo = $this->userinfo_model->getOneById($id) ;
+		$userinfo['memberid'] = explode(',',$userinfo['member']) ;
 		$this->view->assign('userinfo',$userinfo) ;
 		
 		$this->view->display('userinfo_up.php');

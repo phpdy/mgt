@@ -4,21 +4,11 @@
 		<td class="title"><b>姓名:</b></td><td><input type="text" name="username" value="<?php echo @$userinfo['username']; ?>" size=20> <font color='red'>*</font></td>
 	</tr>
 	<tr><td class="title"><b>会员类型:</b></td><td>
-       		<?php 
-			if(!empty($userinfo['memberid'])){
-				foreach($remberlist as $item){
-					$id = $item['id'] ;
-					$name = $item['name'] ;
-					$p="" ;
-					if($id==@$userinfo['memberid']){
-						echo "<input type='hidden' name='memberid' value=$id >$name" ;
-						break ;
-					}
-				}
-			} else {
-				echo "<input type='hidden' name='memberid' value=1 >普通会员" ;
-			}
-       		?>
+		<input type="checkbox" id="1" value="1" <?php if(array_count_values($userinfo['memberid'],'1')){echo "checked";}?> name="memberid[]"><label for="1">普通会员</label>
+		<input type="checkbox" id="2" value="2" <?php if(array_count_values($userinfo['memberid'],'2')){echo "checked";}?> name="memberid[]"><label for="2">全科会员</label>
+		<input type="checkbox" id="3" value="3" <?php if(array_count_values($userinfo['memberid'],'3')){echo "checked";}?> name="memberid[]"><label for="3">在线会员</label>
+		<input type="checkbox" id="4" value="4" <?php if(array_count_values($userinfo['memberid'],'4')){echo "checked";}?> name="memberid[]"><label for="4">俱乐部会员</label>
+       	
 	</td>
 	</tr>
 	<tr>
