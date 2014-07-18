@@ -36,7 +36,7 @@ $(document).ready(function(){
 			
 			result = '<table class="GF-listTab">';
 			result += '<tbody>';
-			result += '<tr id="title"><td>姓名</td><td>手机号</td><td>邮箱地址</td><td>通讯地址</td><td>操作</td></tr>';
+			result += '<tr id="title"><td>姓名</td><td>手机号</td><td>邮箱地址</td><td>会员类型</td><td>操作</td></tr>';
 
 			for(var i=0; i < list.length; i++){
 				var style = "trstyle1" ;
@@ -45,8 +45,8 @@ $(document).ready(function(){
 				}
 //				alert(list[i]) ;
 				var userinfo = eval(list[i]) ;
-				ret = userinfo['id']+","+userinfo['username']+","+userinfo['memberid'] ;
-				result += "<tr class='"+style+"'><td>"+userinfo['username']+"</td><td>"+userinfo['mobile']+"</td><td>"+userinfo['email']+"</td><td>"+userinfo['address']+"</td><td><input type='button' value='选择' onclick=\"retrunValue('"+ret+"')\"></td></tr>" ;
+				ret = userinfo['id']+","+userinfo['username']+","+userinfo['member'] ;
+				result += "<tr class='"+style+"'><td>"+userinfo['username']+"</td><td>"+userinfo['mobile']+"</td><td>"+userinfo['email']+"</td><td>"+userinfo['member']+"</td><td><input type='button' value='选择' onclick=\"retrunValue('"+ret+"')\"></td></tr>" ;
 			}
 			result += "</tbody></table>";
 

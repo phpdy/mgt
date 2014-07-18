@@ -3,7 +3,7 @@
 class member_model extends BaseModel {
 	protected $dbIndex = 'admin';
 	protected $dbtable = "member" ;
-	protected $items = array('name','state') ;
+	protected $items = array('id','name','state') ;
 	
 	/**
 	 * 按ID查询

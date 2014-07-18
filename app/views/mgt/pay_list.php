@@ -15,9 +15,15 @@
        		姓名：<input type="text" name="username" value="<?php echo @$data['username'] ;?>" size="10" maxlength="10"/>
        		缴费类别:<select name="ptype" id="ptype">
 					<option value='' selected>全部
-					<option value='1' <?php if($data['ptype']==1){echo "selected";} ?>>全科学员费用
-					<option value='2' <?php if($data['ptype']==2){echo "selected";} ?>>在线学员费用
-					<option value='4' <?php if($data['ptype']==4){echo "selected";} ?>>俱乐部学员费用
+					<?php 
+					foreach ($memberlist as $item){
+						$op ="" ;
+						if($data['ptype']==$item['id']){
+							$op ="selected" ;
+						}
+						echo "<option value='$item[id]' $op>$item[name]" ;
+					}
+					?>
 					</select>
        		二级类别:<select name="pid" id="pid">
 					<option value='' selected>全部
@@ -79,14 +85,10 @@
 			if($item['state']==-2){
 				$state ='退款成功' ;
 			}
-			switch ($item['ptype']){
-				case 1: $ptype = "全科学员" ;
-					break ;
-				case 2: $ptype = "在线学员" ;
-					break ;
-				case 4: $ptype = "俱乐部" ;
-					break ;
-				default: $ptype = "其他费用" ;
+			foreach ($memberlist as $mem){
+				if($mem['id']==$item['ptype']){
+					$ptype = $mem['name'] ;
+				}
 			}
 			$pay = "<a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a>" ;
 			if($item['state']==1 && $item['paytype']=='在线支付'){

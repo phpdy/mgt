@@ -13,7 +13,20 @@ class mgt_pay extends BaseController {
 	}
 	//添加
 	public function addAction(){
-		$userinfolist = $this->userinfo_model->queryUserinfo() ;
+		$memberlist = $this->member_model->queryAll() ;
+		$this->view->assign('memberlist',$memberlist) ;
+		
+		$clublist = $this->club_model->queryAll();
+		$this->view->assign('clublist',$clublist) ;
+		$this->view->display('pay_add.php');
+	}
+	
+	//修改
+	public function upAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$userinfolist = $this->userinfo_model->queryAll() ;
 		$this->view->assign('userinfolist',$userinfolist) ;
 		
 		$memberlist = $this->member_model->query() ;
@@ -21,8 +34,25 @@ class mgt_pay extends BaseController {
 
 		$clublist = $this->club_model->queryAll();
 		$this->view->assign('clublist',$clublist) ;
-		$this->view->display('pay_add.php');
+		
+		$id = $_GET['id'] ;
+		$object = $this->pay_model->getOneById($id) ;
+		
+		foreach($clublist as $club){
+			if($club['id']==$object['pid']){
+				$object["pname"]=$club['title'] ;
+				break ;
+			}
+		}
+
+		$this->view->assign('pay',$object) ;
+		
+		$this->view->display('pay_up.php');
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
 	}
+	
 	public function submitAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
@@ -43,29 +73,18 @@ class mgt_pay extends BaseController {
 			echo "操作失败:$result" ;
 			die() ;
 		}
-		$memberlist = $this->member_model->query() ;
-		$memberid = $data['memberid'] ;
-		$member = "" ;
-		foreach ($memberlist as $item){
-			if($item['id']==$memberid){
-				$member = $item['name'] ;
-			}
-		}
-		$userinfo = array(
-			'id'		=>	$data['userid'] ,
-			'memberid'	=>	$memberid ,
-			'member'	=>	$member ,
-		) ;
-		$this->userinfo_model->update($userinfo) ;
-		
 		$this->listAction();
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
 	}
+	
 	//列表
 	public function listAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$memberlist = $this->member_model->query() ;
+		$this->view->assign('memberlist',$memberlist) ;
 		
 		$data = array() ;
 		if(!empty($_POST['username'])){
@@ -89,7 +108,7 @@ class mgt_pay extends BaseController {
 		$result = $this->pay_model->query($data) ;
 		
 		//补充结果缺少数据，用户信息和俱乐部活动名
-		$userinfolist = $this->userinfo_model->queryUserinfo() ;
+		$userinfolist = $this->userinfo_model->queryAll() ;
 		$clublist = $this->club_model->queryAll();
 		foreach($result as $key=>$value){
 			//补充俱乐部活动名称 pname
@@ -135,38 +154,6 @@ class mgt_pay extends BaseController {
 		Log::logBusiness($log) ;
 	}
 
-	//修改
-	public function upAction(){
-		$start = microtime(true)*1000 ;
-		$log = __CLASS__."|".__FUNCTION__ ;
-		
-		$userinfolist = $this->userinfo_model->queryUserinfo() ;
-		$this->view->assign('userinfolist',$userinfolist) ;
-		
-		$memberlist = $this->member_model->query() ;
-		$this->view->assign('memberlist',$memberlist) ;
-
-		$clublist = $this->club_model->queryAll();
-		$this->view->assign('clublist',$clublist) ;
-		
-		$id = $_GET['id'] ;
-		$object = $this->pay_model->getOneById($id) ;
-		
-		foreach($clublist as $club){
-			if($club['id']==$object['pid']){
-				$object["pname"]=$club['title'] ;
-				break ;
-			}
-		}
-
-		$this->view->assign('pay',$object) ;
-		
-		$this->view->display('pay_up.php');
-		
-		$log .= "|".(int)(microtime(true)*1000-$start) ;
-		Log::logBusiness($log) ;
-	}
-	
 	public function showAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;

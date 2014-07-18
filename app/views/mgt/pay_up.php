@@ -19,17 +19,22 @@
 				<tr><td class="title"><b>姓名:</b></td><td><?php echo $pay['username'];?></td></tr>
 				<tr><td class="title"><b>订单号:</b></td><td><?php echo $pay['orderid'];?></td></tr>
 				<tr><td class="title"><b>支付方式:</b></td>
-				<td>
+				<td><?php echo $pay['paytype'];?><!-- 
 					<select name="paytype" id="paytype">
+					<option value='<?php echo $pay['paytype'];?>'><?php echo $pay['paytype'];?>
 					<option value='汇款' <?php if($pay['paytype']=='汇款'){echo "selected";}?>>汇款
 					<option value='到付' <?php if($pay['paytype']=='到付'){echo "selected";}?>>到付
-					<option value='在线支付' <?php if($pay['paytype']=='在线支付'){echo "selected";}?>>在线支付 
-					</select>
+					<option value='在线支付' <?php if($pay['paytype']=='在线支付'){echo "selected";}?>>在线支付
+					</select> -->
 				<tr>
 					<td class="title"><b>缴费类别:</b></td>
-					<td><?php if($pay['ptype']==1){echo "全科学员费用"; }
-					if($pay['ptype']==2){echo "在线学员费用"; }
-					if($pay['ptype']==4){echo "俱乐部学员费用"; } ?></td>
+					<td><?php 
+						foreach ($memberlist as $item){
+							if($item['id']==$pay['ptype']){
+								echo $item['name'] ;
+							}
+						}
+					?></td>
 				</tr>
 				<tr><td class="title"><b>二级类别:</b></td><td><?php echo $pay['pname'];?></td></tr>
 				<tr><td class="title"><b>缴费金额:</b></td><td><input type="text" name="money"  value="<?php echo $pay['money'];?>" size=20></td></tr>
@@ -43,8 +48,6 @@
 					<option value='-2' <?php if($pay['state']=='-2'){echo 'selected'; } ?>>其他
 					</select>
 					</td>
-				</tr>
-<!--				<tr><td class="title"><b>会员类型:</b></td><td><?php echo $pay['member'];?></td>-->
 				</tr>
 				<tr><td class="title"><b>缴费日期:</b></td><td><input type="text" name="paydate"  value="<?php echo $pay['paydate'];?>" size=20 onclick="new Calendar().show(this);" readonly></td></tr>
 				<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=40 rows=10><?php echo $pay['other'];?></textarea></td></tr>

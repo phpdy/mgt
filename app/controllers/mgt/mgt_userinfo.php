@@ -9,17 +9,44 @@ class mgt_userinfo extends BaseController {
 	}
 	//添加
 	public function addAction(){
-		$remberlist = $this->member_model->queryAll() ;
-		$this->view->assign('remberlist',$remberlist) ;
+		$memberlist = $this->member_model->queryAll() ;
+		$this->view->assign('memberlist',$memberlist) ;
 		$this->view->display('userinfo_add.php');
+	}
+	//修改
+	public function upAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$memberlist = $this->member_model->queryAll() ;
+		$this->view->assign('memberlist',$memberlist) ;
+		
+		$id = $_GET['id'] ;
+		$userinfo = $this->userinfo_model->getOneById($id) ;
+		$userinfo['memberid'] = explode(',',$userinfo['memberid']) ;
+		$this->view->assign('userinfo',$userinfo) ;
+		
+		$this->view->display('userinfo_up.php');
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
 	}
 	public function submitAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
 		$data = $this->getPost() ;
-		$data['member'] = implode(",",$data['memberid']) ;
-		$data['memberid'] = 9 ;
+		//处理会员信息
+		$memberlist = $this->member_model->queryAll() ;
+		foreach ($data['memberid'] as $id){
+			foreach ($memberlist as $member){
+				if($member['id']==$id){
+					$data['member'] .= $member['name'].'|' ;
+				}
+			}
+		}
+		$data['memberid'] = implode(",",$data['memberid']) ;
+		
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
 			$result = $this->userinfo_model->insert($data) ;
@@ -42,8 +69,8 @@ class mgt_userinfo extends BaseController {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
-		$remberlist = $this->member_model->queryAll() ;
-		$this->view->assign('remberlist',$remberlist) ;
+		$memberlist = $this->member_model->queryAll() ;
+		$this->view->assign('memberlist',$memberlist) ;
 		
 		$data = array() ;
 		if(!empty($_POST['username'])){
@@ -143,25 +170,6 @@ class mgt_userinfo extends BaseController {
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
 	}
-
-	//修改
-	public function upAction(){
-		$start = microtime(true)*1000 ;
-		$log = __CLASS__."|".__FUNCTION__ ;
-		
-		$remberlist = $this->member_model->queryAll() ;
-		$this->view->assign('remberlist',$remberlist) ;
-		
-		$id = $_GET['id'] ;
-		$userinfo = $this->userinfo_model->getOneById($id) ;
-		$userinfo['memberid'] = explode(',',$userinfo['member']) ;
-		$this->view->assign('userinfo',$userinfo) ;
-		
-		$this->view->display('userinfo_up.php');
-		
-		$log .= "|".(int)(microtime(true)*1000-$start) ;
-		Log::logBusiness($log) ;
-	}
 	
 	public function showAction(){
 		$start = microtime(true)*1000 ;
@@ -181,10 +189,10 @@ class mgt_userinfo extends BaseController {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
-		$username = $_GET['username'] ;
-		$userinfo = $this->userinfo_model->queryByUsername($username) ;
+		$user['username'] = $_GET['username'] ;
+		$userinfo = $this->userinfo_model->query($user) ;
 		
-		echo json_encode($userinfo) ;
+		echo json_encode($userinfo[0]) ;
 		
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
@@ -223,7 +231,7 @@ class mgt_userinfo extends BaseController {
 		
 		$result = array() ;
 		if(!empty($userinfo)){
-			$result = $this->userinfo_model->queryUserinfo($userinfo) ;
+			$result = $this->userinfo_model->query($userinfo) ;
 		}
 		
 		echo json_encode($result) ;
@@ -236,6 +244,22 @@ class mgt_userinfo extends BaseController {
 		$data = array() ;
 		$data = $_POST ;
 		return $data ;
+	}
+	
+	public function uppwdAction(){
+		$start = microtime(true)*1000;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		$userid = $_GET['userid'] ;
+		$password = $_GET['password'] ;
+		$log .= "|$userid,$password" ;
+		
+		$password = md5($password);
+		$res = $this->userinfo_model->updatePWD($userid,$password) ;
+		$log .= "|".$res ;
+		
+		echo "密码修改成功!" ;
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
 	}
 }
 

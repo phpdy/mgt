@@ -17,7 +17,7 @@
        		会员类型：<select name="memberid" id="memberid">
        		<option value="0" >全部
 	       		<?php 
-				foreach($remberlist as $item){
+				foreach($memberlist as $item){
 					$id = $item['id'] ;
 					$name = $item['name'] ;
 					$p="" ;
@@ -40,15 +40,12 @@
             <tr id="title">
                 <td>ID</td>
                 <td>姓名</td>
-                <td>会员类型</td>
+                <td>账号</td>
                 <td>性别</td>
                 <td>出生日期</td>
-                <td>证件号</td>
-                <td>手机号</td>
-                <td>备用电话</td>
+                <td>联系方式</td>
                 <td>电子邮箱</td>
-                <td>工作单位</td>
-                <td>职务</td>
+                <td>工作单位(职务)</td>
                 <td>注册日期</td>
                 <td>修改</td>
             </tr>
@@ -59,8 +56,10 @@
 			$class = $i%2==0 ? 'trstyle1' : 'trstyle2';
 			$memberid = $item['memberid'] ;
 			$member = $item['member'] ;
-			if($memberid!=1){
-				$member = "<a href='?dir=mgt&control=xueji&action=list2&userid=$item[id]'>$member</a>" ;
+			$memid = explode(',',$memberid) ;
+			
+			if(array_count_values($memid,2)){
+				$member = " <a href='?dir=mgt&control=xueji&action=list2&userid=$item[id]'>$member</a> " ;
 			}
 			
 			$sex = "-" ;
@@ -72,7 +71,9 @@
 			$birth 	= $item['birth'] ;
 			$paperno= $item['paperno'] ;
 			$mobile = $item['mobile'] ;
-			$phone 	= $item['phone'] ;
+			if (empty($mobile)){
+				$mobile	= $item['phone'] ;
+			}
 			$email	= $item['email'] ;
 			$company= $item['company'] ;
 			$job	= $item['job'] ;
@@ -80,8 +81,14 @@
 			
 			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
 			echo "<tr class='$class'><td>$no</td><td><a href='?dir=mgt&control=userinfo&action=show&id=$item[id]'>$item[username]</a></td>".
-			"<td>$member</td><td>$sex</td><td>$birth</td><td>$paperno</td><td>$mobile</td><td>$phone</td><td>$email</td><td>$company</td><td>$job</td>".
-			"<td>$createtime</td><td><a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改</a></td></tr>" ;
+			"<td>$item[name]</td>".
+			//"<td>$member</td>".
+			"<td>$sex</td><td>$birth</td>".
+			//"<td>$paperno</td>".
+			"<td>$mobile</td><td>$email</td><td>$company $job</td>".
+			"<td>$createtime</td>".
+			"<td><a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改信息</a>
+			<input type='button' value='密码修改' onclick='up({$item['id']})'/></td></tr>" ;
 		$i++;
 		}
 		?>
@@ -107,4 +114,12 @@ $(document).ready(function(){
 	});
 });
 
+function up(uid){
+	var password = prompt("请输入新密码","");
+	if(password!=null && password!=""){
+		$.get("?dir=mgt&control=userinfo&action=uppwd&userid="+uid+"&password="+password,{},function(data){
+			alert(data) ;
+		});
+	}
+}
 </script>
