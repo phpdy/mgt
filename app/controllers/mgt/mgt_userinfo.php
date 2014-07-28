@@ -49,6 +49,7 @@ class mgt_userinfo extends BaseController {
 		
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
+			$data['createtime'] = date('Y-m-d H:i:s') ;
 			$result = $this->userinfo_model->insert($data) ;
 		} else {
 			$data['id'] = $_POST['id'] ;
