@@ -27,7 +27,8 @@
 			<option value='1' <?php if(@$userinfo['paper']==1){echo "selected";} ?>>身份证
 			<option value='2' <?php if(@$userinfo['paper']==2){echo "selected";} ?>>军官证
 			<option value='3' <?php if(@$userinfo['paper']==3){echo "selected";} ?>>护照
-			<option value='4' <?php if(@$userinfo['paper']==4){echo "selected";} ?>>其他
+			<option value='4' <?php if(@$userinfo['paper']==4){echo "selected";} ?>>港台证
+			<option value='5' <?php if(@$userinfo['paper']==5){echo "selected";} ?>>其他
 		</select></td>
 	</tr>
 	<tr><td class="title"><b>证件号:</b></td><td><input type="text" name="paperno" value="<?php echo @$userinfo['paperno']; ?>" size=20></td></tr>
