@@ -70,7 +70,7 @@ class userinfo_model extends BaseModel {
 		$size = FinalClass::$_list_pagesize ;
 		$start = (empty($data['page'])?0:$data['page'])*$size ;
 		
-		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 order by id limit $start,$size";
+		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 order by id desc limit $start,$size";
 		$result = $this->querySQL($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
@@ -105,7 +105,7 @@ class userinfo_model extends BaseModel {
 			}
 		}
 		
-		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 order by id ";
+		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 order by id desc";
 		$result = $this->querySQL($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
@@ -133,6 +133,9 @@ class userinfo_model extends BaseModel {
 		Log::logBehavior($log);
 		return $result ;
 	}
-	
+
+	protected function getOrder(){
+		return " order by id desc " ;
+	}
 }
 

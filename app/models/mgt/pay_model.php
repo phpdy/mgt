@@ -96,7 +96,7 @@ class pay_model extends BaseModel {
 			}
 		}
 		
-		$sql = "select * from lesson_pay where 1=1 $p1 order by id ";
+		$sql = "select * from lesson_pay where 1=1 $p1 order by id desc";
 		$result = $this->getAll($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
@@ -106,5 +106,8 @@ class pay_model extends BaseModel {
 		return $result;	
 	}
 
+	protected function getOrder(){
+		return " order by id desc " ;
+	}
 }
 

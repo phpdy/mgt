@@ -140,7 +140,7 @@ class BaseModel extends Model {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
 		
-		$sql = "select * from $table order by id" ;
+		$sql = "select * from $table ".$this->getOrder() ;
 		$list = $this->querySQL($sql,array()) ;
 		
 		$log .= "|$sql|" . (int)(microtime(true)*1000-$start);
@@ -181,7 +181,7 @@ class BaseModel extends Model {
 			}
 		}
 		
-		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 order by id ";
+		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 ".$this->getOrder();
 		$result = $this->querySQL($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
@@ -215,7 +215,7 @@ class BaseModel extends Model {
 		$size = FinalClass::$_list_pagesize ;
 		$start = (empty($data['page'])?0:$data['page'])*$size ;
 		
-		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 order by id limit $start,$size";
+		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 ".$this->getOrder()." $start,$size";
 		$result = $this->querySQL($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
@@ -254,5 +254,9 @@ class BaseModel extends Model {
 	
 	protected function getWhere(){
 		return "1=1 " ;
+	}
+
+	protected function getOrder(){
+		return " order by id " ;
 	}
 }
