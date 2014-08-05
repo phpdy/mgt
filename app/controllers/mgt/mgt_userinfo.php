@@ -50,6 +50,7 @@ class mgt_userinfo extends BaseController {
 		$result = 0 ;
 		if(!isset($_POST['id']) || empty($_POST['id'])){
 			$data['createtime'] = date('Y-m-d H:i:s') ;
+			$data['tag'] = 'mgt' ;
 			$result = $this->userinfo_model->insert($data) ;
 		} else {
 			$data['id'] = $_POST['id'] ;
@@ -259,6 +260,19 @@ class mgt_userinfo extends BaseController {
 		$log .= "|".$res ;
 		
 		echo "密码修改成功!" ;
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
+	public function delAction(){
+		$start = microtime(true)*1000;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		$userid = $_GET['userid'] ;;
+		$log .= "|$userid" ;
+		
+		$res = $this->userinfo_model->delete($userid) ;
+		$log .= "|".$res ;
+		
+		echo "用户删除完毕!" ;
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
 	}

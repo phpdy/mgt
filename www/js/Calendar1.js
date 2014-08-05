@@ -27,7 +27,7 @@
  * IMPORTANT:you must include this script file inner html body elment 
  */
 function Calendar(beginYear, endYear, language, patternDelimiter, date2StringPattern, string2DatePattern) {
-	this.beginYear = beginYear || 1940;
+	this.beginYear = beginYear || 1920;
 	this.endYear   = endYear   || 2020;
 	this.language  = language  || 0;
 	this.patternDelimiter = patternDelimiter     || "-";

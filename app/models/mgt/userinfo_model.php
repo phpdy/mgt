@@ -5,7 +5,7 @@ class userinfo_model extends BaseModel {
 	protected $dbtable = "userinfo" ;
 	
 	protected $items = array('id','name','password','username','sex','birth',
-	'paper','paperno','company','job','province','city','address','post','mobile','phone','email','createtime','memberid','member','other') ;
+	'paper','paperno','company','job','province','city','address','post','mobile','phone','email','createtime','memberid','member','other','tag') ;
 
 	public function queryCount($data=array()) {
 		$start = microtime(true)*1000 ;
@@ -125,6 +125,23 @@ class userinfo_model extends BaseModel {
 		
 		$sql = "update ".$this->dbtable." set password=?  where id=? ";
 		$params = array($password,$userid) ;
+		$result = $this->excuteSQL($sql,$params) ;
+		$log .= "|$sql";
+		
+		$log .= "|".$result ;
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBehavior($log);
+		return $result ;
+	}
+	/**
+	* 删除
+	*/
+	function delete($userid) {
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$sql = "delete from ".$this->dbtable." where id=? ";
+		$params = array($userid) ;
 		$result = $this->excuteSQL($sql,$params) ;
 		$log .= "|$sql";
 		

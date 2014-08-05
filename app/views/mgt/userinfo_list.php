@@ -47,6 +47,7 @@
                 <td>电子邮箱</td>
                 <td>工作单位(职务)</td>
                 <td>注册日期</td>
+                <td>注册来源</td>
                 <td>修改</td>
             </tr>
 		<?php
@@ -71,13 +72,17 @@
 			$birth 	= $item['birth'] ;
 			$paperno= $item['paperno'] ;
 			$mobile = $item['mobile'] ;
-			if (empty($mobile)){
-				$mobile	= $item['phone'] ;
+			if (!empty($item['phone'])){
+				$mobile	.= '<br/>'.$item['phone'] ;
 			}
 			$email	= $item['email'] ;
 			$company= $item['company'] ;
 			$job	= $item['job'] ;
+			if (!empty($job)){
+				$company	.= '<br/>'.$job ;
+			}
 			$createtime = $item['createtime'] ;
+			$tag = $item['tag'] ;
 			
 			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
 			echo "<tr class='$class'><td>$no</td><td><a href='?dir=mgt&control=userinfo&action=show&id=$item[id]'>$item[username]</a></td>".
@@ -85,9 +90,10 @@
 			//"<td>$member</td>".
 			"<td>$sex</td><td>$birth</td>".
 			//"<td>$paperno</td>".
-			"<td>$mobile</td><td>$email</td><td>$company $job</td>".
-			"<td>$createtime</td>".
+			"<td>$mobile</td><td>$email</td><td>$company</td>".
+			"<td>$createtime</td><td>$tag</td>".
 			"<td><a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改信息</a>
+			<input type='button' value='删除用户' onclick='del({$item['id']})'/>
 			<input type='button' value='密码修改' onclick='up({$item['id']})'/></td></tr>" ;
 		$i++;
 		}
@@ -119,6 +125,14 @@ function up(uid){
 	if(password!=null && password!=""){
 		$.get("?dir=mgt&control=userinfo&action=uppwd&userid="+uid+"&password="+password,{},function(data){
 			alert(data) ;
+		});
+	}
+}
+function del(uid){
+	if(uid!=null && uid!=""){
+		$.get("?dir=mgt&control=userinfo&action=del&userid="+uid,{},function(data){
+			alert(data) ;
+			this.fresh();
 		});
 	}
 }
