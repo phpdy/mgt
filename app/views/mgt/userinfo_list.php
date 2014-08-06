@@ -130,10 +130,12 @@ function up(uid){
 }
 function del(uid){
 	if(uid!=null && uid!=""){
+		if(confirm('你确定要删除用户吗？')){
 		$.get("?dir=mgt&control=userinfo&action=del&userid="+uid,{},function(data){
 			alert(data) ;
-			this.fresh();
+			location.reload();
 		});
+		}
 	}
 }
 </script>
