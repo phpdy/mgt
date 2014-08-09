@@ -172,7 +172,7 @@ class BaseModel extends Model {
 		$p1 = "" ;
 		$params = array() ;
 		foreach ($data as $key=>$value){
-			if(empty($value)){
+			if($value==''){
 				continue ;
 			}
 			if(in_array($key, $this->items)){
@@ -204,7 +204,7 @@ class BaseModel extends Model {
 		$p1 = "" ;
 		$params = array() ;
 		foreach ($data as $key=>$value){
-			if(empty($value)){
+			if($value==''){
 				continue ;
 			}
 			if(in_array($key, $this->items)){
@@ -215,7 +215,7 @@ class BaseModel extends Model {
 		$size = FinalClass::$_list_pagesize ;
 		$start = (empty($data['page'])?0:$data['page'])*$size ;
 		
-		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 ".$this->getOrder()." $start,$size";
+		$sql = "select * from ".$this->dbtable." where ".$this->getWhere()." $p1 ".$this->getOrder()." limit $start,$size";
 		$result = $this->querySQL($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
@@ -232,7 +232,7 @@ class BaseModel extends Model {
 		$p1 = "" ;
 		$params = array() ;
 		foreach ($data as $key=>$value){
-			if(empty($value)){
+			if($value==''){
 				continue ;
 			}
 			if(in_array($key, $this->items)){
@@ -250,6 +250,24 @@ class BaseModel extends Model {
 		$log .= '|' . (int)(microtime(true)*1000-$start);
 		Log::logBehavior($log);
 		return $pages;	
+	}
+	
+	/**
+	* 删除
+	*/
+	public function delete($id) {
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$sql = "delete from ".$this->dbtable." where id=? ";
+		$params = array($id) ;
+		$result = $this->excuteSQL($sql,$params) ;
+		$log .= "|$sql";
+		
+		$log .= "|".$result ;
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBehavior($log);
+		return $result ;
 	}
 	
 	protected function getWhere(){

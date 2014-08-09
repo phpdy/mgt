@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>列表</title>
 <link rel="StyleSheet" href="manager/css/style.css" type="text/css" />
+<script language="javascript" type="text/javascript" src="js/Calendar1.js" ></script>
 </head>
 <body>
 <div class="content">
@@ -12,7 +13,7 @@
         
         <div id="gamemain">
         <form method="post" action="?dir=mgt&control=userinfo&action=list">
-       		学号：<input type="text" name="cnid" id="cnid" value="<?php echo @$userinfo['cnid'] ;?>" size="10" maxlength="10"/>
+       		账号：<input type="text" name="name" id="name" value="<?php echo @$userinfo['name'] ;?>" size="20" maxlength="50"/>
 			姓名：<input type="text" name="username" id="username" value="<?php echo @$userinfo['username'] ;?>" size="10" maxlength="10"/>
        		会员类型：<select name="memberid" id="memberid">
        		<option value="0" >全部
@@ -28,9 +29,17 @@
 				}
 	       		?>
 			</select>
-			手机号：<input type="text" name="mobile" id="mobile" value="<?php echo @$userinfo['mobile'] ;?>" size="10" maxlength="10"/>
+			手机号：<input type="text" name="mobile" id="mobile" value="<?php echo @$userinfo['mobile'] ;?>" size="11" maxlength="11"/>
+			注册来源：<select name="tag" id="tag">
+			<?php $tag = @$userinfo['tag'] ;?>
+       		<option value="0" >全部
+       		<option value='www' <?php if($tag=='www'){echo 'selected';}?>>www
+			<option value='club' <?php if($tag=='club'){echo 'selected';}?>>club
+			<option value='mgt' <?php if($tag=='mgt'){echo 'selected';}?>>mgt
+			</select>
+			注册日期:<input type="text" name="createtime" value="<?php echo @$userinfo['createtime']; ?>" size=10 onclick="new Calendar().show(this);" readonly>
 			<input type="hidden" name="page" value="<?php echo @$userinfo['page'] ;?>"/>
-			<input type="submit" value="查询">
+			<input type="submit" value="查询">&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="button" name="export" id="export" value="导出">
         </form>
         </div>
@@ -110,7 +119,9 @@
 $(document).ready(function(){
 	$("#export").click(function(){
 		var temp = document.createElement("form");        
-	    temp.action = "?dir=mgt&control=userinfo&action=export&cnid="+$('#cnid').val()+"&username="+$('#username').val()+"&memberid="+$('#memberid').val()+"&mobile="+$('#mobile').val();
+	    temp.action = "?dir=mgt&control=userinfo&action=export&name="+$('#name').val()
+	    +"&username="+$('#username').val()+"&memberid="+$('#memberid').val()+"&mobile="+$('#mobile').val()
+	    +"&tag="+$('#tag').val()+"&createtime="+$('#createtime').val();
 	    temp.method = "POST";
 	    temp.style.display = "none";
 

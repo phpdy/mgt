@@ -22,8 +22,16 @@ class userinfo_model extends BaseModel {
 				$p1 .= "and username like '%$value%' " ;
 				continue ;
 			}
+			if($key=='name'){
+				$p1 .= "and name like '%$value%' " ;
+				continue ;
+			}
 			if($key=='memberid'){
 				$p1 .= "and memberid like '%$value%' " ;
+				continue ;
+			}
+			if($key=='createtime'){
+				$p1 .= "and createtime like '$value%' " ;
 				continue ;
 			}
 			if(in_array($key, $this->items)){
@@ -53,13 +61,21 @@ class userinfo_model extends BaseModel {
 			if(empty($value)){
 				continue ;
 			}
-			
+		
 			if($key=='username'){
 				$p1 .= "and username like '%$value%' " ;
 				continue ;
 			}
+			if($key=='name'){
+				$p1 .= "and name like '%$value%' " ;
+				continue ;
+			}
 			if($key=='memberid'){
 				$p1 .= "and memberid like '%$value%' " ;
+				continue ;
+			}
+			if($key=='createtime'){
+				$p1 .= "and createtime like '$value%' " ;
 				continue ;
 			}
 			if(in_array($key, $this->items)){
@@ -125,23 +141,6 @@ class userinfo_model extends BaseModel {
 		
 		$sql = "update ".$this->dbtable." set password=?  where id=? ";
 		$params = array($password,$userid) ;
-		$result = $this->excuteSQL($sql,$params) ;
-		$log .= "|$sql";
-		
-		$log .= "|".$result ;
-		$log .= "|".(int)(microtime(true)*1000-$start) ;
-		Log::logBehavior($log);
-		return $result ;
-	}
-	/**
-	* 删除
-	*/
-	function delete($userid) {
-		$start = microtime(true)*1000 ;
-		$log = __CLASS__."|".__FUNCTION__ ;
-		
-		$sql = "delete from ".$this->dbtable." where id=? ";
-		$params = array($userid) ;
 		$result = $this->excuteSQL($sql,$params) ;
 		$log .= "|$sql";
 		

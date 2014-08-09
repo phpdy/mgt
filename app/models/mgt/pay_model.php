@@ -8,7 +8,7 @@ class pay_model extends BaseModel {
 	//pid 子分类ID ，活动ID
 	//paytype 支付类别 在线支付/汇款
 	//state 状态 未支付 0， 成功1，失败-1 退款 -2
-	protected $items = array('orderid','ptype','state','userid','username','pid','money','paytype','paydate','other','recorder','recordtime') ;
+	protected $items = array('orderid','ptype','state','userid','username','pid','money','paytype','paydate','other','recorder','recordtime','createtime') ;
 
 	/**
 	 * insert
@@ -87,7 +87,7 @@ class pay_model extends BaseModel {
 		$p1 = "" ;
 		$params = array() ;
 		foreach ($data as $key=>$value){
-			if(empty($value)){
+			if($value==''){
 				continue ;
 			}
 			if(in_array($key, $this->items)){

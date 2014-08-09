@@ -79,11 +79,20 @@ class mgt_userinfo extends BaseController {
 		if(!empty($_POST['username'])){
 			$data['username'] = $_POST['username'] ;
 		}
+		if(!empty($_POST['name'])){
+			$data['name'] = $_POST['name'] ;
+		}
 		if(!empty($_POST['memberid'])){
 			$data['memberid'] = $_POST['memberid'] ;
 		}
 		if(!empty($_POST['mobile'])){
 			$data['mobile'] = $_POST['mobile'] ;
+		}
+		if(!empty($_POST['tag'])){
+			$data['tag'] = $_POST['tag'] ;
+		}
+		if(!empty($_POST['createtime'])){
+			$data['createtime'] = $_POST['createtime'] ;
 		}
 		if(!empty($_POST['cnid'])){
 			$data['cnid'] = $_POST['cnid'] ;
@@ -276,6 +285,25 @@ class mgt_userinfo extends BaseController {
 		echo "用户删除完毕!" ;
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
+	}
+	
+	public function checkAction(){
+	$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$name = $_POST['name'] ;
+		$result = $this->userinfo_model->query(array('name'=>$name)) ;
+//		print_r($result) ;
+
+		$log .= "|$name|".sizeof($result) ;
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+		
+		if(empty($result) || sizeof($result)==0){
+			echo 1 ;
+		} else {
+			echo 0 ;
+		}
 	}
 }
 

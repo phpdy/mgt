@@ -1,5 +1,20 @@
 <table>
 	<tbody>
+	<?php if(isset($userinfo) && isset($userinfo['id'])){ ?>
+	<tr>
+		<td class="title"><b>用户名:</b></td><td><?php echo @$userinfo['name']; ?></td>
+	</tr>
+	<?php } else {?>
+	<tr>
+		<td class="title"><b>用户名:</b></td><td><input type="text" name="name" id="name" value="" size=30> <font color='red'>*</font></td>
+	</tr>
+	<tr>
+		<td class="title"><b>登录密码:</b></td><td><input type="password" name="password" id="password" value="" size=30> <font color='red'>*</font></td>
+	</tr>
+	<tr>
+		<td class="title"><b>再次输入:</b></td><td><input type="password" name="repassword" id="repassword" value="" size=30> <font color='red'>*</font></td>
+	</tr>
+	<?php }?>
 	<tr>
 		<td class="title"><b>姓名:</b></td><td><input type="text" name="username" value="<?php echo @$userinfo['username']; ?>" size=20> <font color='red'>*</font></td>
 	</tr>
@@ -53,6 +68,6 @@
 	<tr><td class="title"><b>登记时间:</b></td><td><input type="text" name="createtime" value="<?php echo @$userinfo['createtime']?@$userinfo['createtime']:date('Y-m-d'); ?>" size=20 onclick="new Calendar().show(this);" readonly></td></tr>
 	<tr><td class="title"><b>备注:</b></td><td><textarea name="other" cols=100 rows=5><?php echo @$userinfo['other']; ?></textarea></td></tr>
 	
-	<tr><td colspan="2"><input type="submit" value="提  交" name="sub" class="sub-btn"></td></tr>
+	<tr><td colspan="2"><input type="button" value="提  交" name="registsubmit" id="registsubmit"></td></tr>
 	</tbody>
 </table>

@@ -154,6 +154,93 @@ class mgt_pay extends BaseController {
 		Log::logBusiness($log) ;
 	}
 
+	//导出
+	public function exportAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$memberlist = $this->member_model->query() ;
+		
+		$data = array() ;
+		if(!empty($_POST['username'])){
+			$data['username'] = $_POST['username'] ;
+		}
+		if(!empty($_POST['ptype'])){
+			$data['ptype'] = $_POST['ptype'] ;
+		}
+		if(!empty($_POST['pid'])){
+			$data['pid'] = $_POST['pid'] ;
+		}
+		if($_POST['state']!=''){
+			$data['state'] = $_POST['state'] ;
+		}
+		if(!empty($_POST['page'])){
+			$data['page'] = $_POST['page'] ;
+		} else {
+			$data['page'] = 0 ;
+		}
+		$result = $this->pay_model->queryAll($data) ;
+		
+		//补充结果缺少数据，用户信息和俱乐部活动名
+		$userinfolist = $this->userinfo_model->queryAll() ;
+		$clublist = $this->club_model->queryAll();
+		foreach($result as $key=>$value){
+			//补充俱乐部活动名称 pname
+			$pid = $value['pid'] ;
+			foreach($clublist as $club){
+				if($club['id']==$pid){
+					$result[$key]["pname"]=$club['title'] ;
+					break ;
+				}
+			}
+			//补充用户名、性别、身份证号
+			$userid = $value['userid'] ;
+			foreach($userinfolist as $user){
+				if($user['id']==$userid){
+					$result[$key]["name"]=$user['name'] ;
+					$result[$key]["sex"]=$user['sex']==2?'女':'男';
+					$result[$key]["paperno"]=$user['paperno'] ;
+					break ;
+				}
+			}
+		}
+
+		$list[] = array(
+			'订单号','姓名','用户名','性别','金额','支付方式','缴费类别','缴费二级类别','付款日期','支付状态'
+		) ;
+		foreach ($result as $item){
+			foreach ($memberlist as $mem){
+				if($mem['id']==$item['ptype']){
+					$ptype = $mem['name'] ;
+				}
+			}
+			$state ='未支付' ;
+			if($item['state']==1){
+				$state ='成功' ;
+			}
+			if($item['state']==0){
+				$state ='未付款' ;
+			}
+			if($item['state']==-1){
+				$state ='失败' ;
+			}
+			if($item['state']==-2){
+				$state ='退款成功' ;
+			}
+			$list[] = array(
+				$item['orderid'],$item['username'],$item['name'],$item['sex'],$item['money'],
+				$item['paytype'],$ptype,$item['pname'],$item['paydate'],$state,
+			);
+		}
+		
+		$this->view->assign('filename',"订单查询列表") ;
+		$this->view->assign('list',$list) ;
+		$this->view->display('export_table.php');
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
+
 	public function showAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
@@ -168,6 +255,20 @@ class mgt_pay extends BaseController {
 		Log::logBusiness($log) ;
 	}
 
+	public function delAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$id = $_GET['id'] ;
+		$res = $this->pay_model->delete($id) ;
+		$log .= "|".$res ;
+		
+		echo $res ;
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
+	
 	private function getPost(){
 		$data = array() ;
 		$data = $_POST ;

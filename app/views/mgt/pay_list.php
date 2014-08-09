@@ -44,7 +44,8 @@
 					<option value='-1' <?php if($data['state']==-1){echo "selected";} ?>>失败
 					</select>
 			<input type="hidden" name="page" value="<?php echo @$data['page'] ;?>"/>
-			<input type="submit" value="查询">
+			<input type="submit" value="查询">&nbsp;&nbsp;
+			<input type="button" name="export" id="export" value="导出">
         </form>
         </div>
         
@@ -62,7 +63,7 @@
                 <td>缴费二级类别</td>
                 <td>付款日期</td>
                 <td>支付状态</td>
-                <td>修改</td>
+                <td>操作</td>
             </tr>
 		<?php
 		$i = 0;
@@ -94,6 +95,11 @@
 			if($item['state']==1 && $item['paytype']=='在线支付'){
 				$pay = "&nbsp;" ;
 			}
+			$now = time() ;
+			$time = strtotime($item['createtime']) ;
+			if($item['state']!=1 && ($now-$time)>60*60*24*3){
+				$pay .= "&nbsp;<input type='button' value='删除用户' onclick='del({$item['id']})'/>" ;
+			}
 			echo "<tr class='$class'><td>$no</td><td>$item[orderid]</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>"
 			."<td>$item[name]</td><td>$item[sex]</td><td>$item[money]</td><td>$item[paytype]</td>"
 			."<td>$ptype</td><td>$item[pname]</td><td>$item[paydate]</td><td>$state</td><td>$pay</td></tr>" ;
@@ -108,3 +114,30 @@
 </div>
 </body>
 </html>
+<script language="javascript" type="text/javascript" src="manager/js/jquery-1.7.2.min.js" ></script>
+<script language="javascript" type="text/javascript" >
+$(document).ready(function(){
+	$("#export").click(function(){
+		var temp = document.createElement("form");        
+	    temp.action = "?dir=mgt&control=pay&action=export&username="+$('#username').val()+
+	    "&ptype="+$('#ptype').val()+"&pid="+$('#pid').val()+"&state="+$("#state").val();
+	    temp.method = "POST";
+	    temp.style.display = "none";
+
+	    document.body.appendChild(temp);
+	    temp.submit();
+	    
+	});
+});
+
+function del(uid){
+	if(id!=null && id!=""){
+		if(confirm('你确定要删除订单吗？')){
+		$.get("?dir=mgt&control=pay&action=del&id="+id,{},function(data){
+			alert(data) ;
+			location.reload();
+		});
+		}
+	}
+}
+</script>
