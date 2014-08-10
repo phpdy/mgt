@@ -130,7 +130,7 @@ $(document).ready(function(){
 	});
 });
 
-function del(uid){
+function del(id){
 	if(id!=null && id!=""){
 		if(confirm('你确定要删除订单吗？')){
 		$.get("?dir=mgt&control=pay&action=del&id="+id,{},function(data){

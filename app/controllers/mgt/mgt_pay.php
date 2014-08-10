@@ -263,7 +263,7 @@ class mgt_pay extends BaseController {
 		$res = $this->pay_model->delete($id) ;
 		$log .= "|".$res ;
 		
-		echo $res ;
+		echo "订单删除成功。" ;
 		
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
