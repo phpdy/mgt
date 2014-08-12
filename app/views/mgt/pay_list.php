@@ -86,6 +86,9 @@
 			if($item['state']==-2){
 				$state ='退款成功' ;
 			}
+			if($item['state']==-3){
+				$state ='删除' ;
+			}
 			foreach ($memberlist as $mem){
 				if($mem['id']==$item['ptype']){
 					$ptype = $mem['name'] ;

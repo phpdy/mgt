@@ -96,7 +96,7 @@ class pay_model extends BaseModel {
 			}
 		}
 		
-		$sql = "select * from lesson_pay where 1=1 $p1 order by id desc";
+		$sql = "select * from lesson_pay where ".$this->getWhere()." $p1 order by id desc";
 		$result = $this->getAll($sql,$params) ;
 		
 		$log .= '|' . $sql.";".implode(",", $params);
@@ -104,6 +104,26 @@ class pay_model extends BaseModel {
 		$log .= '|' . (int)(microtime(true)*1000-$start);
 		Log::logBehavior($log);
 		return $result;	
+	}
+
+	public function delete($id) {
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$sql = "update ".$this->dbtable." set state=-3 where id=? ";
+		$params = array($id) ;
+		$result = $this->excuteSQL($sql,$params) ;
+		$log .= "|$sql";
+		
+		$log .= "|".$result ;
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBehavior($log);
+		return $result ;
+	}
+
+	
+	protected function getWhere(){
+		return " state!=-3 " ;
 	}
 
 	protected function getOrder(){

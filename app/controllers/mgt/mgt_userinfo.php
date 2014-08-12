@@ -51,7 +51,7 @@ class mgt_userinfo extends BaseController {
 		if(!isset($_POST['id']) || empty($_POST['id'])){
 			$data['createtime'] = date('Y-m-d H:i:s') ;
 			$data['tag'] = 'mgt' ;
-			$data['name'] = $data['email'] ;
+			$data['password'] = md5($data['password']) ;
 			$result = $this->userinfo_model->insert($data) ;
 		} else {
 			$data['id'] = $_POST['id'] ;

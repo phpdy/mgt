@@ -150,6 +150,25 @@ class userinfo_model extends BaseModel {
 		return $result ;
 	}
 
+	protected function getWhere(){
+		return " state=1 " ;
+	}
+	
+	public function delete($id) {
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$sql = "update ".$this->dbtable." set state=2 where id=? ";
+		$params = array($id) ;
+		$result = $this->excuteSQL($sql,$params) ;
+		$log .= "|$sql";
+		
+		$log .= "|".$result ;
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBehavior($log);
+		return $result ;
+	}
+
 	protected function getOrder(){
 		return " order by createtime desc " ;
 	}

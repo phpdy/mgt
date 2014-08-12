@@ -2,11 +2,11 @@
 	<tbody>
 	<?php if(isset($userinfo) && isset($userinfo['id'])){ ?>
 	<tr>
-		<td class="title"><b>用户名:</b></td><td><?php echo @$userinfo['name']; ?></td>
+		<td class="title"><b>账号:</b></td><td><?php echo @$userinfo['name']; ?></td>
 	</tr>
 	<?php } else {?>
 	<tr>
-		<td class="title"><b>用户名:</b></td><td><input type="text" name="name" id="name" value="" size=30> <font color='red'>*</font></td>
+		<td class="title"><b>账号:</b></td><td><input type="text" name="name" id="name" value="" size=30> <font color='red'>*</font></td>
 	</tr>
 	<tr>
 		<td class="title"><b>登录密码:</b></td><td><input type="password" name="password" id="password" value="" size=30> <font color='red'>*</font></td>

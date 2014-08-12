@@ -14,6 +14,7 @@
         <table>
 		<tbody>
 		<tr><td class="title"><b>姓名:</b></td><td><?php echo @$userinfo['username']; ?></td></tr>
+		<tr><td class="title"><b>账号:</b></td><td><?php echo @$userinfo['name']; ?></td></tr>
 		<tr><td class="title"><b>会员类型:</b></td><td><?php echo @$userinfo['member']; ?></td></tr>
 		<tr><td class="title"><b>性别:</b></td><td><?php if(@$userinfo['sex']==1){echo "男";} else {echo '女';} ?></td></tr>
 		<tr><td class="title"><b>出生年月:</b></td><td><?php echo @$userinfo['birth']; ?></td></tr>

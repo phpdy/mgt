@@ -34,7 +34,7 @@ $(function(){
 		}
 
 		var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;
-		var Regex2 = /^(cn|CN)\d{7}$/ ;
+		var Regex2 = /^(cn|CN|NE|ne)\d{7}$/ ;
 		if (!Regex.test(name) && !Regex2.test(name)) {
 			alert("请输入正确的电子邮件地址或学号！");
 			$("#name").val("") ;
