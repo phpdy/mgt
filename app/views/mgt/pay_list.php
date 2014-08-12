@@ -42,6 +42,7 @@
 					<option value='0' <?php if($data['state']=='0'){echo "selected";} ?>>未付款
 					<option value='1' <?php if($data['state']==1){echo "selected";} ?>>成功
 					<option value='-1' <?php if($data['state']==-1){echo "selected";} ?>>失败
+					<option value='-2' <?php if($data['state']==-2){echo "selected";} ?>>退费
 					</select>
 			<input type="hidden" name="page" value="<?php echo @$data['page'] ;?>"/>
 			<input type="submit" value="查询">&nbsp;&nbsp;
@@ -84,7 +85,7 @@
 				$state ='失败' ;
 			}
 			if($item['state']==-2){
-				$state ='退款成功' ;
+				$state ='退款' ;
 			}
 			if($item['state']==-3){
 				$state ='删除' ;
@@ -96,12 +97,12 @@
 			}
 			$pay = "<a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a>" ;
 			if($item['state']==1 && $item['paytype']=='在线支付'){
-				$pay = "&nbsp;" ;
+				$pay = "&nbsp;<input type='button' value='退款' onclick='back({$item['id']})'/>" ;
 			}
 			$now = time() ;
 			$time = strtotime($item['createtime']) ;
 			if($item['state']!=1 && ($now-$time)>60*60*24*3){
-				$pay .= "&nbsp;<input type='button' value='删除用户' onclick='del({$item['id']})'/>" ;
+				$pay .= "&nbsp;<input type='button' value='删除' onclick='del({$item['id']})'/>" ;
 			}
 			echo "<tr class='$class'><td>$no</td><td>$item[orderid]</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>"
 			."<td>$item[name]</td><td>$item[sex]</td><td>$item[money]</td><td>$item[paytype]</td>"
@@ -137,6 +138,17 @@ function del(id){
 	if(id!=null && id!=""){
 		if(confirm('你确定要删除订单吗？')){
 		$.get("?dir=mgt&control=pay&action=del&id="+id,{},function(data){
+			alert(data) ;
+			location.reload();
+		});
+		}
+	}
+}
+
+function back(id){
+	if(id!=null && id!=""){
+		if(confirm('你确定给用户退款吗？')){
+		$.get("?dir=mgt&control=pay&action=back&id="+id,{},function(data){
 			alert(data) ;
 			location.reload();
 		});

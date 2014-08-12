@@ -255,6 +255,7 @@ class mgt_pay extends BaseController {
 		Log::logBusiness($log) ;
 	}
 
+	//删除
 	public function delAction(){
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
@@ -268,7 +269,24 @@ class mgt_pay extends BaseController {
 		$log .= "|".(int)(microtime(true)*1000-$start) ;
 		Log::logBusiness($log) ;
 	}
-	
+	//退款
+	public function backAction(){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$id = $_GET['id'] ;
+		$data = array(
+			'id'=>$id,
+			'state'=>-2 ,
+		);
+		$result = $this->pay_model->update($data) ;
+		$log .= "|".$result ;
+		
+		echo "退款成功。" ;
+		
+		$log .= "|".(int)(microtime(true)*1000-$start) ;
+		Log::logBusiness($log) ;
+	}
 	private function getPost(){
 		$data = array() ;
 		$data = $_POST ;
