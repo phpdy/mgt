@@ -94,6 +94,16 @@
 			$tag = $item['tag'] ;
 			
 			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
+			
+			$q = @$_GET['q'] ;
+			$op = "&nbsp;" ;
+			if(!empty($q)){
+				$op .= "<a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改信息</a>" ;
+				if($q==2){
+					$op .= "<input type='button' value='删除用户' onclick='del({$item['id']})'/>
+					<input type='button' value='密码修改' onclick='up({$item['id']})'/>" ;
+				}
+			}
 			echo "<tr class='$class'><td>$no</td><td><a href='?dir=mgt&control=userinfo&action=show&id=$item[id]'>$item[username]</a></td>".
 			"<td>$item[name]</td>".
 			//"<td>$member</td>".
@@ -101,9 +111,7 @@
 			//"<td>$paperno</td>".
 			"<td>$mobile</td><td>$email</td><td>$company</td>".
 			"<td>$createtime</td><td>$tag</td>".
-			"<td><a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改信息</a>
-			<input type='button' value='删除用户' onclick='del({$item['id']})'/>
-			<input type='button' value='密码修改' onclick='up({$item['id']})'/></td></tr>" ;
+			"<td>$op</td></tr>" ;
 		$i++;
 		}
 		?>

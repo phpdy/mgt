@@ -95,14 +95,19 @@
 					$ptype = $mem['name'] ;
 				}
 			}
-			$pay = "<a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a>" ;
-			if($item['state']==1 && $item['paytype']=='在线支付'){
-				$pay = "&nbsp;<input type='button' value='退款' onclick='back({$item['id']})'/>" ;
-			}
-			$now = time() ;
-			$time = strtotime($item['createtime']) ;
-			if($item['state']!=1 && ($now-$time)>60*60*24*3){
-				$pay .= "&nbsp;<input type='button' value='删除' onclick='del({$item['id']})'/>" ;
+			$q = @$_GET['q'] ;
+			$pay = "&nbsp;" ;
+			if(!empty($q)){
+				$pay .= "<a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a>" ;
+			
+				if($item['state']==1 && $item['paytype']=='在线支付'){
+					$pay .= "&nbsp;<input type='button' value='退款' onclick='back({$item['id']})'/>" ;
+				}
+				$now = time() ;
+				$time = strtotime($item['createtime']) ;
+				if($item['state']!=1 && ($now-$time)>60*60*24*3 && $q==2){
+					$pay .= "&nbsp;<input type='button' value='删除' onclick='del({$item['id']})'/>" ;
+				}
 			}
 			echo "<tr class='$class'><td>$no</td><td>$item[orderid]</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>"
 			."<td>$item[name]</td><td>$item[sex]</td><td>$item[money]</td><td>$item[paytype]</td>"
