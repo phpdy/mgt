@@ -41,7 +41,7 @@
 				}
 				echo "<td>{$username}</td><td><a href='?dir=admin&control=userrole&action=up&id=$item[id]'>$realname</a></td><td>$rolseNames</td>";
 				$userroleid = $item['id'];
-				echo "<td><a href='#' onclick='showconfirm($userroleid)'>删除</a></td></tr>";
+				echo "<td><input type='button' value='删除' onclick='showconfirm($userroleid)'/></td></tr>";
 			}
 			?>
             </tbody>

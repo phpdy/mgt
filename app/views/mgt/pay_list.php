@@ -64,6 +64,7 @@
                 <td>缴费二级类别</td>
                 <td>付款日期</td>
                 <td>支付状态</td>
+                <td>操作人</td>
                 <td>操作</td>
             </tr>
 		<?php
@@ -109,9 +110,10 @@
 					$pay .= "&nbsp;<input type='button' value='删除' onclick='del({$item['id']})'/>" ;
 				}
 			}
+			$recorder = $item['recorder'] ;
 			echo "<tr class='$class'><td>$no</td><td>$item[orderid]</td><td><a href='?dir=mgt&control=pay&action=up&id=$item[id]'>$item[username]</a></td>"
 			."<td>$item[name]</td><td>$item[sex]</td><td>$item[money]</td><td>$item[paytype]</td>"
-			."<td>$ptype</td><td>$item[pname]</td><td>$item[paydate]</td><td>$state</td><td>$pay</td></tr>" ;
+			."<td>$ptype</td><td>$item[pname]</td><td>$item[paydate]</td><td>$state</td><td>$recorder</td><td>$pay</td></tr>" ;
 		$i++;
 		}
 		?>
