@@ -38,6 +38,7 @@
 			<option value='mgt' <?php if($tag=='mgt'){echo 'selected';}?>>mgt
 			</select>
 			注册日期:<input type="text" name="createtime" value="<?php echo @$userinfo['createtime']; ?>" size=10 onclick="new Calendar().show(this);" readonly>
+			<input type="hidden" name="q" value="<?php echo @$_REQUEST['q'] ;?>"/>
 			<input type="hidden" name="page" value="<?php echo @$userinfo['page'] ;?>"/>
 			<input type="submit" value="查询">&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="button" name="export" id="export" value="导出">
@@ -95,7 +96,7 @@
 			
 			$no = $i+1+FinalClass::$_list_pagesize*$pno ;//序号
 			
-			$q = @$_GET['q'] ;
+			$q = @$_REQUEST['q'] ;
 			$op = "&nbsp;" ;
 			if(!empty($q)){
 				$op .= "<a href='?dir=mgt&control=userinfo&action=up&id=$item[id]'>修改信息</a>" ;

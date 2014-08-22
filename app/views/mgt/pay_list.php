@@ -44,6 +44,7 @@
 					<option value='-1' <?php if($data['state']==-1){echo "selected";} ?>>失败
 					<option value='-2' <?php if($data['state']==-2){echo "selected";} ?>>退费
 					</select>
+			<input type="hidden" name="q" value="<?php echo @$_REQUEST['q'] ;?>"/>
 			<input type="hidden" name="page" value="<?php echo @$data['page'] ;?>"/>
 			<input type="submit" value="查询">&nbsp;&nbsp;
 			<input type="button" name="export" id="export" value="导出">
@@ -96,7 +97,7 @@
 					$ptype = $mem['name'] ;
 				}
 			}
-			$q = @$_GET['q'] ;
+			$q = @$_REQUEST['q'] ;
 			$pay = "&nbsp;" ;
 			if(!empty($q)){
 				$pay .= "<a href='?dir=mgt&control=pay&action=up&id=$item[id]'>修改</a>" ;
