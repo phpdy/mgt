@@ -200,13 +200,14 @@ class mgt_pay extends BaseController {
 					$result[$key]["name"]=$user['name'] ;
 					$result[$key]["sex"]=$user['sex']==2?'女':'男';
 					$result[$key]["paperno"]=$user['paperno'] ;
+					$result[$key]["mobile"]=$user['mobile'] ;
 					break ;
 				}
 			}
 		}
 
 		$list[] = array(
-			'订单号','姓名','用户名','性别','金额','支付方式','缴费类别','缴费二级类别','付款日期','支付状态'
+			'订单号','姓名','用户名','性别','手机号码','金额','支付方式','缴费类别','缴费二级类别','付款日期','支付状态'
 		) ;
 		foreach ($result as $item){
 			foreach ($memberlist as $mem){
@@ -228,7 +229,7 @@ class mgt_pay extends BaseController {
 				$state ='退款成功' ;
 			}
 			$list[] = array(
-				$item['orderid'],$item['username'],$item['name'],$item['sex'],$item['money'],
+				$item['orderid'],$item['username'],$item['name'],$item['sex'],$item['mobile'],$item['money'],
 				$item['paytype'],$ptype,$item['pname'],$item['paydate'],$state,
 			);
 		}
