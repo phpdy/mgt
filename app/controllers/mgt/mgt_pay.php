@@ -162,19 +162,19 @@ class mgt_pay extends BaseController {
 		$memberlist = $this->member_model->query() ;
 		
 		$data = array() ;
-		if(!empty($_POST['username'])){
-			$data['username'] = $_POST['username'] ;
+		if(!empty($_GET['username'])){
+			$data['username'] = $_GET['username'] ;
 		}
-		if(!empty($_POST['ptype'])){
-			$data['ptype'] = $_POST['ptype'] ;
+		if(!empty($_GET['ptype'])){
+			$data['ptype'] = $_GET['ptype'] ;
 		}
-		if(!empty($_POST['pid'])){
-			$data['pid'] = $_POST['pid'] ;
+		if(!empty($_GET['pid'])){
+			$data['pid'] = $_GET['pid'] ;
 		}
-		if($_POST['state']!=''){
-			$data['state'] = $_POST['state'] ;
+		if($_GET['state']!=''){
+			$data['state'] = $_GET['state'] ;
 		}
-		if(!empty($_POST['page'])){
+		if(!empty($_GET['page'])){
 			$data['page'] = $_POST['page'] ;
 		} else {
 			$data['page'] = 0 ;
