@@ -17,6 +17,9 @@
 			<table>
 				<tbody>
 				<tr><td class="title"><b>姓名:</b></td><td><?php echo $pay['username'];?></td></tr>
+				<tr><td class="title"><b>手机号:</b></td><td><?php echo $pay['mobile'];?></td></tr>
+				<tr><td class="title"><b>固话:</b></td><td><?php echo $pay['phone'];?></td></tr>
+				<tr><td class="title"><b>邮箱:</b></td><td><?php echo $pay['email'];?></td></tr>
 				<tr><td class="title"><b>订单号:</b></td><td><?php echo $pay['orderid'];?></td></tr>
 				<tr><td class="title"><b>支付方式:</b></td>
 				<td><?php echo $pay['paytype'];?><!-- 

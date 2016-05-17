@@ -106,6 +106,22 @@ class pay_model extends BaseModel {
 		return $result;	
 	}
 
+
+	public function getOneById($id){
+		$start = microtime(true)*1000 ;
+		$log = __CLASS__."|".__FUNCTION__ ;
+		
+		$sql = "select a.*,b.mobile,b.phone,b.email from lesson_pay a,userinfo b where a.userid =b.id  and a.id = ?" ;
+		$list = $this->querySQL($sql,array($id)) ;
+		
+		if (!is_array($list) || sizeof($list)!=1){
+			return array() ;
+		}
+		$log .= "|$sql|" . (int)(microtime(true)*1000-$start);
+		Log::logBehavior($log);
+		return $list[0] ;
+	}
+
 	public function delete($id) {
 		$start = microtime(true)*1000 ;
 		$log = __CLASS__."|".__FUNCTION__ ;
